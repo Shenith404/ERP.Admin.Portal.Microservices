@@ -1,0 +1,18 @@
+[
+  {
+    "ContainingType": "EmailSender.Api.Controllers.SendEmailController",
+    "Method": "SendEmail",
+    "RelativePath": "SendEmail",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sendEmailResponse",
+        "Type": "EmailSender.Api.DTOs.SendEmailResponseDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

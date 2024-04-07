@@ -1,7 +1,20 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{45572EE8-BFC1-4BE3-B186-D064475AB3EB}|..\\EmailSender.Api\\EmailSender.Api.csproj|e:\\erp_admin_portal\\erp.admin.portal\\emailsender.api\\controllers\\sendemailcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{45572EE8-BFC1-4BE3-B186-D064475AB3EB}|..\\EmailSender.Api\\EmailSender.Api.csproj|e:\\erp_admin_portal\\erp.admin.portal\\emailsender.api\\dtos\\sendemailresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3A4C8F0-29CF-4C81-94BA-7F2880475E4A}|..\\EmailSender\\EmailSender.csproj|e:\\erp_admin_portal\\erp.admin.portal\\emailsender\\sendemail\\isendemail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{45572EE8-BFC1-4BE3-B186-D064475AB3EB}|..\\EmailSender.Api\\EmailSender.Api.csproj|e:\\erp_admin_portal\\erp.admin.portal\\emailsender.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -22,6 +35,58 @@
             {
               "$type": "Bookmark",
               "Name": "ST:1876394918:0:{bf84ea66-d821-4dba-b1b1-2777d8574775}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SendEmailResponseDTO.cs",
+              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\EmailSender.Api\\DTOs\\SendEmailResponseDTO.cs",
+              "RelativeDocumentMoniker": "..\\EmailSender.Api\\DTOs\\SendEmailResponseDTO.cs",
+              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\EmailSender.Api\\DTOs\\SendEmailResponseDTO.cs",
+              "RelativeToolTip": "..\\EmailSender.Api\\DTOs\\SendEmailResponseDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-07T10:40:48.792Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ISendEmail.cs",
+              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\EmailSender\\SendEmail\\ISendEmail.cs",
+              "RelativeDocumentMoniker": "..\\EmailSender\\SendEmail\\ISendEmail.cs",
+              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\EmailSender\\SendEmail\\ISendEmail.cs",
+              "RelativeToolTip": "..\\EmailSender\\SendEmail\\ISendEmail.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-07T10:39:25.287Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SendEmailController.cs",
+              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\EmailSender.Api\\Controllers\\SendEmailController.cs",
+              "RelativeDocumentMoniker": "..\\EmailSender.Api\\Controllers\\SendEmailController.cs",
+              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\EmailSender.Api\\Controllers\\SendEmailController.cs",
+              "RelativeToolTip": "..\\EmailSender.Api\\Controllers\\SendEmailController.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAA0wA8AAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-07T10:34:54.697Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\EmailSender.Api\\Program.cs",
+              "RelativeDocumentMoniker": "..\\EmailSender.Api\\Program.cs",
+              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\EmailSender.Api\\Program.cs",
+              "RelativeToolTip": "..\\EmailSender.Api\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-07T10:34:00.601Z",
+              "EditorCaption": ""
             }
           ]
         }

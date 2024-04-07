@@ -1,0 +1,13 @@
+E:\ERP_Admin_portal\ERP.Admin.Portal\EmailSender\bin\Debug\net8.0\EmailSender.deps.json
+E:\ERP_Admin_portal\ERP.Admin.Portal\EmailSender\bin\Debug\net8.0\EmailSender.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\EmailSender\bin\Debug\net8.0\EmailSender.pdb
+E:\ERP_Admin_portal\ERP.Admin.Portal\EmailSender\obj\Debug\net8.0\EmailSender.csproj.AssemblyReference.cache
+E:\ERP_Admin_portal\ERP.Admin.Portal\EmailSender\obj\Debug\net8.0\EmailSender.GeneratedMSBuildEditorConfig.editorconfig
+E:\ERP_Admin_portal\ERP.Admin.Portal\EmailSender\obj\Debug\net8.0\EmailSender.AssemblyInfoInputs.cache
+E:\ERP_Admin_portal\ERP.Admin.Portal\EmailSender\obj\Debug\net8.0\EmailSender.AssemblyInfo.cs
+E:\ERP_Admin_portal\ERP.Admin.Portal\EmailSender\obj\Debug\net8.0\EmailSender.csproj.CoreCompileInputs.cache
+E:\ERP_Admin_portal\ERP.Admin.Portal\EmailSender\obj\Debug\net8.0\EmailSender.sourcelink.json
+E:\ERP_Admin_portal\ERP.Admin.Portal\EmailSender\obj\Debug\net8.0\EmailSender.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\EmailSender\obj\Debug\net8.0\refint\EmailSender.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\EmailSender\obj\Debug\net8.0\EmailSender.pdb
+E:\ERP_Admin_portal\ERP.Admin.Portal\EmailSender\obj\Debug\net8.0\ref\EmailSender.dll

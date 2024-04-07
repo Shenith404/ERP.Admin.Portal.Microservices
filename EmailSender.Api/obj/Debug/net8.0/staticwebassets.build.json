@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "c8CZtFTkLRkJNK1FxMtRk1fOWeWTxDYaSDzXPModmN4=",
+  "Source": "EmailSender.Api",
+  "BasePath": "_content/EmailSender.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

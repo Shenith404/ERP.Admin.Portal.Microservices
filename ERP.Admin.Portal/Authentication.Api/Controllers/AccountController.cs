@@ -138,10 +138,10 @@ namespace Authentication.Api.Controllers
         [Route("Create")]
         public async Task<IActionResult> Register([FromBody] AuthenticationRequestDTO authenticationRequest)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
 
-                
+
                 var user_exist = await _userManager.FindByEmailAsync(authenticationRequest.UserName);
 
 
@@ -171,49 +171,69 @@ namespace Authentication.Api.Controllers
                 var new_user = new UserModel()
                 {
                     Email = authenticationRequest.UserName,
-                    UserName =authenticationRequest.UserName,
-                    Status=1
-                };  
+                    UserName = authenticationRequest.UserName,
+                    Status = 1,
+                    EmailConfirmed = false
+                };
 
-                var is_created =await _userManager.CreateAsync(new_user,authenticationRequest.Password);
+                var is_created = await _userManager.CreateAsync(new_user, authenticationRequest.Password);
+
                 var get_created_user = await _userManager.FindByEmailAsync(authenticationRequest.UserName);
 
 
                 // Add Default Role as Reguler
-  
-               // await _roleManager.CreateAsync(new IdentityRole("Reguler"));
-                await _userManager.AddToRoleAsync(get_created_user, "Reguler");
 
-
-
-                if (is_created.Succeeded)
+                // await _roleManager.CreateAsync(new IdentityRole("Reguler"));
+                if (get_created_user != null)
                 {
-                    TokenRequestDTO tokenRequest = new TokenRequestDTO();
-                    tokenRequest.UserName = authenticationRequest.UserName;
-                    tokenRequest.Role = "Reguler";
-                    tokenRequest.UserId= get_created_user.Id;
+                    await _userManager.AddToRoleAsync(get_created_user!, "Reguler");
+                }
 
-                    
-                    //Generate token
 
-                    AuthenticationResponseDTO result = await _jwtTokenHandler.GenerateJwtToken(tokenRequest);
 
-                    return Ok(
-                        new AuthenticationResponseDTO
-                        {
-                            JwtToken=result!.JwtToken,
-                            ExpiresIn=result.ExpiresIn,
-                            UserName=result.UserName,
-                            Message="User Create Successfully",
-                            IsLocked = await _userManager.IsLockedOutAsync(new_user),
-                            EmailConfirmed = await _userManager.IsEmailConfirmedAsync(new_user), 
+                if (is_created.Succeeded && get_created_user != null)
+                {
+                    // Create Confirmation Email token for created user
+                    var emailConfirmedToken = await _userManager.GenerateEmailConfirmationTokenAsync(get_created_user);
 
-                        });
+                    var emailBody = $"Please Confirm your email address <a href=\"#URL#\">Click link </a>";
+
+                    //create callback url
+                    //https://localhost:8080/authenticate/verifyemail/userid=asdsf&code=asdfds
+                    var callbackUrl = Request.Scheme + "://" + Request.Host + Url.Action("ConfirmEmail", "Account", new { userId = get_created_user.Id, code = emailConfirmedToken });
+
+                    var body = emailBody.Replace("#URL#",
+                        System.Text.Encodings.Web.HtmlEncoder.Default.Encode(callbackUrl));
+
+                    return Ok(body);
+
+                    /*                    TokenRequestDTO tokenRequest = new TokenRequestDTO();
+                                        tokenRequest.UserName = authenticationRequest.UserName;
+                                        tokenRequest.Role = "Reguler";
+                                        tokenRequest.UserId= get_created_user.Id;
+
+
+                                        //Generate token
+
+                                        AuthenticationResponseDTO result = await _jwtTokenHandler.GenerateJwtToken(tokenRequest);
+
+                                        return Ok(
+                                            new AuthenticationResponseDTO
+                                            {
+                                                JwtToken=result!.JwtToken,
+                                                ExpiresIn=result.ExpiresIn,
+                                                UserName=result.UserName,
+                                                Message="User Create Successfully",
+                                                IsLocked = await _userManager.IsLockedOutAsync(new_user),
+                                                EmailConfirmed = await _userManager.IsEmailConfirmedAsync(new_user), 
+
+                                            });*/
 
                 }
                 return BadRequest(
-                    new AuthenticationResponseDTO() {
-                        Message="Server Error"
+                    new AuthenticationResponseDTO()
+                    {
+                        Message = "Server Error"
                     });
             }
 

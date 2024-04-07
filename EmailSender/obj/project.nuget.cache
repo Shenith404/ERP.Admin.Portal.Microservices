@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "dlxgn5iYnoMBdegK6dRlv50zMR2pACWoNLPA39VL1ZQMM4P8fvxdnT5JorKwsIAXVY+fxj9Z/Pe7KqS1OMZfOw==",
+  "success": true,
+  "projectFilePath": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\EmailSender\\EmailSender.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\SHENITH\\.nuget\\packages\\bouncycastle.cryptography\\2.3.0\\bouncycastle.cryptography.2.3.0.nupkg.sha512",
+    "C:\\Users\\SHENITH\\.nuget\\packages\\mailkit\\4.4.0\\mailkit.4.4.0.nupkg.sha512",
+    "C:\\Users\\SHENITH\\.nuget\\packages\\mimekit\\4.4.0\\mimekit.4.4.0.nupkg.sha512",
+    "C:\\Users\\SHENITH\\.nuget\\packages\\system.formats.asn1\\8.0.0\\system.formats.asn1.8.0.0.nupkg.sha512",
+    "C:\\Users\\SHENITH\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\SHENITH\\.nuget\\packages\\system.security.cryptography.pkcs\\8.0.0\\system.security.cryptography.pkcs.8.0.0.nupkg.sha512",
+    "C:\\Users\\SHENITH\\.nuget\\packages\\system.text.encoding.codepages\\8.0.0\\system.text.encoding.codepages.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
