@@ -2,6 +2,7 @@
 using Authentication.DataService;
 using Authentication.DataService.IConfiguration;
 using Authentication.jwt;
+using EmailSender.SendEmail;
 using ERP.Authentication.Core.Entity;
 using ERP.Authentication.Jwt;
 using Microsoft.AspNetCore.Identity;
@@ -17,6 +18,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUnitOfWorks, UnitOfWorks>();
 builder.Services.AddScoped<IJwtTokenHandler, JwtTokenHandler>();
+builder.Services.AddScoped<ISendEmail, SendEmail>();
 
 //configure Automapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

@@ -3,16 +3,8 @@
   "WorkspaceRootPath": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{45572EE8-BFC1-4BE3-B186-D064475AB3EB}|..\\EmailSender.Api\\EmailSender.Api.csproj|e:\\erp_admin_portal\\erp.admin.portal\\emailsender.api\\controllers\\sendemailcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{45572EE8-BFC1-4BE3-B186-D064475AB3EB}|..\\EmailSender.Api\\EmailSender.Api.csproj|e:\\erp_admin_portal\\erp.admin.portal\\emailsender.api\\dtos\\sendemailresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E3A4C8F0-29CF-4C81-94BA-7F2880475E4A}|..\\EmailSender\\EmailSender.csproj|e:\\erp_admin_portal\\erp.admin.portal\\emailsender\\sendemail\\isendemail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{45572EE8-BFC1-4BE3-B186-D064475AB3EB}|..\\EmailSender.Api\\EmailSender.Api.csproj|e:\\erp_admin_portal\\erp.admin.portal\\emailsender.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{25C4B700-5374-4B72-ADFF-3B8442A7378D}|Authentication.Api\\Authentication.Api.csproj|e:\\erp_admin_portal\\erp.admin.portal\\erp.admin.portal\\authentication.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{25C4B700-5374-4B72-ADFF-3B8442A7378D}|Authentication.Api\\Authentication.Api.csproj|solutionrelative:authentication.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,54 +30,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "SendEmailResponseDTO.cs",
-              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\EmailSender.Api\\DTOs\\SendEmailResponseDTO.cs",
-              "RelativeDocumentMoniker": "..\\EmailSender.Api\\DTOs\\SendEmailResponseDTO.cs",
-              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\EmailSender.Api\\DTOs\\SendEmailResponseDTO.cs",
-              "RelativeToolTip": "..\\EmailSender.Api\\DTOs\\SendEmailResponseDTO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAoAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-07T10:40:48.792Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ISendEmail.cs",
-              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\EmailSender\\SendEmail\\ISendEmail.cs",
-              "RelativeDocumentMoniker": "..\\EmailSender\\SendEmail\\ISendEmail.cs",
-              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\EmailSender\\SendEmail\\ISendEmail.cs",
-              "RelativeToolTip": "..\\EmailSender\\SendEmail\\ISendEmail.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-07T10:39:25.287Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "SendEmailController.cs",
-              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\EmailSender.Api\\Controllers\\SendEmailController.cs",
-              "RelativeDocumentMoniker": "..\\EmailSender.Api\\Controllers\\SendEmailController.cs",
-              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\EmailSender.Api\\Controllers\\SendEmailController.cs",
-              "RelativeToolTip": "..\\EmailSender.Api\\Controllers\\SendEmailController.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAA0wA8AAAAcAAAA",
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.Api\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Authentication.Api\\Controllers\\AccountController.cs",
+              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.Api\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Authentication.Api\\Controllers\\AccountController.cs",
+              "ViewState": "AQIAAMoAAAAAAAAAAAAowO4AAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-07T10:34:54.697Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\EmailSender.Api\\Program.cs",
-              "RelativeDocumentMoniker": "..\\EmailSender.Api\\Program.cs",
-              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\EmailSender.Api\\Program.cs",
-              "RelativeToolTip": "..\\EmailSender.Api\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-07T10:34:00.601Z",
+              "WhenOpened": "2024-04-07T11:11:13.711Z",
               "EditorCaption": ""
             }
           ]

@@ -2,7 +2,7 @@
 using Authentication.DataService.IConfiguration;
 using Authentication.jwt;
 using AutoMapper;
-
+using EmailSender.SendEmail;
 using ERP.Authentication.Core.DTOs;
 using ERP.Authentication.Core.Entity;
 using Microsoft.AspNetCore.Authorization;
@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.Drawing.Printing;
+using System.Text;
 
 namespace Authentication.Api.Controllers
 {
@@ -17,8 +18,10 @@ namespace Authentication.Api.Controllers
     [ApiController]
     public class AccountController : BaseController
     {
-        public AccountController(IJwtTokenHandler jwtTokenHandler, UserManager<UserModel> userManager, IMapper mapper) : base(jwtTokenHandler, userManager, mapper)
+        private readonly ISendEmail _sendEmail;
+        public AccountController(IJwtTokenHandler jwtTokenHandler, UserManager<UserModel> userManager, IMapper mapper,ISendEmail sendEmail) : base(jwtTokenHandler, userManager, mapper)
         {
+            _sendEmail = sendEmail;
         }
 
 
@@ -205,7 +208,13 @@ namespace Authentication.Api.Controllers
                     var body = emailBody.Replace("#URL#",
                         System.Text.Encodings.Web.HtmlEncoder.Default.Encode(callbackUrl));
 
-                    return Ok(body);
+                    var result = await _sendEmail.SendVerificationEmailAsync(get_created_user.Email, body);
+
+                    if (result)
+                    {
+                        return Ok("User Created Successful ,Check the email for comfirmation");
+                    }
+                    return Ok(false);
 
                     /*                    TokenRequestDTO tokenRequest = new TokenRequestDTO();
                                         tokenRequest.UserName = authenticationRequest.UserName;
@@ -243,6 +252,36 @@ namespace Authentication.Api.Controllers
                     Message = "Invalid User Credentials"
                 });
 
+        }
+
+
+        [HttpGet]
+        [Route("ConfirmEmail")]
+        public async Task<IActionResult> ConfirmEmail(string userId, string code)
+        {
+            if (userId == null || code == null)
+            {
+
+                return BadRequest("Invalid Email Confirm Url");
+            }
+
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if(user == null)
+            {
+                return BadRequest("Invalid Email");
+            }
+
+            code = Encoding.UTF8.GetString(Convert.FromBase64String(code));
+            var reuslt = await _userManager.ConfirmEmailAsync(user,code);
+            if (reuslt.Succeeded) {
+                return Ok("Email Confrim is Successfull");
+            }
+            else
+            {
+                return BadRequest("Email Confrim not Successfull");
+            }
+            
         }
 
         /// <summary>

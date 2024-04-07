@@ -8,7 +8,7 @@ namespace EmailSender.SendEmail
 {
     public interface ISendEmail
     {
-        Task<bool> SendVerificationEmailAsync(string email, string verificationLink);
+        Task<bool> SendVerificationEmailAsync(string email, string body);
 
     }
 }

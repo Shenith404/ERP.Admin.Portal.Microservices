@@ -8,7 +8,7 @@ namespace EmailSender.SendEmail
 {
     public class SendEmail : ISendEmail
     {
-        public async Task<bool> SendVerificationEmailAsync(string email, string verificationLink)
+        public async Task<bool> SendVerificationEmailAsync(string email, string body)
         {
             MimeMessage message = new MimeMessage();
             message.From.Add(new MailboxAddress("ERP System Faculty of Engineering UoR", "comecprogramming@gmail.com"));
@@ -16,11 +16,15 @@ namespace EmailSender.SendEmail
             message.Subject = "Email Verification";
 
             // Use TextPart.Text to set the body content
-            message.Body = new TextPart(TextFormat.Html)
+            message.Body = new TextPart(TextFormat.Text)
+            {
+                Text = body
+            };
+            /*message.Body = new TextPart(TextFormat.Html)
             {
 
                 Text = $"Click the following link to verify your email <a href='{verificationLink}'>clicking here</a>."
-            };
+            };*/
 
             using (var smtpClient = new SmtpClient())
             {
