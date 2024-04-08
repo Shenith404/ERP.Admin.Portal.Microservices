@@ -112,6 +112,16 @@
   },
   {
     "ContainingType": "Authentication.Api.Controllers.AccountController",
+    "Method": "Test",
+    "RelativePath": "api/Account/test",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Authentication.Api.Controllers.AccountController",
     "Method": "UpdateUser",
     "RelativePath": "api/Account/Update",
     "HttpMethod": "POST",

@@ -422,6 +422,13 @@ namespace Authentication.Api.Controllers
             return false;
         }
 
+        [HttpGet]
+        [Route("test")]
+        public async Task<IActionResult> Test()
+        {
+            return Ok ("Hello world, this is test authentication");
+        }
+
     }
 
 }
