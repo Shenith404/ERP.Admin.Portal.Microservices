@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\EmailSender\EmailSender.csproj" />
     <ProjectReference Include="..\Authentication.Core\Authentication.Core.csproj" />
     <ProjectReference Include="..\Authentication.DataService\Authentication.DataService.csproj" />
     <ProjectReference Include="..\Authentication.JwtToken\Authentication.JwtToken.csproj" />

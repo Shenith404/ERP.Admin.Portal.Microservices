@@ -301,3 +301,8 @@ E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\Authentication.Api\obj\Deb
 E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\Authentication.Api\obj\Debug\net8.0\Authentication.Api.pdb
 E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\Authentication.Api\obj\Debug\net8.0\Authentication.Api.genruntimeconfig.cache
 E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\Authentication.Api\obj\Debug\net8.0\ref\Authentication.Api.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\Authentication.Api\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\Authentication.Api\bin\Debug\net8.0\MailKit.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\Authentication.Api\bin\Debug\net8.0\MimeKit.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\Authentication.Api\bin\Debug\net8.0\EmailSender.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\Authentication.Api\bin\Debug\net8.0\EmailSender.pdb
