@@ -9,7 +9,6 @@ namespace Notification.Core.DTOs
     public class NotificationRequestDTO
     {
         public Guid ReceiverId { get; set; }
-
         public string SearchString { get; set; } = string.Empty;
 
     }

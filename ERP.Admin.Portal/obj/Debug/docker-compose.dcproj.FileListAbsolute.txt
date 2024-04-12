@@ -40,3 +40,8 @@ E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\bin\Debug\Authentication.D
 E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\obj\Debug\docker-compose.dcproj.AssemblyReference.cache
 E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
 E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\obj\Debug\docker-c.35A3FFBA.Up2Date
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\bin\Debug\EmailSender.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\bin\Debug\MimeKit.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\bin\Debug\MailKit.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\bin\Debug\BouncyCastle.Cryptography.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\bin\Debug\EmailSender.pdb

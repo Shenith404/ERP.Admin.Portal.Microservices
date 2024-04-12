@@ -1,0 +1,12 @@
+E:\ERP_Admin_portal\ERP.Admin.Portal\Notification.Core\bin\Debug\net8.0\Notification.Core.deps.json
+E:\ERP_Admin_portal\ERP.Admin.Portal\Notification.Core\bin\Debug\net8.0\Notification.Core.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\Notification.Core\bin\Debug\net8.0\Notification.Core.pdb
+E:\ERP_Admin_portal\ERP.Admin.Portal\Notification.Core\obj\Debug\net8.0\Notification.Core.GeneratedMSBuildEditorConfig.editorconfig
+E:\ERP_Admin_portal\ERP.Admin.Portal\Notification.Core\obj\Debug\net8.0\Notification.Core.AssemblyInfoInputs.cache
+E:\ERP_Admin_portal\ERP.Admin.Portal\Notification.Core\obj\Debug\net8.0\Notification.Core.AssemblyInfo.cs
+E:\ERP_Admin_portal\ERP.Admin.Portal\Notification.Core\obj\Debug\net8.0\Notification.Core.csproj.CoreCompileInputs.cache
+E:\ERP_Admin_portal\ERP.Admin.Portal\Notification.Core\obj\Debug\net8.0\Notification.Core.sourcelink.json
+E:\ERP_Admin_portal\ERP.Admin.Portal\Notification.Core\obj\Debug\net8.0\Notification.Core.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\Notification.Core\obj\Debug\net8.0\refint\Notification.Core.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\Notification.Core\obj\Debug\net8.0\Notification.Core.pdb
+E:\ERP_Admin_portal\ERP.Admin.Portal\Notification.Core\obj\Debug\net8.0\ref\Notification.Core.dll

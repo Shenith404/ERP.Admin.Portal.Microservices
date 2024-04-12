@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Notification.Core.Entity;
+
 
 namespace Notification.Core.DTOs
 {
     public class CreateNotificationDTO
     {
-        public string Titile { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
         public string Content { get; set; } = string.Empty;
-        public Guid ? ReceiverId { get; set; }
+        public Guid? ReceiverId { get; set; }
         public bool ReadStatus { get; set; } = false;
+        public int Priority { get; set; } = 0;
+        public string? Link { get; set; }
+        public NotificationType Type { get; set; }
     }
 }

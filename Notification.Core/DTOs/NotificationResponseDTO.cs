@@ -4,10 +4,13 @@ namespace Notification.Core.DTOs
 {
     public class NotificationResponseDTO : BaseEntity
     {
-        public string Titile { get; set; } = string.Empty;
-        public string Content { get; set; } = string.Empty;
+        public string Title { get; set; } 
+        public string Content { get; set; } 
         public Guid? ReceiverId { get; set; }
-        public bool ReadStatus { get; set; } = false;
+        public bool ReadStatus { get; set; }
+        public int Priority { get; set; }
+        public string? Link { get; set; }
+        public NotificationType Type { get; set; }
 
 
     }

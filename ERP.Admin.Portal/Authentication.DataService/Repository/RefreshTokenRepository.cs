@@ -31,7 +31,8 @@ namespace Authentication.DataService.Repository
             }
         }
 
-        public async Task<RefreshToken ?> GetByRefreshToken(string refreshToken)
+        public async Task<RefreshToken ?> 
+            GetByRefreshToken(string refreshToken)
         {
             try
             {
