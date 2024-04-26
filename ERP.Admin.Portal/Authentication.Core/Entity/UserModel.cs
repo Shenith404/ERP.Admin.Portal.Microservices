@@ -13,4 +13,12 @@ public class UserModel :IdentityUser
     public DateTime UpdateDate { get; set; } = DateTime.UtcNow;
     public int Status { get; set; }
 
+    //To store confirmation Email Link
+    public string? ConfirmationEmailLink { get; set; }
+
+    public DateTime ? ConfirmationEmailLinkExpTime { get; set; }
+
+
+
+
 }

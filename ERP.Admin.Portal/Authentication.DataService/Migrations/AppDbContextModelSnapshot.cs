@@ -80,6 +80,12 @@ namespace Authentication.DataService.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ConfirmationEmailLink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ConfirmationEmailLinkExpTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");

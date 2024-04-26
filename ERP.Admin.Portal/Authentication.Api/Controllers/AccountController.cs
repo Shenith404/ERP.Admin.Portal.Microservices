@@ -196,21 +196,7 @@ namespace Authentication.Api.Controllers
 
                 if (is_created.Succeeded && get_created_user != null)
                 {
-                    // Create Confirmation Email token for created user
-                    var emailConfirmedToken = await _userManager.GenerateEmailConfirmationTokenAsync(get_created_user);
-                    var encodedToken = Convert.ToBase64String(Encoding.UTF8.GetBytes(emailConfirmedToken));
-
-                    Console.WriteLine(emailConfirmedToken);
-                    var emailBody = $"Please Confirm your email address <a href=\"#URL#\">Click link </a>";
-
-                    //create callback url
-                    //https://localhost:8080/authenticate/verifyemail/userid=asdsf&code=asdfds
-                    var callbackUrl = Request.Scheme + "://" + Request.Host + Url.Action("ConfirmEmail", "Account", new { userId = get_created_user.Id, code = encodedToken });
-
-                    var body = emailBody.Replace("#URL#",
-                        System.Text.Encodings.Web.HtmlEncoder.Default.Encode(callbackUrl));
-
-                    var result = await _sendEmail.SendVerificationEmailAsync(get_created_user.Email, body);
+                    var result = await SendConfirmationEmailAsync(get_created_user);
 
                     if (result)
                     {
@@ -218,28 +204,7 @@ namespace Authentication.Api.Controllers
                     }
                     return Ok(false);
 
-                    /*                    TokenRequestDTO tokenRequest = new TokenRequestDTO();
-                                        tokenRequest.UserName = authenticationRequest.UserName;
-                                        tokenRequest.Role = "Reguler";
-                                        tokenRequest.UserId= get_created_user.Id;
-
-
-                                        //Generate token
-
-                                        AuthenticationResponseDTO result = await _jwtTokenHandler.GenerateJwtToken(tokenRequest);
-
-                                        return Ok(
-                                            new AuthenticationResponseDTO
-                                            {
-                                                JwtToken=result!.JwtToken,
-                                                ExpiresIn=result.ExpiresIn,
-                                                UserName=result.UserName,
-                                                Message="User Create Successfully",
-                                                IsLocked = await _userManager.IsLockedOutAsync(new_user),
-                                                EmailConfirmed = await _userManager.IsEmailConfirmedAsync(new_user), 
-
-                                            });*/
-
+                 
                 }
                 return BadRequest(
                     new AuthenticationResponseDTO()
@@ -270,16 +235,30 @@ namespace Authentication.Api.Controllers
 
             var user = await _userManager.FindByIdAsync(userId);
 
+
             if(user == null)
             {
                 Console.WriteLine("Invalid Email ");
 
                 return BadRequest("Invalid Email");
             }
+            if (code != user.ConfirmationEmailLink) {
+                Console.WriteLine("link is used");
+                return BadRequest("This link has been used");
+            
+            }
+            if(user.ConfirmationEmailLinkExpTime < DateTime.UtcNow)
+            {
+                Console.WriteLine("This link is expired");
+                return BadRequest("This link is expired");
+            }
 
             var decodedCode = Encoding.UTF8.GetString(Convert.FromBase64String(code));
             var reuslt = await _userManager.ConfirmEmailAsync(user, decodedCode);
             if (reuslt.Succeeded) {
+
+                user.ConfirmationEmailLink = null;
+                await _userManager.UpdateAsync(user);
                 Console.WriteLine("Email Confrim is Successfull");
                 return Ok("Email Confrim is Successfull");
             }
@@ -427,6 +406,33 @@ namespace Authentication.Api.Controllers
                 return await _userManager.CheckPasswordAsync(user, password);
             }
             return false;
+        }
+
+
+        private async Task<bool> SendConfirmationEmailAsync(UserModel get_created_user)
+        {
+
+            // Create Confirmation Email token for created user
+            var emailConfirmedToken = await _userManager.GenerateEmailConfirmationTokenAsync(get_created_user);
+
+            var encodedToken = Convert.ToBase64String(Encoding.UTF8.GetBytes(emailConfirmedToken));
+
+            //store the encoded token in database
+            get_created_user.ConfirmationEmailLink = encodedToken;
+            get_created_user.ConfirmationEmailLinkExpTime = DateTime.UtcNow.AddMinutes(2);
+            await _userManager.UpdateAsync(get_created_user);
+
+
+            var emailBody = $"Please Confirm your email address <a href=\"#URL#\">Click link </a>";
+
+            //create callback url
+            //https://localhost:8080/authenticate/verifyemail/userid=asdsf&code=asdfds
+            var callbackUrl = Request.Scheme + "://" + Request.Host + Url.Action("ConfirmEmail", "Account", new { userId = get_created_user.Id, code = encodedToken });
+
+            var body = emailBody.Replace("#URL#",
+                System.Text.Encodings.Web.HtmlEncoder.Default.Encode(callbackUrl));
+
+            return await _sendEmail.SendVerificationEmailAsync(get_created_user.Email, body);
         }
 
         [HttpGet]

@@ -29,7 +29,10 @@ builder.Services.AddIdentityCore<UserModel>(options => options.SignIn.RequireCon
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
 
-
+builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
+{
+    options.TokenLifespan = TimeSpan.FromMinutes(5); 
+});
 
 builder.Services.AddDbContext<AppDbContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
