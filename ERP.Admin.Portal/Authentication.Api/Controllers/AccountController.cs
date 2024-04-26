@@ -198,12 +198,14 @@ namespace Authentication.Api.Controllers
                 {
                     // Create Confirmation Email token for created user
                     var emailConfirmedToken = await _userManager.GenerateEmailConfirmationTokenAsync(get_created_user);
+                    var encodedToken = Convert.ToBase64String(Encoding.UTF8.GetBytes(emailConfirmedToken));
 
+                    Console.WriteLine(emailConfirmedToken);
                     var emailBody = $"Please Confirm your email address <a href=\"#URL#\">Click link </a>";
 
                     //create callback url
                     //https://localhost:8080/authenticate/verifyemail/userid=asdsf&code=asdfds
-                    var callbackUrl = Request.Scheme + "://" + Request.Host + Url.Action("ConfirmEmail", "Account", new { userId = get_created_user.Id, code = emailConfirmedToken });
+                    var callbackUrl = Request.Scheme + "://" + Request.Host + Url.Action("ConfirmEmail", "Account", new { userId = get_created_user.Id, code = encodedToken });
 
                     var body = emailBody.Replace("#URL#",
                         System.Text.Encodings.Web.HtmlEncoder.Default.Encode(callbackUrl));
@@ -259,9 +261,10 @@ namespace Authentication.Api.Controllers
         [Route("ConfirmEmail")]
         public async Task<IActionResult> ConfirmEmail(string userId, string code)
         {
+            Console.WriteLine(code);
             if (userId == null || code == null)
             {
-
+                Console.WriteLine("Invalid Email Confirm Url");
                 return BadRequest("Invalid Email Confirm Url");
             }
 
@@ -269,16 +272,20 @@ namespace Authentication.Api.Controllers
 
             if(user == null)
             {
+                Console.WriteLine("Invalid Email ");
+
                 return BadRequest("Invalid Email");
             }
 
-            code = Encoding.UTF8.GetString(Convert.FromBase64String(code));
-            var reuslt = await _userManager.ConfirmEmailAsync(user,code);
+            var decodedCode = Encoding.UTF8.GetString(Convert.FromBase64String(code));
+            var reuslt = await _userManager.ConfirmEmailAsync(user, decodedCode);
             if (reuslt.Succeeded) {
+                Console.WriteLine("Email Confrim is Successfull");
                 return Ok("Email Confrim is Successfull");
             }
             else
             {
+                Console.WriteLine($"Email Confrim not Successfull : {reuslt}");
                 return BadRequest("Email Confrim not Successfull");
             }
             
