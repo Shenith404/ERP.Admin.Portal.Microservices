@@ -59,8 +59,10 @@ namespace Authentication.DataService.Repository
 
                 if(result == null) return false;
 
-                result.IsUsed = refreshToken.IsUsed;
+                result.IsUsed = true;
 
+                dbSet.Update(result);
+                
                 return true;
 
 

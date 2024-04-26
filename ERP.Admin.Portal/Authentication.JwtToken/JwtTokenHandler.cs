@@ -24,7 +24,7 @@ namespace Authentication.jwt
         string key = "yyAhYj6LYNzoL8bRVKbuF2EfKMKN05WComWtIVa5AUSScmiNWBFam8jFcwvZ54lR";
 
 
-        private const int JWT_VALIDITY_MINS = 1;
+        private const int JWT_VALIDITY_MINS = 10;
         private readonly IUnitOfWorks _unitOfWorks;
         private readonly TokenValidationParameters _tokenValidationParameters;
         private readonly UserManager<UserModel> _userManager;
@@ -111,116 +111,113 @@ namespace Authentication.jwt
 
         }
 
-        public async Task<AuthenticationResponseDTO?>  VerifyToken(TokenInfoDTO tokenInfoDTO)
-        {
-            var tokenhandler = new JwtSecurityTokenHandler();
-            try
-            {
-                //check validity of the token
-                var principle = tokenhandler.ValidateToken(tokenInfoDTO.JwtToken, _tokenValidationParameters, out var ValidateToken);
-                if(ValidateToken is JwtSecurityToken jwtSecurityToken)
+       public async Task<AuthenticationResponseDTO?> VerifyToken(TokenInfoDTO tokenInfoDTO)
+{
+    var tokenhandler = new JwtSecurityTokenHandler();
+    try
+    {
+                var tokenValidationParameters = new TokenValidationParameters
                 {
-                    //check the algorithm
-                    var result = jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256,StringComparison.InvariantCultureIgnoreCase);
-                    if(result==false) { return null; }
-                }
-
-                //check the expire data
-                var utcExpireDate = long.Parse(principle.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Exp).Value);
-
-                //conver date to check
-                var expDate = UnixTimeStampToDateTime(utcExpireDate);
-
-                if (expDate > DateTime.UtcNow)
-                {
-
-                    //JwtToken is not expired
-                    Console.WriteLine("JwtToken is not expired");
-                    return null;
-                }
-
-                //check the refresh token is exist 
-
-                var refreshTokenExist = await _unitOfWorks.RefreshToknes.GetByRefreshToken(tokenInfoDTO.RefreshToken);
-                if(refreshTokenExist == null) {
-                 //invalid refreshToken
-                    return null; 
+                    ValidateIssuerSigningKey = true,
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key)),
+                    ValidateLifetime = false, // Ignore token expiration
                 };
 
-                //check expire date of refreshToken
-                if (refreshTokenExist.ExpiredDate < DateTime.UtcNow)
-                {
-                    //refreshToken is expired
-                    return null;
+                var principle = tokenhandler.ValidateToken(tokenInfoDTO.JwtToken, tokenValidationParameters, out var ValidateToken);
 
-
-                }
-
-                //check is refresh token is use or not
-                if (refreshTokenExist.IsUsed)
-                {
-                    //Token is used
-                    return null;
-                }
-
-                //check refreshToken if it has been revoked
-                if (refreshTokenExist.IsRevoked)
-                {
-                  //refreshToken is revoked
-                    return null;
-                }
-                
-                var jti =principle.Claims.SingleOrDefault(x=>x.Type == JwtRegisteredClaimNames.Jti).Value;
-
-
-                if (refreshTokenExist.JwtId !=jti)
-                {
-                    //refreshToken is reference does not match jwt Token
-                    return null;
-                }
-
-                //start processing and get new token
-                refreshTokenExist.IsUsed = true;
-                var updateResult =await _unitOfWorks.RefreshToknes.MarkRefreshTokenAsUser(refreshTokenExist);
-
-                if (updateResult)
-                {
-                    await _unitOfWorks.CompleteAsync();
-
-                    //get the user to generate new token 
-                    var dbUser = await _userManager.FindByIdAsync(refreshTokenExist.UserId);
-
-
-                    if(dbUser == null) { return null; }
-                    TokenRequestDTO tokenRequest = new TokenRequestDTO();
-                    tokenRequest.UserName = dbUser.UserName!;
-                    tokenRequest.Role = (await _userManager.GetRolesAsync(dbUser))[0];
-                    tokenRequest.UserId = dbUser.Id;
-                    //generate Token
-                    var result =  await GenerateJwtToken(tokenRequest);
-                    if(result != null)
-                    {
-                        result.EmailConfirmed=dbUser.EmailConfirmed;
-                        result.IsLocked = await _userManager.IsLockedOutAsync(dbUser);
-                        return result;
-                    }
-
-                    return null;
-                }
-
-
-                return null;
-
-
-            }
-            catch (Exception ex)
+        if (ValidateToken is JwtSecurityToken jwtSecurityToken)
+        {
+            var isAlgorithmValid = jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase);
+            if (!isAlgorithmValid)
             {
+                Console.WriteLine("Invalid token algorithm");
                 return null;
-
             }
+        }
 
+        var expClaim = principle.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Exp);
+        if (expClaim == null || !long.TryParse(expClaim.Value, out long utcExpireDate))
+        {
+            Console.WriteLine("Invalid or missing expiration claim");
             return null;
         }
+
+        var expDate = UnixTimeStampToDateTime(utcExpireDate);
+
+        if (expDate > DateTime.UtcNow)
+        {
+            Console.WriteLine("JWT token is not expired");
+            return null; // JWT token is not expired
+        }
+
+        // JWT token is expired, check refresh token
+        var refreshTokenExist = await _unitOfWorks.RefreshToknes.GetByRefreshToken(tokenInfoDTO.RefreshToken);
+        if (refreshTokenExist == null)
+        {
+            Console.WriteLine("Invalid refresh token");
+            return null; // Invalid refresh token
+        }
+
+        if (refreshTokenExist.ExpiredDate < DateTime.UtcNow || refreshTokenExist.IsUsed)
+        {
+            Console.WriteLine("Refresh token is expired or already used");
+            return null; // Refresh token is expired or already used
+        }
+
+        if (refreshTokenExist.IsRevoked)
+        {
+            Console.WriteLine("Refresh token is revoked");
+            return null; // Refresh token is revoked
+        }
+
+        // Mark refresh token as used
+        refreshTokenExist.IsUsed = true;
+        await _unitOfWorks.RefreshToknes.MarkRefreshTokenAsUser(refreshTokenExist);
+        await _unitOfWorks.CompleteAsync();
+
+        // Generate new JWT token
+        var dbUser = await _userManager.FindByIdAsync(refreshTokenExist.UserId);
+        if (dbUser == null)
+        {
+            Console.WriteLine("Invalid user");
+            return null; // Invalid user
+        }
+
+        var tokenRequest = new TokenRequestDTO
+        {
+            UserName = dbUser.UserName!,
+            Role = (await _userManager.GetRolesAsync(dbUser))[0],
+            UserId = dbUser.Id
+        };
+
+        var newToken = await GenerateJwtToken(tokenRequest);
+        if (newToken != null)
+        {
+            newToken.EmailConfirmed = dbUser.EmailConfirmed;
+            newToken.IsLocked = await _userManager.IsLockedOutAsync(dbUser);
+                    Console.WriteLine("Refresh token requested");
+            return newToken; // New JWT token generated successfully
+        }
+
+        Console.WriteLine("Failed to generate new JWT token");
+        return null; // Failed to generate new JWT token
+    }
+      catch (SecurityTokenExpiredException)
+     {
+                
+        Console.WriteLine("JWT token is expired");
+            
+         return null;
+    }
+
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error occurred: {ex.Message}");
+        return null; // Error occurred
+    }
+}
 
         private DateTime UnixTimeStampToDateTime(long unixDate)
         {

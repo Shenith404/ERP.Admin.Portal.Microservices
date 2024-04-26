@@ -7,6 +7,7 @@ using ERP.Authentication.Core.Entity;
 using ERP.Authentication.Jwt;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Net.Http.Headers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,6 +44,14 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseCors(
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5218")
+             .AllowAnyHeader()
+             .AllowAnyMethod()
+             .WithHeaders(HeaderNames.ContentType);
+        });
 }
 
 app.UseAuthentication();
