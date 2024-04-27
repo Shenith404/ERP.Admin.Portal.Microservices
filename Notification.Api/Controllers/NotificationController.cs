@@ -73,7 +73,7 @@ namespace Notification.Api.Controllers
                 {
                     return Ok("Notification is Marked as read");
                 }
-                return BadRequest("Server Error");
+                return BadRequest($"Server Error {result}");
 
             }
             return BadRequest("Input is not valid");

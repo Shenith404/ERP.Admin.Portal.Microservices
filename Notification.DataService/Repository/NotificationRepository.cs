@@ -26,9 +26,11 @@ namespace Notification.DataService.Repository
 
                 if (!string.IsNullOrWhiteSpace(searchString))
                 {
+
+                    
                     query = query.Where(u =>
-                        u.Title!.Contains(searchString, StringComparison.OrdinalIgnoreCase) ||
-                        u.Content!.Contains(searchString, StringComparison.OrdinalIgnoreCase)
+                        u.Title!.Contains(searchString) ||
+                        u.Content!.Contains(searchString)
                     );
                 }
 
@@ -47,11 +49,11 @@ namespace Notification.DataService.Repository
         public async Task<bool> MarkAllNotificationAsReadAsync(Guid userId)
         {
             var unReadedNotifications = await dbSet.Where(x => x.ReadStatus == false && x.Status==1 && x.ReceiverId==userId)
-                    .AsNoTracking()
                     .ToListAsync();
             foreach (var notification in unReadedNotifications)
             {
                 notification.ReadStatus = true;
+                dbSet.Update(notification);  
             }
             return true;
         }
@@ -63,6 +65,7 @@ namespace Notification.DataService.Repository
             if (notification != null)
             {
                 notification.ReadStatus=true;
+                dbSet.Update(notification);
                 return true;
             }
 
