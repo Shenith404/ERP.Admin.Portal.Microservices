@@ -3,8 +3,13 @@
   "WorkspaceRootPath": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{25C4B700-5374-4B72-ADFF-3B8442A7378D}|Authentication.Api\\Authentication.Api.csproj|e:\\erp_admin_portal\\erp.admin.portal\\erp.admin.portal\\authentication.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{25C4B700-5374-4B72-ADFF-3B8442A7378D}|Authentication.Api\\Authentication.Api.csproj|solutionrelative:authentication.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DF3909B0-7B54-4EEF-831E-2AAC3A466CEC}|..\\Notification.DataService\\Notification.DataService.csproj|e:\\erp_admin_portal\\erp.admin.portal\\notification.dataservice\\repository\\notificationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B0EFAFAC-BEF3-409E-ABFE-8ADB7559887A}|..\\Notification.Api\\Notification.Api.csproj|e:\\erp_admin_portal\\erp.admin.portal\\notification.api\\controllers\\notificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CBADB288-47F5-40C9-8642-4E4F36926353}|..\\Notification.Core\\Notification.Core.csproj|e:\\erp_admin_portal\\erp.admin.portal\\notification.core\\entity\\notificationmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +19,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,15 +35,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AccountController.cs",
-              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.Api\\Controllers\\AccountController.cs",
-              "RelativeDocumentMoniker": "Authentication.Api\\Controllers\\AccountController.cs",
-              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.Api\\Controllers\\AccountController.cs",
-              "RelativeToolTip": "Authentication.Api\\Controllers\\AccountController.cs",
-              "ViewState": "AQIAANcAAAAAAAAAAAA3wNkAAAARAAAA",
+              "DocumentIndex": 1,
+              "Title": "NotificationController.cs",
+              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\Notification.Api\\Controllers\\NotificationController.cs",
+              "RelativeDocumentMoniker": "..\\Notification.Api\\Controllers\\NotificationController.cs",
+              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\Notification.Api\\Controllers\\NotificationController.cs",
+              "RelativeToolTip": "..\\Notification.Api\\Controllers\\NotificationController.cs",
+              "ViewState": "AQIAAD8AAAAAAAAAAAAuwEgAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-26T04:29:28.474Z",
+              "WhenOpened": "2024-04-27T14:59:56.386Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "NotificationModel.cs",
+              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\Notification.Core\\Entity\\NotificationModel.cs",
+              "RelativeDocumentMoniker": "..\\Notification.Core\\Entity\\NotificationModel.cs",
+              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\Notification.Core\\Entity\\NotificationModel.cs",
+              "RelativeToolTip": "..\\Notification.Core\\Entity\\NotificationModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-27T14:39:55.713Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "NotificationRepository.cs",
+              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\Notification.DataService\\Repository\\NotificationRepository.cs",
+              "RelativeDocumentMoniker": "..\\Notification.DataService\\Repository\\NotificationRepository.cs",
+              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\Notification.DataService\\Repository\\NotificationRepository.cs",
+              "RelativeToolTip": "..\\Notification.DataService\\Repository\\NotificationRepository.cs",
+              "ViewState": "AQIAADYAAAAAAAAAAAAWwEMAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-27T14:36:09.123Z",
               "EditorCaption": ""
             }
           ]
