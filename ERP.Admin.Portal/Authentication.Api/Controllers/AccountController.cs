@@ -77,6 +77,20 @@ namespace Authentication.Api.Controllers
                          });
                 }
 
+                // 2F verification
+                if(existing_user.TwoFactorEnabled ==true) {
+
+                    var code = await _userManager.GenerateTwoFactorTokenAsync(existing_user,"Email");
+                    Console.WriteLine(code);
+                    return Unauthorized(
+                         new AuthenticationResponseDTO()
+                         {
+                             Is2FAConfirmed = true,
+                             Message = $"We have sent verification code to your  email *******{existing_user.Email!.Substring(4)}"
+                         });
+                
+                }
+
 
 
                 //check password is match
@@ -339,7 +353,27 @@ namespace Authentication.Api.Controllers
             }
             return Unauthorized("Fetch user details is faild");
         }
-    
+
+
+        [HttpPost]
+        [Route("2FAVerification")]
+        public async Task<IActionResult> TwoFactorVerification([FromBody] TwoFAVerificatinRequestDTO twoFAVerificatinRequestDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(twoFAVerificatinRequestDTO.Email);
+                if (user == null)
+                {
+                    return BadRequest("User is Not exist");
+                }
+                var result = await _userManager.VerifyTwoFactorTokenAsync(user,"Email",twoFAVerificatinRequestDTO.Code);
+                if (result == true)
+                {
+                    return Ok("verified");
+                }
+            }
+            return BadRequest("Faild");
+        }
         [HttpPost]
         [Route("Update")]
         //[Authorize] should change

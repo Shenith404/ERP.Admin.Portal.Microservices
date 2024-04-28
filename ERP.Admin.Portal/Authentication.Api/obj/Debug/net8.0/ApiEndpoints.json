@@ -1,6 +1,22 @@
 [
   {
     "ContainingType": "Authentication.Api.Controllers.AccountController",
+    "Method": "TwoFactorVerification",
+    "RelativePath": "api/Account/2FAVerification",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "twoFAVerificatinRequestDTO",
+        "Type": "Authentication.Core.DTOs.TwoFAVerificatinRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Authentication.Api.Controllers.AccountController",
     "Method": "ChangePassword",
     "RelativePath": "api/Account/ChangePassword",
     "HttpMethod": "POST",

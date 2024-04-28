@@ -11,7 +11,11 @@ namespace Authentication.Core.DTOs
         public int ExpiresIn { get; set; }
         public bool? IsLocked { get; set; }
         public bool? EmailConfirmed { get; set; }
+
+        public bool? Is2FAConfirmed { get; set; }
         public string Message { get; set; }
+
+
 
 
 
