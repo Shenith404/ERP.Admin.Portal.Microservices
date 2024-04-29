@@ -15,8 +15,9 @@ public class UserModel :IdentityUser
 
     //To store confirmation Email Link
     public string? ConfirmationEmailLink { get; set; }
-
     public DateTime ? ConfirmationEmailLinkExpTime { get; set; }
+    public string? TwoFactorAuthenticationCode { get; set; }
+    public DateTime ? TwoFactorAuthenticationCodeExpTime { get; set; }
 
 
 
