@@ -81,6 +81,13 @@ namespace Authentication.Api.Controllers
                 if(existing_user.TwoFactorEnabled ==true) {
 
                     var code = await _userManager.GenerateTwoFactorTokenAsync(existing_user,"Email");
+
+                    //Store the token in database
+                    existing_user.TwoFactorAuthenticationCode = code;
+                    existing_user.TwoFactorAuthenticationCodeExpTime = DateTime.UtcNow.AddMinutes(10);
+                    await _userManager.UpdateAsync(existing_user);
+
+
                     Console.WriteLine(code);
                     return Unauthorized(
                          new AuthenticationResponseDTO()
@@ -103,41 +110,11 @@ namespace Authentication.Api.Controllers
                           Message = "Password is Incorrect"
                       });
                 }
+                var result = await GenenarateAuthenticatinResponse(existing_user);
+
+                return Ok(result);
 
 
-
-                //Get user Role from database
-               
-                var roles= await _userManager.GetRolesAsync(existing_user);
-
-
-                //Generate token
-
-                TokenRequestDTO tokenRequest = new TokenRequestDTO();
-                tokenRequest.UserName = authenticationRequest.UserName;
-                if(!roles.IsNullOrEmpty() )
-                {
-                    tokenRequest.Role = "Reguler";
-                }
-                tokenRequest.Role = roles[0];
-                tokenRequest.UserId = existing_user.Id;
-
-              
-               
-                var result = await _jwtTokenHandler.GenerateJwtToken(tokenRequest);
-
-                return Ok(
-                    new AuthenticationResponseDTO
-                    {
-                        JwtToken = result!.JwtToken,
-                        RefreshToken = result!.RefreshToken,
-                        ExpiresIn = result.ExpiresIn,
-                        UserName = result.UserName,
-                        Message = "User Login Successfully",
-                        IsLocked =await _userManager.IsLockedOutAsync(existing_user),
-                        EmailConfirmed = await _userManager.IsEmailConfirmedAsync(existing_user),
-
-                    });
 
 
             }
@@ -366,14 +343,33 @@ namespace Authentication.Api.Controllers
                 {
                     return BadRequest("User is Not exist");
                 }
+                if (user.TwoFactorAuthenticationCode != twoFAVerificatinRequestDTO.Code)
+                {
+                    return BadRequest("Invalid Code or This code has been used");
+                }
+                if (user.TwoFactorAuthenticationCodeExpTime < DateTime.UtcNow)
+                {
+                    return BadRequest("This code is Expired");
+                }
                 var result = await _userManager.VerifyTwoFactorTokenAsync(user,"Email",twoFAVerificatinRequestDTO.Code);
                 if (result == true)
                 {
-                    return Ok("verified");
+                    user.TwoFactorAuthenticationCode = null;
+                    await _userManager.UpdateAsync(user);
+
+                    return Ok( await GenenarateAuthenticatinResponse(user));
                 }
             }
             return BadRequest("Faild");
         }
+
+        [HttpGet]
+        [Route("Resend-2FAVerificationCode")]
+        public async Task<IActionResult> Resend2FAVerificationCode()
+        {
+            return BadRequest("Faild");
+        }
+        
         [HttpPost]
         [Route("Update")]
         //[Authorize] should change
@@ -431,8 +427,48 @@ namespace Authentication.Api.Controllers
             return BadRequest(errorMessage);
         }
 
+        // Generate Authentication response
 
-            // Check if the password is correct
+        private async Task<AuthenticationResponseDTO> GenenarateAuthenticatinResponse(UserModel existing_user)
+        {
+
+            //Get user Role from database
+
+            var roles = await _userManager.GetRolesAsync(existing_user);
+
+
+            //Generate token
+
+            TokenRequestDTO tokenRequest = new TokenRequestDTO();
+            tokenRequest.UserName = existing_user.UserName!;
+            if (!roles.IsNullOrEmpty())
+            {
+                tokenRequest.Role = "Reguler";
+            }
+            tokenRequest.Role = roles[0];
+            tokenRequest.UserId = existing_user.Id;
+
+
+
+            var result = await _jwtTokenHandler.GenerateJwtToken(tokenRequest);
+
+            return
+                new AuthenticationResponseDTO
+                {
+                    JwtToken = result!.JwtToken,
+                    RefreshToken = result!.RefreshToken,
+                    ExpiresIn = result.ExpiresIn,
+                    UserName = result.UserName,
+                    Message = "User Login Successfully",
+                    IsLocked = await _userManager.IsLockedOutAsync(existing_user),
+                    EmailConfirmed = await _userManager.IsEmailConfirmedAsync(existing_user),
+                    Is2FAConfirmed = true
+
+                };
+
+        }
+
+        // Check if the password is correct
         private async Task<bool> IsPasswordCorrectAsync(string password, UserModel user)
         {
             if (user != null)
@@ -442,6 +478,8 @@ namespace Authentication.Api.Controllers
             return false;
         }
 
+
+        // send confirmatin email
 
         private async Task<bool> SendConfirmationEmailAsync(UserModel get_created_user)
         {
