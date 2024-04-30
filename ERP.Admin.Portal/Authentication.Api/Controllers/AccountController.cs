@@ -363,10 +363,44 @@ namespace Authentication.Api.Controllers
             return BadRequest("Faild");
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("Resend-2FAVerificationCode")]
-        public async Task<IActionResult> Resend2FAVerificationCode()
+        public async Task<IActionResult> Resend2FAVerificationCode([FromBody] string email)
         {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(email);
+
+                // Check user is valid
+                if (user == null)
+                {
+                    return BadRequest("Email is not Valid");
+                }
+                
+                //check user 2FA enabled
+                if(user.TwoFactorEnabled ==false || user.Status == 0 || 
+                    user.EmailConfirmed == false || await _userManager.IsLockedOutAsync(user))
+                {
+                    return BadRequest("Invalid");
+                }
+
+                var code = await _userManager.GenerateTwoFactorTokenAsync(user, "Email");
+
+                //Store the token in database
+                user.TwoFactorAuthenticationCode = code;
+                user.TwoFactorAuthenticationCodeExpTime = DateTime.UtcNow.AddMinutes(10);
+                await _userManager.UpdateAsync(user);
+
+
+                Console.WriteLine(code);
+                return Ok(
+                     new AuthenticationResponseDTO()
+                     {
+                         Is2FAConfirmed = true,
+                         Message = $"We have sent verification code to your  email *******{user.Email!.Substring(4)}"
+                     });
+            }
+
             return BadRequest("Faild");
         }
         

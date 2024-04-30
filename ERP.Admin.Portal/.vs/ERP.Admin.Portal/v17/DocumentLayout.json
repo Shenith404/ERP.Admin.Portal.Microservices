@@ -46,8 +46,7 @@
               "RelativeToolTip": "Authentication.Core\\Entity\\UserModel.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAAAQwA4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-29T15:20:45.685Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-29T15:20:45.685Z"
             },
             {
               "$type": "Document",
@@ -59,8 +58,7 @@
               "RelativeToolTip": "Authentication.Core\\DTOs\\TwoFAVerificatinRequestDTO.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-28T15:20:53.323Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-28T15:20:53.323Z"
             },
             {
               "$type": "Document",
@@ -70,7 +68,7 @@
               "RelativeDocumentMoniker": "Authentication.Api\\Controllers\\AccountController.cs",
               "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.Api\\Controllers\\AccountController.cs",
               "RelativeToolTip": "Authentication.Api\\Controllers\\AccountController.cs",
-              "ViewState": "AQIAAEABAAAAAAAAAAAawHUBAAAZAAAA",
+              "ViewState": "AQIAAG8BAAAAAAAAAABDwHsBAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-28T15:02:32.924Z",
               "EditorCaption": ""
