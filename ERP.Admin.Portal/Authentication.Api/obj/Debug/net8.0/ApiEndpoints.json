@@ -128,6 +128,22 @@
   },
   {
     "ContainingType": "Authentication.Api.Controllers.AccountController",
+    "Method": "ResendConfirmationEmail",
+    "RelativePath": "api/Account/Resend-Confirmation-Email",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "email",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Authentication.Api.Controllers.AccountController",
     "Method": "ChangeSecurity",
     "RelativePath": "api/Account/Security",
     "HttpMethod": "POST",

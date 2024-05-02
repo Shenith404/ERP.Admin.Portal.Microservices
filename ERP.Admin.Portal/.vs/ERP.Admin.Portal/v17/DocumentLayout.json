@@ -7,12 +7,12 @@
       "RelativeMoniker": "D:0:0:{25C4B700-5374-4B72-ADFF-3B8442A7378D}|Authentication.Api\\Authentication.Api.csproj|solutionrelative:authentication.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4AA34023-43CC-4176-8F89-D0A4E85106F1}|Authentication.Core\\Authentication.Core.csproj|e:\\erp_admin_portal\\erp.admin.portal\\erp.admin.portal\\authentication.core\\entity\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4AA34023-43CC-4176-8F89-D0A4E85106F1}|Authentication.Core\\Authentication.Core.csproj|solutionrelative:authentication.core\\entity\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{4AA34023-43CC-4176-8F89-D0A4E85106F1}|Authentication.Core\\Authentication.Core.csproj|e:\\erp_admin_portal\\erp.admin.portal\\erp.admin.portal\\authentication.core\\dtos\\twofaverificatinrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4AA34023-43CC-4176-8F89-D0A4E85106F1}|Authentication.Core\\Authentication.Core.csproj|solutionrelative:authentication.core\\dtos\\twofaverificatinrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4AA34023-43CC-4176-8F89-D0A4E85106F1}|Authentication.Core\\Authentication.Core.csproj|e:\\erp_admin_portal\\erp.admin.portal\\erp.admin.portal\\authentication.core\\entity\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4AA34023-43CC-4176-8F89-D0A4E85106F1}|Authentication.Core\\Authentication.Core.csproj|solutionrelative:authentication.core\\entity\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,7 +38,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "UserModel.cs",
               "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.Core\\Entity\\UserModel.cs",
               "RelativeDocumentMoniker": "Authentication.Core\\Entity\\UserModel.cs",
@@ -46,11 +46,12 @@
               "RelativeToolTip": "Authentication.Core\\Entity\\UserModel.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAAAQwA4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-29T15:20:45.685Z"
+              "WhenOpened": "2024-04-29T15:20:45.685Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "TwoFAVerificatinRequestDTO.cs",
               "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.Core\\DTOs\\TwoFAVerificatinRequestDTO.cs",
               "RelativeDocumentMoniker": "Authentication.Core\\DTOs\\TwoFAVerificatinRequestDTO.cs",
@@ -58,7 +59,8 @@
               "RelativeToolTip": "Authentication.Core\\DTOs\\TwoFAVerificatinRequestDTO.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-28T15:20:53.323Z"
+              "WhenOpened": "2024-04-28T15:20:53.323Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -68,7 +70,7 @@
               "RelativeDocumentMoniker": "Authentication.Api\\Controllers\\AccountController.cs",
               "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.Api\\Controllers\\AccountController.cs",
               "RelativeToolTip": "Authentication.Api\\Controllers\\AccountController.cs",
-              "ViewState": "AQIAAG8BAAAAAAAAAABDwHsBAAAoAAAA",
+              "ViewState": "AQIAANEBAAAAAAAAAAAgwH8CAAA+AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-28T15:02:32.924Z",
               "EditorCaption": ""

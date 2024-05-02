@@ -8,9 +8,11 @@ using ERP.Authentication.Core.Entity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.IdentityModel.Tokens;
 using System.Drawing.Printing;
 using System.Text;
+using System.Text.Encodings.Web;
 
 namespace Authentication.Api.Controllers
 {
@@ -23,7 +25,6 @@ namespace Authentication.Api.Controllers
         {
             _sendEmail = sendEmail;
         }
-
 
 
         //Login User
@@ -80,21 +81,21 @@ namespace Authentication.Api.Controllers
                 // 2F verification
                 if(existing_user.TwoFactorEnabled ==true) {
 
-                    var code = await _userManager.GenerateTwoFactorTokenAsync(existing_user,"Email");
-
-                    //Store the token in database
-                    existing_user.TwoFactorAuthenticationCode = code;
-                    existing_user.TwoFactorAuthenticationCodeExpTime = DateTime.UtcNow.AddMinutes(10);
-                    await _userManager.UpdateAsync(existing_user);
+                    var sendResult= await Send2FAVerificationToUserAsync(existing_user);
 
 
-                    Console.WriteLine(code);
-                    return Unauthorized(
+                    if (sendResult)
+                    {
+                        return Unauthorized(
                          new AuthenticationResponseDTO()
                          {
                              Is2FAConfirmed = true,
                              Message = $"We have sent verification code to your  email *******{existing_user.Email!.Substring(4)}"
                          });
+                    }else
+                    {
+                        throw new Exception();
+                    }
                 
                 }
 
@@ -126,8 +127,11 @@ namespace Authentication.Api.Controllers
               });
         }
 
+       
+        
+        
         //Register User
-        // need to change
+        //need to change
         [HttpPost]
         [Route("Create")]
         public async Task<IActionResult> Register([FromBody] AuthenticationRequestDTO authenticationRequest)
@@ -213,6 +217,8 @@ namespace Authentication.Api.Controllers
         }
 
 
+
+
         [HttpGet]
         [Route("ConfirmEmail")]
         public async Task<IActionResult> ConfirmEmail(string userId, string code)
@@ -261,11 +267,9 @@ namespace Authentication.Api.Controllers
             
         }
 
-        /// <summary>
-        /// SHOULD UPDATE
-        /// </summary>
-        /// <param name="lockOutDetailsInfo"></param>
-        /// <returns></returns>
+      
+       
+        
         [HttpPost("Security")]
         public async Task<IActionResult> ChangeSecurity([FromBody] LockOutDetailsInfoDTO lockOutDetailsInfo)
         {
@@ -292,6 +296,10 @@ namespace Authentication.Api.Controllers
             return BadRequest();
         }
 
+       
+        
+        
+        
         [HttpPost]
         [Route("Request-RefreshToken")]
         public async Task<IActionResult> RefreshToken([FromBody] TokenInfoDTO tokenInfoDTO)
@@ -317,6 +325,8 @@ namespace Authentication.Api.Controllers
         }
 
         
+        
+        
         [HttpGet]
         [Route("Get-User-Details")]
         //[Authorize]
@@ -332,6 +342,8 @@ namespace Authentication.Api.Controllers
         }
 
 
+       
+        
         [HttpPost]
         [Route("2FAVerification")]
         public async Task<IActionResult> TwoFactorVerification([FromBody] TwoFAVerificatinRequestDTO twoFAVerificatinRequestDTO)
@@ -363,6 +375,9 @@ namespace Authentication.Api.Controllers
             return BadRequest("Faild");
         }
 
+       
+        
+        
         [HttpPost]
         [Route("Resend-2FAVerificationCode")]
         public async Task<IActionResult> Resend2FAVerificationCode([FromBody] string email)
@@ -384,25 +399,80 @@ namespace Authentication.Api.Controllers
                     return BadRequest("Invalid");
                 }
 
-                var code = await _userManager.GenerateTwoFactorTokenAsync(user, "Email");
-
-                //Store the token in database
-                user.TwoFactorAuthenticationCode = code;
-                user.TwoFactorAuthenticationCodeExpTime = DateTime.UtcNow.AddMinutes(10);
-                await _userManager.UpdateAsync(user);
+                var sendResult = await Send2FAVerificationToUserAsync(user);
 
 
-                Console.WriteLine(code);
-                return Ok(
+                if (sendResult)
+                {
+                    return Unauthorized(
                      new AuthenticationResponseDTO()
                      {
                          Is2FAConfirmed = true,
                          Message = $"We have sent verification code to your  email *******{user.Email!.Substring(4)}"
                      });
+                }
+                else
+                {
+                    throw new Exception();
+                }
             }
 
             return BadRequest("Faild");
         }
+
+
+        
+        
+        [HttpPost]
+        [Route("Resend-Confirmation-Email")]
+        public async Task<IActionResult> ResendConfirmationEmail([FromBody] string email)
+        {
+            if (ModelState.IsValid) {
+                var existing_user = await _userManager.FindByEmailAsync(email);
+                if (existing_user == null)
+                {
+                    return BadRequest(
+                          
+                             "Username is not Exist"
+                          );
+                }
+
+
+                //check is user deleted
+                if (existing_user.Status != 1)
+                {
+                    return BadRequest(
+                        
+                            "This user is Deleted"
+                         );
+                }
+
+                //check is user Locked
+                var isLocked = await _userManager.IsLockedOutAsync(existing_user);
+                if (isLocked == true)
+                {
+                    return BadRequest(
+                             "This user is Locked"
+                         );
+                }
+
+                //check is user Email is conformed
+                if (existing_user.EmailConfirmed == false)
+                {
+                   var result = await SendConfirmationEmailAsync(existing_user);
+
+                   return result ? Ok($"We have sent verification code to your  email *******{existing_user.Email!.Substring(4)}") 
+                        : BadRequest("Something is wrong. Please try again!");
+                }
+
+            }
+        
+        
+            return BadRequest();
+        }
+
+
+        
         
         [HttpPost]
         [Route("Update")]
@@ -422,6 +492,9 @@ namespace Authentication.Api.Controllers
         
         }
 
+        
+        
+        
         [HttpPost]
         [Route("ChangePassword")]
         [Authorize]
@@ -461,6 +534,13 @@ namespace Authentication.Api.Controllers
             return BadRequest(errorMessage);
         }
 
+        
+        
+        
+        
+        
+        
+        
         // Generate Authentication response
 
         private async Task<AuthenticationResponseDTO> GenenarateAuthenticatinResponse(UserModel existing_user)
@@ -502,6 +582,9 @@ namespace Authentication.Api.Controllers
 
         }
 
+       
+        
+        
         // Check if the password is correct
         private async Task<bool> IsPasswordCorrectAsync(string password, UserModel user)
         {
@@ -513,32 +596,57 @@ namespace Authentication.Api.Controllers
         }
 
 
+        
+        
         // send confirmatin email
 
         private async Task<bool> SendConfirmationEmailAsync(UserModel get_created_user)
         {
-
             // Create Confirmation Email token for created user
             var emailConfirmedToken = await _userManager.GenerateEmailConfirmationTokenAsync(get_created_user);
 
-            var encodedToken = Convert.ToBase64String(Encoding.UTF8.GetBytes(emailConfirmedToken));
+            var encodedToken = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(emailConfirmedToken));
 
-            //store the encoded token in database
+            // Store the encoded token in the database
             get_created_user.ConfirmationEmailLink = encodedToken;
             get_created_user.ConfirmationEmailLinkExpTime = DateTime.UtcNow.AddMinutes(2);
             await _userManager.UpdateAsync(get_created_user);
 
+            // Create callback URL
+            // https://localhost:7048/api/Account/ConfirmEmail?userId=31fe1e1c-1512-436b-b855-a483f66b5683&code=Q2ZESjhDbGFJZGRXVjdoSG13NHMwc1g3K0dBUnpnNTZpY0Zva2JkU3RMMy9EZXFBR0NwME5JZ3Z2RHJIbnNibE5iZnhZN3ZyOUE4OXBJVk43MFVwVC9mK2NBNE5VNVFPOVc5UDhoWTJ6Uyt0TmFzM2lxdUNwYWZwWjdFZ25sY3kzTjVFQUZuR1U3cldGNGx1Z1czUUJ1RUI4bTI2dUQzTHhYazJUWkFod0doZWVySC95WWVnb0N5N0RYamZjdHRBZnlVS1pwTzRWSStwTUc4TTQvL05MaFVYalZhV0tTQk1sNzFuMSswQ2ZKYlNGZDBjamNrMWtURGVkTEVoT3pUVUxkc2RaZz09
+            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = get_created_user.Id, code = encodedToken }, Request.Scheme);
 
-            var emailBody = $"Please Confirm your email address <a href=\"#URL#\">Click link </a>";
+            var emailBody = $"Please Confirm your email address <a href=\"{callbackUrl}\">Click link</a>";
 
-            //create callback url
-            //https://localhost:8080/authenticate/verifyemail/userid=asdsf&code=asdfds
-            var callbackUrl = Request.Scheme + "://" + Request.Host + Url.Action("ConfirmEmail", "Account", new { userId = get_created_user.Id, code = encodedToken });
+            return await _sendEmail.SendVerificationEmailAsync(get_created_user.Email!, emailBody);
+        }
 
-            var body = emailBody.Replace("#URL#",
-                System.Text.Encodings.Web.HtmlEncoder.Default.Encode(callbackUrl));
 
-            return await _sendEmail.SendVerificationEmailAsync(get_created_user.Email, body);
+
+
+        // send 2FA code via email
+        private async Task<bool> Send2FAVerificationToUserAsync(UserModel existing_user)
+        {
+            var code = await _userManager.GenerateTwoFactorTokenAsync(existing_user, "Email");
+
+            //Store the token in database
+            existing_user.TwoFactorAuthenticationCode = code;
+            Console.WriteLine(code);
+
+            existing_user.TwoFactorAuthenticationCodeExpTime = DateTime.UtcNow.AddMinutes(10);
+            var result =await _userManager.UpdateAsync(existing_user);
+            if (result.Succeeded)
+            {
+                var body = $"Your Verification code is  {code}";
+
+                var sendResult = await _sendEmail.SendVerificationEmailAsync(existing_user.Email!, body);
+
+                return sendResult;
+            }
+
+            return false;
+
+            
         }
 
         [HttpGet]
