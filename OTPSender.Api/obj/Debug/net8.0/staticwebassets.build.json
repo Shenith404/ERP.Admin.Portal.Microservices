@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "g6xXz84Xly+tTW2CPH22LqSEmO9ASoYaA9pm8L4bpgE=",
+  "Source": "OTPSender.Api",
+  "BasePath": "_content/OTPSender.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

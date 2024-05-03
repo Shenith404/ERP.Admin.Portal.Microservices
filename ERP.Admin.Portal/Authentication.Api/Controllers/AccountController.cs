@@ -296,10 +296,8 @@ namespace Authentication.Api.Controllers
             return BadRequest();
         }
 
-       
-        
-        
-        
+
+
         [HttpPost]
         [Route("Request-RefreshToken")]
         public async Task<IActionResult> RefreshToken([FromBody] TokenInfoDTO tokenInfoDTO)
@@ -490,6 +488,36 @@ namespace Authentication.Api.Controllers
             return BadRequest();
 
         
+        }
+
+        [HttpPost]
+        [Route("Enable-2FA")]
+        //[Authorize]
+
+        public async Task<IActionResult> EnableTFA([FromBody] TFAEnableRequestDTO tFAEnableRequestDTO)
+        {
+            if (ModelState.IsValid) {
+               var user = await _userManager.GetUserAsync(HttpContext.User);
+              if (user == null)
+                {
+                    return BadRequest("User is null");
+                }
+                var checkPassword = await IsPasswordCorrectAsync(tFAEnableRequestDTO.Password,user!);
+                if (checkPassword==false)
+                {
+                    return BadRequest("Incorrect Password");
+                }
+
+                var result = await _userManager.SetTwoFactorEnabledAsync(user, tFAEnableRequestDTO.IsEnable);
+
+                if (result.Succeeded)
+                {
+                    return Ok("2FA is Enabled");
+                }
+
+            
+            }
+            return BadRequest();
         }
 
         

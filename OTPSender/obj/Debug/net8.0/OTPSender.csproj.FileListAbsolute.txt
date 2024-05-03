@@ -1,0 +1,12 @@
+E:\ERP_Admin_portal\ERP.Admin.Portal\OTPSender\bin\Debug\net8.0\OTPSender.deps.json
+E:\ERP_Admin_portal\ERP.Admin.Portal\OTPSender\bin\Debug\net8.0\OTPSender.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\OTPSender\bin\Debug\net8.0\OTPSender.pdb
+E:\ERP_Admin_portal\ERP.Admin.Portal\OTPSender\obj\Debug\net8.0\OTPSender.GeneratedMSBuildEditorConfig.editorconfig
+E:\ERP_Admin_portal\ERP.Admin.Portal\OTPSender\obj\Debug\net8.0\OTPSender.AssemblyInfoInputs.cache
+E:\ERP_Admin_portal\ERP.Admin.Portal\OTPSender\obj\Debug\net8.0\OTPSender.AssemblyInfo.cs
+E:\ERP_Admin_portal\ERP.Admin.Portal\OTPSender\obj\Debug\net8.0\OTPSender.csproj.CoreCompileInputs.cache
+E:\ERP_Admin_portal\ERP.Admin.Portal\OTPSender\obj\Debug\net8.0\OTPSender.sourcelink.json
+E:\ERP_Admin_portal\ERP.Admin.Portal\OTPSender\obj\Debug\net8.0\OTPSender.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\OTPSender\obj\Debug\net8.0\refint\OTPSender.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\OTPSender\obj\Debug\net8.0\OTPSender.pdb
+E:\ERP_Admin_portal\ERP.Admin.Portal\OTPSender\obj\Debug\net8.0\ref\OTPSender.dll

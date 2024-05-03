@@ -31,11 +31,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailSender.Api", "..\Email
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notification.Microservice", "Notification.Microservice", "{671DB36F-5697-489F-A9AE-A34CF195C822}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notification.Core", "..\Notification.Core\Notification.Core.csproj", "{CBADB288-47F5-40C9-8642-4E4F36926353}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notification.Core", "..\Notification.Core\Notification.Core.csproj", "{CBADB288-47F5-40C9-8642-4E4F36926353}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notification.DataService", "..\Notification.DataService\Notification.DataService.csproj", "{DF3909B0-7B54-4EEF-831E-2AAC3A466CEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notification.DataService", "..\Notification.DataService\Notification.DataService.csproj", "{DF3909B0-7B54-4EEF-831E-2AAC3A466CEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notification.Api", "..\Notification.Api\Notification.Api.csproj", "{B0EFAFAC-BEF3-409E-ABFE-8ADB7559887A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notification.Api", "..\Notification.Api\Notification.Api.csproj", "{B0EFAFAC-BEF3-409E-ABFE-8ADB7559887A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OTPSender.Microservice", "OTPSender.Microservice", "{2FC3C3E0-ED22-4FC2-AD36-2527C6F59BA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OTPSender", "..\OTPSender\OTPSender.csproj", "{1FAD9C83-A292-492F-B893-D75632CC946B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OTPSender.Api", "..\OTPSender.Api\OTPSender.Api.csproj", "{59F01DB9-576B-4FA6-9FE1-891F8132A09E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +93,14 @@ Global
 		{B0EFAFAC-BEF3-409E-ABFE-8ADB7559887A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0EFAFAC-BEF3-409E-ABFE-8ADB7559887A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0EFAFAC-BEF3-409E-ABFE-8ADB7559887A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FAD9C83-A292-492F-B893-D75632CC946B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FAD9C83-A292-492F-B893-D75632CC946B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FAD9C83-A292-492F-B893-D75632CC946B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FAD9C83-A292-492F-B893-D75632CC946B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59F01DB9-576B-4FA6-9FE1-891F8132A09E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59F01DB9-576B-4FA6-9FE1-891F8132A09E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59F01DB9-576B-4FA6-9FE1-891F8132A09E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59F01DB9-576B-4FA6-9FE1-891F8132A09E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,6 +121,9 @@ Global
 		{CBADB288-47F5-40C9-8642-4E4F36926353} = {671DB36F-5697-489F-A9AE-A34CF195C822}
 		{DF3909B0-7B54-4EEF-831E-2AAC3A466CEC} = {671DB36F-5697-489F-A9AE-A34CF195C822}
 		{B0EFAFAC-BEF3-409E-ABFE-8ADB7559887A} = {671DB36F-5697-489F-A9AE-A34CF195C822}
+		{2FC3C3E0-ED22-4FC2-AD36-2527C6F59BA6} = {B051CE57-46DA-40D9-A3E2-FC08342B1385}
+		{1FAD9C83-A292-492F-B893-D75632CC946B} = {2FC3C3E0-ED22-4FC2-AD36-2527C6F59BA6}
+		{59F01DB9-576B-4FA6-9FE1-891F8132A09E} = {2FC3C3E0-ED22-4FC2-AD36-2527C6F59BA6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {908449FD-88A8-4441-9A45-21EEB4A7AD0F}
