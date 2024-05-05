@@ -512,7 +512,8 @@ namespace Authentication.Api.Controllers
 
                 if (result.Succeeded)
                 {
-                    return Ok("2FA is Enabled");
+                  return  tFAEnableRequestDTO.IsEnable ?  Ok("2FA is Enabled")
+                        :Ok("2FA is Disabled");
                 }
 
             
