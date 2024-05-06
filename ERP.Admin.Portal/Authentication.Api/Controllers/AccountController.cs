@@ -11,6 +11,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.IdentityModel.Tokens;
+using Notification.Core.Entity;
+using Notification.DataService.IRepository;
+using Notification.DataService.Repository;
 using System.Drawing.Printing;
 using System.Text;
 using System.Text.Encodings.Web;
@@ -22,7 +25,8 @@ namespace Authentication.Api.Controllers
     public class AccountController : BaseController
     {
         private readonly ISendEmail _sendEmail;
-        public AccountController(IJwtTokenHandler jwtTokenHandler, UserManager<UserModel> userManager, IMapper mapper,ISendEmail sendEmail,IUnitOfWorks unitOfWorks) : base(jwtTokenHandler, userManager, mapper, unitOfWorks)
+        public AccountController(IJwtTokenHandler jwtTokenHandler, UserManager<UserModel> userManager, IMapper mapper,ISendEmail sendEmail,IUnitOfWorks unitOfWorks, IUnitOfWorksNotification unitOfWorksNotification) 
+            : base(jwtTokenHandler, userManager, mapper, unitOfWorks,unitOfWorksNotification)
         {
             _sendEmail = sendEmail;
         }
@@ -195,6 +199,18 @@ namespace Authentication.Api.Controllers
 
                 if (is_created.Succeeded && get_created_user != null)
                 {
+
+                    //Create Welcome Notification
+                    var welcomeNotification = new NotificationModel { 
+                    Content="Welcom to ERP system of FoE UoR",
+                    ReceiverId= new Guid(get_created_user.Id),
+                    Title ="Welcome",
+                    Priority=0,
+                    ReadStatus=false,
+                    Type =NotificationType.Info,
+                    };
+                    await _unitOfWorksNotification.Notifications.Add(welcomeNotification);
+
                     var result = await SendConfirmationEmailAsync(get_created_user);
 
                     if (result)
@@ -732,6 +748,20 @@ namespace Authentication.Api.Controllers
                     $"\r\nAction Required:\r\n\r\nIf this login was authorized by you, you may disregard this message.";
                
                 await _sendEmail.SendAlertEmailAsync(existing_user.UserName!, htmlBody);
+
+
+                //Create  Notification
+                var welcomeNotification = new NotificationModel
+                {
+                    Content = "New login Detected!",
+                    ReceiverId = new Guid(existing_user.Id),
+                    Title = "Alert",
+                    Priority = 0,
+                    ReadStatus = false,
+                    Type = NotificationType.Info,
+                };
+                await _unitOfWorksNotification.Notifications.Add(welcomeNotification);
+                await _unitOfWorks.CompleteAsync();
             }
 
         }

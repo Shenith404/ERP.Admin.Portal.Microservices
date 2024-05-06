@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
-builder.Services.AddScoped<IUnitOfWorks, UnitOfWorks>();
+builder.Services.AddScoped<IUnitOfWorksNotification, UnitOfWorksNotification>();
 
 //configure Automapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

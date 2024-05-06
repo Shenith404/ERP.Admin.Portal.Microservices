@@ -5,7 +5,7 @@ using Notification.DataService.IRepository;
 
 namespace Notification.DataService.Repository
 {
-    public class UnitOfWorks : IUnitOfWorks ,IDisposable
+    public class UnitOfWorksNotification : IUnitOfWorksNotification ,IDisposable
     {
 
         private readonly PgsqlDbContext _context;
@@ -13,7 +13,7 @@ namespace Notification.DataService.Repository
 
         public INotificationRepository Notifications { get; private set; }
 
-        public UnitOfWorks(PgsqlDbContext context, ILoggerFactory loggerFactory)
+        public UnitOfWorksNotification(PgsqlDbContext context, ILoggerFactory loggerFactory)
         {
             _context = context;
             var logger = loggerFactory.CreateLogger("Notificationlogs");

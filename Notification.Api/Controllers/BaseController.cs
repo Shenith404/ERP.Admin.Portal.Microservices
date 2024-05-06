@@ -13,9 +13,9 @@ namespace Notification.Api.Controllers
     {
         protected readonly IMapper _mapper;
         
-        protected readonly IUnitOfWorks _unitOfWorks;
+        protected readonly IUnitOfWorksNotification _unitOfWorks;
 
-        public BaseController(IMapper mapper, IUnitOfWorks unitOfWorks)
+        public BaseController(IMapper mapper, IUnitOfWorksNotification unitOfWorks)
         {
             _mapper = mapper;
             _unitOfWorks = unitOfWorks;

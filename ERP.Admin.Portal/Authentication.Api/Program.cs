@@ -8,6 +8,10 @@ using ERP.Authentication.Jwt;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
+using Notification.DataService;
+using Notification.DataService.IRepository;
+using Notification.DataService.Repository;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +24,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUnitOfWorks, UnitOfWorks>();
 builder.Services.AddScoped<IJwtTokenHandler, JwtTokenHandler>();
 builder.Services.AddScoped<ISendEmail, SendEmail>();
+builder.Services.AddScoped<IUnitOfWorksNotification,UnitOfWorksNotification>();
 
 //configure Automapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -35,7 +40,8 @@ builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
 });
 
 builder.Services.AddDbContext<AppDbContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
+builder.Services.AddDbContextFactory<PgsqlDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("PgSqlConnection")));
 builder.Services.AddCustomJwtAuthenticaion();
 
 
