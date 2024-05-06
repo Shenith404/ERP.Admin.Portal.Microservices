@@ -42,8 +42,7 @@
               "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/mydb/True/SqlTable/dbo.AspNetUsers.sql",
               "ToolTip": "dbo.AspNetUsers [Data]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-05-05T19:25:09.797Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-05T19:25:09.797Z"
             },
             {
               "$type": "Document",
@@ -55,8 +54,7 @@
               "RelativeToolTip": "Authentication.Core\\DTOs\\TFAEnableRequestDTO.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-03T19:35:52.536Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-03T19:35:52.536Z"
             },
             {
               "$type": "Document",
@@ -66,7 +64,7 @@
               "RelativeDocumentMoniker": "Authentication.Api\\Controllers\\AccountController.cs",
               "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.Api\\Controllers\\AccountController.cs",
               "RelativeToolTip": "Authentication.Api\\Controllers\\AccountController.cs",
-              "ViewState": "AQIAABEBAAAAAAAAAAA5wAsCAAAIAAAA",
+              "ViewState": "AQIAAAMBAAAAAAAAAAAAACUBAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-03T19:18:04.694Z",
               "EditorCaption": ""

@@ -1,4 +1,5 @@
-﻿using Authentication.jwt;
+﻿using Authentication.DataService.IConfiguration;
+using Authentication.jwt;
 using AutoMapper;
 using ERP.Authentication.Core.Entity;
 using Microsoft.AspNetCore.Identity;
@@ -11,12 +12,17 @@ namespace Authentication.Api.Controllers
         protected readonly IJwtTokenHandler _jwtTokenHandler;
         protected readonly UserManager<UserModel> _userManager;
         protected readonly IMapper _mapper;
+        public readonly IUnitOfWorks _unitOfWorks;
+        
 
-        public BaseController(IJwtTokenHandler jwtTokenHandler, UserManager<UserModel> userManager, IMapper mapper)
+        public BaseController(IJwtTokenHandler jwtTokenHandler, UserManager<UserModel> userManager, IMapper mapper,IUnitOfWorks unitOfWorks)
         {
             _jwtTokenHandler = jwtTokenHandler;
             _userManager = userManager;
             _mapper = mapper;
+            _unitOfWorks= unitOfWorks;
         }
+
+        
     }
 }

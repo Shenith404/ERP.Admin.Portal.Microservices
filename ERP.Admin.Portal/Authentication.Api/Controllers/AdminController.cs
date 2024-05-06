@@ -1,4 +1,5 @@
 ﻿using Authentication.Core.DTOs;
+using Authentication.DataService.IConfiguration;
 using Authentication.jwt;
 using AutoMapper;
 using ERP.Authentication.Core.Entity;
@@ -11,7 +12,7 @@ namespace Authentication.Api.Controllers
     [ApiController]
     public class AdminController : BaseController
     {
-        public AdminController(IJwtTokenHandler jwtTokenHandler, UserManager<UserModel> userManager, IMapper mapper) : base(jwtTokenHandler, userManager, mapper)
+        public AdminController(IJwtTokenHandler jwtTokenHandler, UserManager<UserModel> userManager, IMapper mapper,IUnitOfWorks unitOfWorks) : base(jwtTokenHandler, userManager, mapper,unitOfWorks)
         {
         }
 
