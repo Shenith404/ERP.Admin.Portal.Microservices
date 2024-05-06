@@ -33,6 +33,32 @@ namespace Authentication.DataService.Repository
                 return new List<UserDeviceInformation>();
             }
         }
+        
+        public  async Task<bool> Checkinfo(Guid userId,string ? info)
+        {
+            try
+            {
+
+                if( info == null ) { return false; }
+                var result= await dbSet.Where(x => x.Status == 1 && x.UserId==userId && x.UserAgentDetails==info)
+                                 .AsNoTracking()
+                                 .ToListAsync();
+
+                if(result.Count>0)
+                {
+                    return true;
+                }
+
+                return false;
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "{Repo} All mothod has generated Error", typeof(RefreshTokenRepository));
+
+                return false;
+            }
+        }
 
     }
 }

@@ -599,7 +599,7 @@ namespace Authentication.Api.Controllers
 
             var result = await _jwtTokenHandler.GenerateJwtToken(tokenRequest);
 
-            await StoreTheUserDataInformation(existing_user);
+            await DetectNewDeviceLogin(existing_user);
 
             return
                 new AuthenticationResponseDTO
@@ -685,7 +685,7 @@ namespace Authentication.Api.Controllers
         }
 
        
-        private async Task StoreTheUserDataInformation(UserModel existing_user)
+        private async Task<UserDeviceInformation> StoreTheUserDataInformation(UserModel existing_user)
         {
             string userAgent = Request.Headers["User-Agent"];
             var details = UserAgentDetailsDTO.GetBrowser(userAgent);
@@ -707,6 +707,33 @@ namespace Authentication.Api.Controllers
 
             await _unitOfWorks.UserDeviceInformations.Add(usrDeviceInformation);
             await _unitOfWorks.CompleteAsync();
+            return usrDeviceInformation;
+        }
+
+        private async Task DetectNewDeviceLogin(UserModel existing_user)
+        {
+            string  ?userAgent = Request.Headers["User-Agent"];
+
+            //Check whether device info in database
+            var deviceInfo = await _unitOfWorks.UserDeviceInformations.Checkinfo(new Guid(existing_user.Id), userAgent);
+
+            if(deviceInfo==false)
+            {
+                //save new info to data base
+
+               var info =await StoreTheUserDataInformation(existing_user);
+               var details = UserAgentDetailsDTO.GetBrowser(info.UserAgentDetails!);
+                //send email new login detected
+
+                string htmlBody = $"Dear User,\r\n\r\nWe want to inform you that a new device was detected logging into your account recently." +
+                    $"Your account security is our top priority, and we take such events seriously." +
+                    $"\r\n\r\nDetails:\r\n\r\nDate and Time: {DateTime.Now}" +
+                    $"\r\nDevice: {details.BrowserName} {details.DeviceType} \r\nLocation: [Insert Location, if available]" +
+                    $"\r\nAction Required:\r\n\r\nIf this login was authorized by you, you may disregard this message.";
+               
+                await _sendEmail.SendAlertEmailAsync(existing_user.UserName!, htmlBody);
+            }
+
         }
         
         [HttpGet]

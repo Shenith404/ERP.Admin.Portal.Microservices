@@ -9,6 +9,7 @@ namespace Authentication.DataService.IRepository
 {
     public interface IUserDeviceInformationRepository : IGenericRepository<UserDeviceInformation>
     {
+         public Task<bool> Checkinfo(Guid userId, string ? info);
 
     }
 }
