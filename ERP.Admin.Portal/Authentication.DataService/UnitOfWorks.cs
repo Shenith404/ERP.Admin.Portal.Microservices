@@ -13,11 +13,14 @@ namespace Authentication.DataService
 
         public IRefreshToknesRepository RefreshToknes { get; private set; }
 
+        public IUserDeviceInformationRepository UserDeviceInformations { get; private set; }
+
         public UnitOfWorks(AppDbContext context, ILoggerFactory loggerFactory)
         {
             _context = context;
             var logger = loggerFactory.CreateLogger("logs");
             RefreshToknes =new RefreshTokenRepository(_context,logger);
+            UserDeviceInformations =new UserDeviceInformationRepository(_context,logger);
 
         }
 

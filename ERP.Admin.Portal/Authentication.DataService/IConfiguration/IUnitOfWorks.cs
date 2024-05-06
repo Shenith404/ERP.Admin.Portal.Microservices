@@ -11,6 +11,8 @@ namespace Authentication.DataService.IConfiguration
     {
         IRefreshToknesRepository  RefreshToknes { get; }
 
+        IUserDeviceInformationRepository UserDeviceInformations { get; }
+
         Task<bool> CompleteAsync();
     }
 }

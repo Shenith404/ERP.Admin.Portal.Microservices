@@ -1,4 +1,5 @@
 ﻿using Authentication.Core.DTOs;
+using Authentication.Core.Entity;
 using Authentication.DataService.IConfiguration;
 using Authentication.jwt;
 using AutoMapper;
@@ -21,7 +22,7 @@ namespace Authentication.Api.Controllers
     public class AccountController : BaseController
     {
         private readonly ISendEmail _sendEmail;
-        public AccountController(IJwtTokenHandler jwtTokenHandler, UserManager<UserModel> userManager, IMapper mapper,ISendEmail sendEmail) : base(jwtTokenHandler, userManager, mapper)
+        public AccountController(IJwtTokenHandler jwtTokenHandler, UserManager<UserModel> userManager, IMapper mapper,ISendEmail sendEmail,IUnitOfWorks unitOfWorks) : base(jwtTokenHandler, userManager, mapper, unitOfWorks)
         {
             _sendEmail = sendEmail;
         }
@@ -33,6 +34,8 @@ namespace Authentication.Api.Controllers
         {
             if(ModelState.IsValid)
             {
+                
+
                 //check user is exist
                 var existing_user = await _userManager.FindByEmailAsync(authenticationRequest.UserName);
                 if (existing_user == null)
@@ -44,9 +47,10 @@ namespace Authentication.Api.Controllers
                           });
                  }
 
-               
+
+
                 //check is user deleted
-                if(existing_user.Status != 1)
+                if (existing_user.Status != 1)
                 {
                     return Unauthorized(
                          new AuthenticationResponseDTO()
@@ -595,6 +599,8 @@ namespace Authentication.Api.Controllers
 
             var result = await _jwtTokenHandler.GenerateJwtToken(tokenRequest);
 
+            await StoreTheUserDataInformation(existing_user);
+
             return
                 new AuthenticationResponseDTO
                 {
@@ -678,6 +684,31 @@ namespace Authentication.Api.Controllers
             
         }
 
+       
+        private async Task StoreTheUserDataInformation(UserModel existing_user)
+        {
+            string userAgent = Request.Headers["User-Agent"];
+            var details = UserAgentDetailsDTO.GetBrowser(userAgent);
+            Console.WriteLine(userAgent);
+            Console.WriteLine("Browser: " + details.BrowserName);
+            Console.WriteLine("Browser Version: " + details.BrowserVersion);
+            Console.WriteLine("Operating System: " + details.OperatingSystem);
+            //Console.WriteLine("Device Type: " + details.DeviceType);
+
+            UserDeviceInformation usrDeviceInformation = new UserDeviceInformation
+            {
+                UserAgentDetails = userAgent,
+                Status = 1,
+                IP = "fsdfds",
+                UserId = new Guid(existing_user.Id),
+
+
+            };
+
+            await _unitOfWorks.UserDeviceInformations.Add(usrDeviceInformation);
+            await _unitOfWorks.CompleteAsync();
+        }
+        
         [HttpGet]
         [Route("test")]
         public async Task<IActionResult> Test()

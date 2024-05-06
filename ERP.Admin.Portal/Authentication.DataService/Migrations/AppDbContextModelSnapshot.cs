@@ -65,6 +65,32 @@ namespace Authentication.DataService.Migrations
                     b.ToTable("RefreshTokens");
                 });
 
+            modelBuilder.Entity("Authentication.Core.Entity.UserDeviceInformation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("IP")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("LoginDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserAgentDetails")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserDeviceInformations");
+                });
+
             modelBuilder.Entity("ERP.Authentication.Core.Entity.UserModel", b =>
                 {
                     b.Property<string>("Id")
