@@ -70,6 +70,22 @@
   },
   {
     "ContainingType": "Authentication.Api.Controllers.AccountController",
+    "Method": "EnableTFA",
+    "RelativePath": "api/Account/Enable-2FA",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tFAEnableRequestDTO",
+        "Type": "Authentication.Core.DTOs.TFAEnableRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Authentication.Api.Controllers.AccountController",
     "Method": "GetUserDetails",
     "RelativePath": "api/Account/Get-User-Details",
     "HttpMethod": "GET",
