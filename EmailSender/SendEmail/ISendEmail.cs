@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MimeKit;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +11,6 @@ namespace EmailSender.SendEmail
     {
         Task<bool> SendVerificationEmailAsync(string email, string body);
         public  Task<bool> SendAlertEmailAsync(string email, string body);
+        public  Task<bool> SendEmailAsync(string email, MimeMessage message);
     }
 }

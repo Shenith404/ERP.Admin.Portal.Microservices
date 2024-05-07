@@ -29,7 +29,17 @@ builder.Services.AddScoped<ISendEmail, SendEmail>();
 //configure Automapper
 builder.Services.AddAutoMapper(typeof(DomainToResponse));
 
-builder.Services.AddIdentityCore<UserModel>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddIdentityCore<UserModel>(options => 
+{ options.SignIn.RequireConfirmedAccount = true;
+    options.Password.RequiredLength = 8;
+    options.Password.RequireUppercase = true;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireNonAlphanumeric = true;
+    options.Password.RequireDigit = true;
+
+    options.User.RequireUniqueEmail = true;
+
+})
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
