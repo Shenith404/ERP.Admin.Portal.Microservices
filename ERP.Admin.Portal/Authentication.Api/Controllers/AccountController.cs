@@ -11,6 +11,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.IdentityModel.Tokens;
+using Notification.Core.DTOs;
+using Notification.Core.Entity;
+using Notification.DataService.IRepository;
+using Notification.DataService.Repository;
 using System.Drawing.Printing;
 using System.Text;
 using System.Text.Encodings.Web;
@@ -22,7 +26,8 @@ namespace Authentication.Api.Controllers
     public class AccountController : BaseController
     {
         private readonly ISendEmail _sendEmail;
-        public AccountController(IJwtTokenHandler jwtTokenHandler, UserManager<UserModel> userManager, IMapper mapper,ISendEmail sendEmail,IUnitOfWorks unitOfWorks) : base(jwtTokenHandler, userManager, mapper, unitOfWorks)
+        public AccountController(IJwtTokenHandler jwtTokenHandler, UserManager<UserModel> userManager, IMapper mapper,ISendEmail sendEmail,IUnitOfWorks unitOfWorks) 
+            : base(jwtTokenHandler, userManager, mapper, unitOfWorks)
         {
             _sendEmail = sendEmail;
         }
@@ -195,6 +200,8 @@ namespace Authentication.Api.Controllers
 
                 if (is_created.Succeeded && get_created_user != null)
                 {
+
+                  
                     var result = await SendConfirmationEmailAsync(get_created_user);
 
                     if (result)
@@ -725,13 +732,16 @@ namespace Authentication.Api.Controllers
                var details = UserAgentDetailsDTO.GetBrowser(info.UserAgentDetails!);
                 //send email new login detected
 
-                string htmlBody = $"Dear User,\r\n\r\nWe want to inform you that a new device was detected logging into your account recently." +
+                string htmlBody = $"Dear User,\r\n\r\nWe want to inform you that a new device was detected logging into your account." +
                     $"Your account security is our top priority, and we take such events seriously." +
                     $"\r\n\r\nDetails:\r\n\r\nDate and Time: {DateTime.Now}" +
                     $"\r\nDevice: {details.BrowserName} {details.DeviceType} \r\nLocation: [Insert Location, if available]" +
                     $"\r\nAction Required:\r\n\r\nIf this login was authorized by you, you may disregard this message.";
                
                 await _sendEmail.SendAlertEmailAsync(existing_user.UserName!, htmlBody);
+
+
+              
             }
 
         }
@@ -740,6 +750,7 @@ namespace Authentication.Api.Controllers
         [Route("test")]
         public async Task<IActionResult> Test()
         {
+            
             return Ok ("Hello world, this is test authentication");
         }
 

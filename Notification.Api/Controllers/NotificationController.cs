@@ -9,7 +9,7 @@ namespace Notification.Api.Controllers
 
     public class NotificationController : BaseController
     {
-        public NotificationController(IMapper mapper, IUnitOfWorks unitOfWorks) : base(mapper, unitOfWorks)
+        public NotificationController(IMapper mapper, IUnitOfWorksNotification unitOfWorks) : base(mapper, unitOfWorks)
         {
         }
 

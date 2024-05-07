@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OTPSender.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+009395d6381254b3e289f393c46f07c59c6c45a1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e4284b70556ea0d9be748521b8a33e8f25656d8c")]
 [assembly: System.Reflection.AssemblyProductAttribute("OTPSender.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OTPSender.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

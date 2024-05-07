@@ -5,6 +5,7 @@ using AutoMapper;
 using ERP.Authentication.Core.Entity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Notification.DataService.Repository;
 
 namespace Authentication.Api.Controllers
 {
@@ -12,7 +13,8 @@ namespace Authentication.Api.Controllers
     [ApiController]
     public class AdminController : BaseController
     {
-        public AdminController(IJwtTokenHandler jwtTokenHandler, UserManager<UserModel> userManager, IMapper mapper,IUnitOfWorks unitOfWorks) : base(jwtTokenHandler, userManager, mapper,unitOfWorks)
+        public AdminController(IJwtTokenHandler jwtTokenHandler, UserManager<UserModel> userManager, IMapper mapper,IUnitOfWorks unitOfWorks)
+            : base(jwtTokenHandler, userManager, mapper,unitOfWorks)
         {
         }
 
@@ -30,7 +32,7 @@ namespace Authentication.Api.Controllers
 
             if (string.IsNullOrEmpty(searchString))
             {
-                return Ok(users);
+                return Ok(_mapper.Map<List<UserModelResponseDTO>>(users));
             }
 
             var searchResult = users.Where(u =>

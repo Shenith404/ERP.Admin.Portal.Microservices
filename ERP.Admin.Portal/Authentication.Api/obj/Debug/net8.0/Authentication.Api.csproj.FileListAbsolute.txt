@@ -306,3 +306,9 @@ E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\Authentication.Api\bin\Deb
 E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\Authentication.Api\bin\Debug\net8.0\MimeKit.dll
 E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\Authentication.Api\bin\Debug\net8.0\EmailSender.dll
 E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\Authentication.Api\bin\Debug\net8.0\EmailSender.pdb
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\Authentication.Api\bin\Debug\net8.0\Npgsql.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\Authentication.Api\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\Authentication.Api\bin\Debug\net8.0\Notification.Core.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\Authentication.Api\bin\Debug\net8.0\Notification.DataService.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\Authentication.Api\bin\Debug\net8.0\Notification.DataService.pdb
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\Authentication.Api\bin\Debug\net8.0\Notification.Core.pdb

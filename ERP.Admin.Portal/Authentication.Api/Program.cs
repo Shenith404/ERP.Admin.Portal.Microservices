@@ -1,4 +1,5 @@
 
+using Authentication.Api.MappingProfiles;
 using Authentication.DataService;
 using Authentication.DataService.IConfiguration;
 using Authentication.jwt;
@@ -8,6 +9,10 @@ using ERP.Authentication.Jwt;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
+using Notification.DataService;
+using Notification.DataService.IRepository;
+using Notification.DataService.Repository;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +27,7 @@ builder.Services.AddScoped<IJwtTokenHandler, JwtTokenHandler>();
 builder.Services.AddScoped<ISendEmail, SendEmail>();
 
 //configure Automapper
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddAutoMapper(typeof(DomainToResponse));
 
 builder.Services.AddIdentityCore<UserModel>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>()

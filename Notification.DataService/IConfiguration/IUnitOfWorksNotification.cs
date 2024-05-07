@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Notification.DataService.Repository
 {
-    public interface IUnitOfWorks
+    public interface IUnitOfWorksNotification
     {
         INotificationRepository Notifications { get; }
 
