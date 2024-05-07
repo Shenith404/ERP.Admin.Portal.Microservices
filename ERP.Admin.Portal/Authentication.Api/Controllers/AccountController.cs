@@ -8,9 +8,11 @@ using ERP.Authentication.Core.DTOs;
 using ERP.Authentication.Core.Entity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.IdentityModel.Tokens;
+using MimeKit;
 using Notification.Core.DTOs;
 using Notification.Core.Entity;
 using Notification.DataService.IRepository;
@@ -571,13 +573,55 @@ namespace Authentication.Api.Controllers
             return BadRequest(errorMessage);
         }
 
-        
-        
-        
-        
-        
-        
-        
+
+        //Reset Password Verification Email sender
+        [HttpPost]
+        [Route("ForgotPassword-Verification-Sender")]
+        public async Task<IActionResult> ForgotPassword([FromBody] string email)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Fail");
+
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+                return BadRequest("Email Does not exist");
+
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var callback = Url.Action(nameof(ResetPassword), "Account", new { token, email = user.Email }, Request.Scheme);
+            var emailBody = $"Dear User" +
+                $"Your Frogot Password verification Code is {callback}";
+           var result = await _sendEmail.SendVerificationEmailAsync(email, emailBody);
+
+            return result ? Ok("Check Your email.We have sent Verification code to Your Email")
+                : BadRequest("Fail to send Email ,Try again");
+        }
+
+        [HttpPost]
+        [Route("ForgotPassword-ChangePassword")]
+
+        public async Task<IActionResult> ResetPassword(ResetPasswordRequestDTO resetPasswordRequestDTO)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Model is Not valid");
+            var user = await _userManager.FindByEmailAsync(resetPasswordRequestDTO.Email);
+            if (user == null)
+                return BadRequest("Email is Does not Exist");
+            var resetPassResult = await _userManager.ResetPasswordAsync(user, resetPasswordRequestDTO.Token, resetPasswordRequestDTO.Password);
+            if (!resetPassResult.Succeeded)
+            {
+                foreach (var error in resetPassResult.Errors)
+                {
+                    ModelState.TryAddModelError(error.Code, error.Description);
+                }
+                return Ok("Password Reset is Success");
+            }
+            return BadRequest("Faild to Reset Password");
+        }
+
+
+
+
+
         // Generate Authentication response
 
         private async Task<AuthenticationResponseDTO> GenenarateAuthenticatinResponse(UserModel existing_user)
@@ -747,7 +791,6 @@ namespace Authentication.Api.Controllers
         [Route("test")]
         public async Task<IActionResult> Test()
         {
-            
             return Ok ("Hello world, this is test authentication");
         }
 
