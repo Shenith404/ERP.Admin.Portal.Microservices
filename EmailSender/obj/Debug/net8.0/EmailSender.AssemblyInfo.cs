@@ -14,7 +14,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EmailSender")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< Updated upstream
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e4284b70556ea0d9be748521b8a33e8f25656d8c")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ac5c88f1316122eafbf7cdb87db6901666dd1779")]
+>>>>>>> Stashed changes
 [assembly: System.Reflection.AssemblyProductAttribute("EmailSender")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EmailSender")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

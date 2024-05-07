@@ -294,9 +294,6 @@ namespace Authentication.Api.Controllers
                     if(result.Succeeded) {
                         return Ok();
                     }
-                    
-
-                    
 
                 }
 
