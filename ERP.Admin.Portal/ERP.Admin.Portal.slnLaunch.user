@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Name": "Authentication.Api\\Authentication.Api.csproj",
+        "Action": "Start",
+        "DebugTarget": "https"
+      },
+      {
+        "Name": "ApiGateWay\\ApiGateWay.csproj",
+        "Action": "Start",
+        "DebugTarget": "https"
+      }
+    ]
+  }
+]

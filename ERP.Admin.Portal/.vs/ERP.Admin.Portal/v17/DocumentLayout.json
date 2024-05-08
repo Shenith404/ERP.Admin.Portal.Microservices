@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{593365C0-56CE-484C-88BC-E9D326423822}|ApiGateWay\\ApiGateWay.csproj|e:\\erp_admin_portal\\erp.admin.portal\\erp.admin.portal\\apigateway\\ocelot.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{593365C0-56CE-484C-88BC-E9D326423822}|ApiGateWay\\ApiGateWay.csproj|solutionrelative:apigateway\\ocelot.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{25C4B700-5374-4B72-ADFF-3B8442A7378D}|Authentication.Api\\Authentication.Api.csproj|e:\\erp_admin_portal\\erp.admin.portal\\erp.admin.portal\\authentication.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{25C4B700-5374-4B72-ADFF-3B8442A7378D}|Authentication.Api\\Authentication.Api.csproj|solutionrelative:authentication.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{593365C0-56CE-484C-88BC-E9D326423822}|ApiGateWay\\ApiGateWay.csproj|e:\\erp_admin_portal\\erp.admin.portal\\erp.admin.portal\\apigateway\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{593365C0-56CE-484C-88BC-E9D326423822}|ApiGateWay\\ApiGateWay.csproj|solutionrelative:apigateway\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -14,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,15 +38,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.Api\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Authentication.Api\\Controllers\\AccountController.cs",
+              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.Api\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Authentication.Api\\Controllers\\AccountController.cs",
+              "ViewState": "AQIAAMICAAAAAAAAAADwvx8DAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-08T10:24:18.59Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\ApiGateWay\\Program.cs",
               "RelativeDocumentMoniker": "ApiGateWay\\Program.cs",
               "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\ApiGateWay\\Program.cs",
               "RelativeToolTip": "ApiGateWay\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAxAAAA",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAiwAsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-07T20:23:29.606Z",
+              "WhenOpened": "2024-05-08T07:13:43.448Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ocelot.json",
+              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\ApiGateWay\\ocelot.json",
+              "RelativeDocumentMoniker": "ApiGateWay\\ocelot.json",
+              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\ApiGateWay\\ocelot.json",
+              "RelativeToolTip": "ApiGateWay\\ocelot.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-05-08T07:13:23.013Z",
               "EditorCaption": ""
             }
           ]
