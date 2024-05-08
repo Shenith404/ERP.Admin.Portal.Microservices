@@ -24,3 +24,16 @@ E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\ApiGateWay\obj\Debug\net8.
 E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\ApiGateWay\obj\Debug\net8.0\ApiGateWay.pdb
 E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\ApiGateWay\obj\Debug\net8.0\ApiGateWay.genruntimeconfig.cache
 E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\ApiGateWay\obj\Debug\net8.0\ref\ApiGateWay.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\ApiGateWay\bin\Debug\net8.0\ocelot.json
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\ApiGateWay\bin\Debug\net8.0\FluentValidation.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\ApiGateWay\bin\Debug\net8.0\IPAddressRange.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\ApiGateWay\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\ApiGateWay\bin\Debug\net8.0\Microsoft.AspNetCore.MiddlewareAnalysis.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\ApiGateWay\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\ApiGateWay\bin\Debug\net8.0\Microsoft.Extensions.DiagnosticAdapter.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\ApiGateWay\bin\Debug\net8.0\Newtonsoft.Json.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\ApiGateWay\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\ApiGateWay\bin\Debug\net8.0\Ocelot.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\ApiGateWay\obj\Debug\net8.0\ApiGateWay.csproj.AssemblyReference.cache
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\ApiGateWay\obj\Debug\net8.0\ApiGateWay.MvcApplicationPartsAssemblyInfo.cs
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\ApiGateWay\obj\Debug\net8.0\ApiGateWay.csproj.Up2Date
