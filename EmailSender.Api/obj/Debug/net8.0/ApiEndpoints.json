@@ -1,15 +1,47 @@
 [
   {
     "ContainingType": "EmailSender.Api.Controllers.SendEmailController",
-    "Method": "SendEmail",
-    "RelativePath": "SendEmail",
+    "Method": "SendAlertEmailAsync",
+    "RelativePath": "api/SendEmail/SendAlertEmailAsync",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "sendEmailResponse",
-        "Type": "EmailSender.Api.DTOs.SendEmailResponseDTO",
+        "Type": "EmailSender.Api.DTOs.SendEmailRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmailSender.Api.Controllers.SendEmailController",
+    "Method": "SendEmailAsync",
+    "RelativePath": "api/SendEmail/SendEmailAsync",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sendEmailResponse",
+        "Type": "EmailSender.Api.DTOs.SendDefaultEmailRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EmailSender.Api.Controllers.SendEmailController",
+    "Method": "SendVerificationEmail",
+    "RelativePath": "api/SendEmail/SendVerificationEmail",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sendEmailResponse",
+        "Type": "EmailSender.Api.DTOs.SendEmailRequestDTO",
         "IsRequired": true
       }
     ],
