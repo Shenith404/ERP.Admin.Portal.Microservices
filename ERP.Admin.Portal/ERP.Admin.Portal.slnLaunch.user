@@ -11,6 +11,16 @@
         "Name": "ApiGateWay\\ApiGateWay.csproj",
         "Action": "Start",
         "DebugTarget": "https"
+      },
+      {
+        "Name": "..\\EmailSender.Api\\EmailSender.Api.csproj",
+        "Action": "Start",
+        "DebugTarget": "https"
+      },
+      {
+        "Name": "..\\Notification.Api\\Notification.Api.csproj",
+        "Action": "Start",
+        "DebugTarget": "https"
       }
     ]
   }

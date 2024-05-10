@@ -3,6 +3,8 @@
     "BaseUrl": "https://localhost:7111"
   },
   "Routes": [
+
+    //Authentication
     {
       "DownstreamPathTemplate": "/api/{controller}/{action}",
       "DownstreamScheme": "https",
@@ -12,7 +14,35 @@
           "Port": 7048
         }
       ],
-      "UpstreamPathTemplate": "/ApiGateWay/api/{controller}/{action}",
+      "UpstreamPathTemplate": "/ApiGateWay/Auth-api/{controller}/{action}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+    },
+
+    //Email-Sender
+    {
+      "DownstreamPathTemplate": "/api/{controller}/{action}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7206
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/EmailSender-api/{controller}/{action}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+    },
+
+    //Notification
+    {
+      "DownstreamPathTemplate": "/api/{controller}/{action}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7295
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Notification-Api/{controller}/{action}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     }
   ]
