@@ -89,42 +89,67 @@ namespace Authentication.Api.Controllers
                          });
                 }
 
-                // 2F verification
-                if(existing_user.TwoFactorEnabled ==true) {
-
-                    var sendResult= await Send2FAVerificationToUserAsync(existing_user);
-
-
-                    if (sendResult)
-                    {
-                        return Unauthorized(
-                         new AuthenticationResponseDTO()
-                         {
-                             Is2FAConfirmed = true,
-                             Message = $"We have sent verification code to your  email *******{existing_user.Email!.Substring(4)}"
-                         });
-                    }else
-                    {
-                        throw new Exception();
-                    }
-                
-                }
-
-
+             
 
                 //check password is match
                 var isCorrect = await _userManager.CheckPasswordAsync(existing_user,authenticationRequest.Password);
-                if (isCorrect==false)
+                if (isCorrect!=false)
                 {
-                    return Unauthorized(
-                      new AuthenticationResponseDTO()
-                      {
-                          Message = "Password is Incorrect"
-                      });
-                }
-                var result = await GenenarateAuthenticatinResponse(existing_user);
 
-                return Ok(result);
+                    // 2F verification
+                    if (existing_user.TwoFactorEnabled == true)
+                    {
+
+                        var sendResult = await Send2FAVerificationToUserAsync(existing_user);
+
+
+                        try
+                        {
+                            if (sendResult)
+                            {
+                                return Unauthorized(
+                                 new AuthenticationResponseDTO()
+                                 {
+                                     Is2FAConfirmed = true,
+                                     Message = $"We have sent verification code to your  email *******{existing_user.Email!.Substring(4)}"
+                                 });
+                            }
+                            else
+                            {
+                                return Unauthorized(
+                                 new AuthenticationResponseDTO()
+                                 {
+                                    
+                                     Message = $"Please try again.Email Sendig is Fail"
+                                 });
+                            }
+
+                        }
+                        catch (Exception ex)
+                        {
+                            return Unauthorized(
+                                 new AuthenticationResponseDTO()
+                                 {
+                                     Message = $"Please try again {ex}"
+                                 });
+                        }
+
+                    }
+
+
+
+                    var result = await GenenarateAuthenticatinResponse(existing_user);
+
+                    return Ok(result);
+                   
+                }
+
+                return Unauthorized(
+                     new AuthenticationResponseDTO()
+                     {
+                         Message = "Password is Incorrect"
+                     });
+
 
 
 
@@ -187,7 +212,7 @@ namespace Authentication.Api.Controllers
 
                 var is_created = await _userManager.CreateAsync(new_user, authenticationRequest.Password);
 
-                var get_created_user = await _userManager.FindByEmailAsync(authenticationRequest.UserName);
+                var get_created_user = await _userManager.FindByNameAsync(authenticationRequest.UserName);
 
 
                 // Add Default Role as Reguler
@@ -210,7 +235,7 @@ namespace Authentication.Api.Controllers
                     {
                         return Ok("User Created Successful ,Check the email for comfirmation");
                     }
-                    return Ok(false);
+                    return Ok("User Created Successful ,Fail to send Email");
 
                  
                 }
@@ -627,6 +652,11 @@ namespace Authentication.Api.Controllers
         private async Task<AuthenticationResponseDTO> GenenarateAuthenticatinResponse(UserModel existing_user)
         {
 
+            if (existing_user == null)
+            {
+               
+                return new AuthenticationResponseDTO { Message = "User not found" };
+            }
             //Get user Role from database
 
             var roles = await _userManager.GetRolesAsync(existing_user);
@@ -647,7 +677,7 @@ namespace Authentication.Api.Controllers
 
             var result = await _jwtTokenHandler.GenerateJwtToken(tokenRequest);
 
-            await DetectNewDeviceLogin(existing_user);
+           await DetectNewDeviceLogin(existing_user);
 
             return
                 new AuthenticationResponseDTO
@@ -760,30 +790,34 @@ namespace Authentication.Api.Controllers
 
         private async Task DetectNewDeviceLogin(UserModel existing_user)
         {
-            string  ?userAgent = Request.Headers["User-Agent"];
-
-            //Check whether device info in database
-            var deviceInfo = await _unitOfWorks.UserDeviceInformations.Checkinfo(new Guid(existing_user.Id), userAgent);
-
-            if(deviceInfo==false)
+            try
             {
-                //save new info to data base
 
-               var info =await StoreTheUserDataInformation(existing_user);
-               var details = UserAgentDetailsDTO.GetBrowser(info.UserAgentDetails!);
-                //send email new login detected
+                string? userAgent = Request.Headers["User-Agent"];
 
-                string htmlBody = $"Dear User,\r\n\r\nWe want to inform you that a new device was detected logging into your account." +
-                    $"Your account security is our top priority, and we take such events seriously." +
-                    $"\r\n\r\nDetails:\r\n\r\nDate and Time: {DateTime.Now}" +
-                    $"\r\nDevice: {details.BrowserName} {details.DeviceType} \r\nLocation: [Insert Location, if available]" +
-                    $"\r\nAction Required:\r\n\r\nIf this login was authorized by you, you may disregard this message.";
-               
-                await _sendEmail.SendAlertEmailAsync(existing_user.UserName!, htmlBody);
+                //Check whether device info in database
+                var deviceInfo = await _unitOfWorks.UserDeviceInformations.Checkinfo(new Guid(existing_user.Id), userAgent);
+
+                if (deviceInfo == false)
+                {
+                    //save new info to data base
+
+                    var info = await StoreTheUserDataInformation(existing_user);
+                    var details = UserAgentDetailsDTO.GetBrowser(info.UserAgentDetails!);
+                    //send email new login detected
+
+                    string htmlBody = $"Dear User,\r\n\r\nWe want to inform you that a new device was detected logging into your account." +
+                        $"Your account security is our top priority, and we take such events seriously." +
+                        $"\r\n\r\nDetails:\r\n\r\nDate and Time: {DateTime.Now}" +
+                        $"\r\nDevice: {details.BrowserName} {details.DeviceType} \r\nLocation: [Insert Location, if available]" +
+                        $"\r\nAction Required:\r\n\r\nIf this login was authorized by you, you may disregard this message.";
+
+                    await _sendEmail.SendAlertEmailAsync(existing_user.UserName!, htmlBody);
 
 
-              
-            }
+
+                }
+            }catch (Exception ex) { }
 
         }
         
