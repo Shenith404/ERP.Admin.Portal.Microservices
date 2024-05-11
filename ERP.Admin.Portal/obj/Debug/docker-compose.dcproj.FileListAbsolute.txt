@@ -45,9 +45,3 @@ E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\bin\Debug\MimeKit.dll
 E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\bin\Debug\MailKit.dll
 E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\bin\Debug\BouncyCastle.Cryptography.dll
 E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\bin\Debug\EmailSender.pdb
-E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\bin\Debug\Notification.DataService.dll
-E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\bin\Debug\Notification.Core.dll
-E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\bin\Debug\Npgsql.EntityFrameworkCore.PostgreSQL.dll
-E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\bin\Debug\Npgsql.dll
-E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\bin\Debug\Notification.DataService.pdb
-E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\bin\Debug\Notification.Core.pdb
