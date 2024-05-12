@@ -13,24 +13,23 @@ services:
     environment:
       - DOTNET_USE_POLLING_FILE_WATCHER=1
       - ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS=true
-      - NUGET_FALLBACK_PACKAGES=
+      #- NUGET_FALLBACK_PACKAGES=$container_paths_to_fallback_packages_authentication.api$
     volumes:
       - E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\Authentication.Api:/app:rw
       - E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal:/src:rw
       - C:\Users\SHENITH\vsdbg\vs2017u5:/remote_debugger:rw
-      - C:\Users\SHENITH\.nuget\packages:/.nuget/packages:ro
+#$nuget_volume_mapping_authentication.api$
       - C:\Users\SHENITH\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
       - C:\Users\SHENITH\AppData\Roaming\ASP.NET\Https:/home/app/.aspnet/https:ro
       - C:\Users\SHENITH\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
       - C:\Users\SHENITH\AppData\Roaming\Microsoft\UserSecrets:/home/app/.microsoft/usersecrets:ro
-      - C:\Program Files\Microsoft Visual Studio\2022\Preview\MSBuild\Sdks\Microsoft.Docker.Sdk\tools\TokenService.Proxy\linux-x64\net6.0:/TokenService.Proxy:ro
-      - C:\Program Files\Microsoft Visual Studio\2022\Preview\MSBuild\Sdks\Microsoft.Docker.Sdk\tools\HotReloadProxy\linux-x64\net8.0:/HotReloadProxy:ro
+      - C:\Program Files\Microsoft Visual Studio\2022\Preview\MSBuild\Sdks\Microsoft.Docker.Sdk\tools\linux-x64\net8.0:/VSTools:ro
       - C:\Program Files\Microsoft Visual Studio\2022\Preview\Common7\IDE\CommonExtensions\Microsoft\HotReload:/HotReloadAgent:ro
 
-    entrypoint: tail -f /dev/null
+    entrypoint: "dotnet --roll-forward Major /VSTools/DistrolessHelper/DistrolessHelper.dll --wait"
     labels:
       com.microsoft.visualstudio.debuggee.program: "dotnet"
-      com.microsoft.visualstudio.debuggee.arguments: " --additionalProbingPath /.nuget/packages  \"/app/bin/Debug/net8.0/Authentication.Api.dll\""
+      #com.microsoft.visualstudio.debuggee.arguments: " $debuggee_arguments_probing_paths_authentication.api$ \"/app/bin/Debug/net8.0/Authentication.Api.dll\""
       com.microsoft.visualstudio.debuggee.workingdirectory: "/app"
-      com.microsoft.visualstudio.debuggee.killprogram: "/bin/sh -c \"if PID=$$(pidof dotnet); then kill $$PID; fi\""
+      com.microsoft.visualstudio.debuggee.killprogram: "dotnet --roll-forward Major /VSTools/DistrolessHelper/DistrolessHelper.dll --stop dotnet"
     tty: true

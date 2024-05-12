@@ -347,14 +347,14 @@ namespace Authentication.Api.Controllers
                     return Ok(
                         result);
                 }
-                return BadRequest(
+                return Unauthorized(
                     new AuthenticationResponseDTO
                     {
                         Message="Token Request is failed"
                     });
             }
 
-            return BadRequest();
+            return Unauthorized();
         }
 
         
@@ -727,7 +727,7 @@ namespace Authentication.Api.Controllers
 
             // Create callback URL
             // https://localhost:7048/api/Account/ConfirmEmail?userId=31fe1e1c-1512-436b-b855-a483f66b5683&code=Q2ZESjhDbGFJZGRXVjdoSG13NHMwc1g3K0dBUnpnNTZpY0Zva2JkU3RMMy9EZXFBR0NwME5JZ3Z2RHJIbnNibE5iZnhZN3ZyOUE4OXBJVk43MFVwVC9mK2NBNE5VNVFPOVc5UDhoWTJ6Uyt0TmFzM2lxdUNwYWZwWjdFZ25sY3kzTjVFQUZuR1U3cldGNGx1Z1czUUJ1RUI4bTI2dUQzTHhYazJUWkFod0doZWVySC95WWVnb0N5N0RYamZjdHRBZnlVS1pwTzRWSStwTUc4TTQvL05MaFVYalZhV0tTQk1sNzFuMSswQ2ZKYlNGZDBjamNrMWtURGVkTEVoT3pUVUxkc2RaZz09
-            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = get_created_user.Id, code = encodedToken }, Request.Scheme);
+            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = get_created_user.Id, code = encodedToken }, Request.Scheme ?? "https");
 
             var emailBody = $"Please Confirm your email address <a href=\"{callbackUrl}\">Click link</a>";
 

@@ -112,10 +112,10 @@ namespace Authentication.jwt
         }
 
        public async Task<AuthenticationResponseDTO?> VerifyToken(TokenInfoDTO tokenInfoDTO)
-{
-    var tokenhandler = new JwtSecurityTokenHandler();
-    try
-    {
+        {
+            var tokenhandler = new JwtSecurityTokenHandler();
+            try
+            {
                 var tokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
@@ -127,15 +127,15 @@ namespace Authentication.jwt
 
                 var principle = tokenhandler.ValidateToken(tokenInfoDTO.JwtToken, tokenValidationParameters, out var ValidateToken);
 
-        if (ValidateToken is JwtSecurityToken jwtSecurityToken)
-        {
-            var isAlgorithmValid = jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase);
-            if (!isAlgorithmValid)
-            {
-                Console.WriteLine("Invalid token algorithm");
-                return null;
-            }
-        }
+                if (ValidateToken is JwtSecurityToken jwtSecurityToken)
+                {
+                    var isAlgorithmValid = jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase);
+                    if (!isAlgorithmValid)
+                    {
+                        Console.WriteLine("Invalid token algorithm");
+                        return null;
+                    }
+                }
 
         var expClaim = principle.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Exp);
         if (expClaim == null || !long.TryParse(expClaim.Value, out long utcExpireDate))
