@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Authentication.Core.DTOs
+namespace Authentication.Core.DTOs.Request
 {
-    public class ChangePasswordDTO
+    public class ChangePasswordRequestDTO
     {
         public string NewPassword { get; set; }
 

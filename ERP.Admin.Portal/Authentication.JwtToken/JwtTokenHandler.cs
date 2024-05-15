@@ -1,7 +1,6 @@
-﻿
-
-
-using Authentication.Core.DTOs;
+﻿using Authentication.Core.DTOs.Common;
+using Authentication.Core.DTOs.Request;
+using Authentication.Core.DTOs.Response;
 using Authentication.Core.Entity;
 using Authentication.DataService.IConfiguration;
 using ERP.Authentication.Core.Entity;

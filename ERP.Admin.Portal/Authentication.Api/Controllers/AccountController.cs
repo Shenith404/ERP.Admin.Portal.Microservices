@@ -1,10 +1,11 @@
-﻿using Authentication.Core.DTOs;
+﻿using Authentication.Core.DTOs.Common;
+using Authentication.Core.DTOs.Request;
+using Authentication.Core.DTOs.Response;
 using Authentication.Core.Entity;
 using Authentication.DataService.IConfiguration;
 using Authentication.jwt;
 using AutoMapper;
 using EmailSender.SendEmail;
-using ERP.Authentication.Core.DTOs;
 using ERP.Authentication.Core.Entity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -309,7 +310,7 @@ namespace Authentication.Api.Controllers
        
         
         [HttpPost("Security")]
-        public async Task<IActionResult> ChangeSecurity([FromBody] LockOutDetailsInfoDTO lockOutDetailsInfo)
+        public async Task<IActionResult> ChangeSecurity([FromBody] LockOutDetailsInfoRequestDTO lockOutDetailsInfo)
         {
             if(ModelState.IsValid) { 
                 var exist_user = await _userManager.FindByEmailAsync(lockOutDetailsInfo.Email);
@@ -562,7 +563,7 @@ namespace Authentication.Api.Controllers
         [HttpPost]
         [Route("ChangePassword")]
         [Authorize]
-        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordDTO changePassword)
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordRequestDTO changePassword)
         {
             // Retrieve the current user
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);

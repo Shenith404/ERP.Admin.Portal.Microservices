@@ -1,4 +1,5 @@
-﻿using Authentication.Core.DTOs;
+﻿using Authentication.Core.DTOs.Request;
+using Authentication.Core.DTOs.Response;
 using Authentication.DataService.IConfiguration;
 using Authentication.jwt;
 using AutoMapper;
@@ -13,9 +14,12 @@ namespace Authentication.Api.Controllers
     [ApiController]
     public class AdminController : BaseController
     {
+
         public AdminController(IJwtTokenHandler jwtTokenHandler, UserManager<UserModel> userManager, IMapper mapper,IUnitOfWorks unitOfWorks)
-            : base(jwtTokenHandler, userManager, mapper,unitOfWorks)
+            : base(jwtTokenHandler, userManager, mapper, unitOfWorks)
         {
+
+          
         }
 
         [HttpPost]
@@ -83,8 +87,95 @@ namespace Authentication.Api.Controllers
             return BadRequest("Invalid email");
         }
 
+        
 
+
+
+        [HttpPost]
+        [Route("Assign-Role")]
+        public async Task<IActionResult> AssignRoles([FromBody] AssignRoleRequestDTO assignRoleRequestDTO) {
+            if (ModelState.IsValid) {
+                try
+                {
+
+                    UserModel? user = await _userManager.FindByEmailAsync(assignRoleRequestDTO.UserEmail);
+                    if (user != null) {
+
+                        //we only allow to have one role
+                        //therefore  we remove all roles before assign a role
+                        var roles = await _userManager.GetRolesAsync(user);
+                        await _userManager.RemoveFromRolesAsync(user, roles);
+                        
+                        var result = await _userManager.AddToRoleAsync(user,assignRoleRequestDTO.Role);
+
+                        if (result.Succeeded) {
+
+                            return Ok($"{assignRoleRequestDTO.Role} is assigned to {assignRoleRequestDTO.UserEmail}");
+                        }
+                        return BadRequest(result.Errors);
+                    }
+                    return BadRequest("Email is Does not exist");
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest("Error :" +ex.ToString());
+                }
+            }
+
+            return BadRequest("Model is Not valid");
+        }
+
+        [HttpPost]
+        [Route("Lock-User")]
+        public async Task<IActionResult> LockUser([FromBody] LockOutDetailsInfoRequestDTO lockOutDetailsInfoRequestDTO)
+        {
+            if (ModelState.IsValid) {
+
+                try
+                {
+                    UserModel? user = await _userManager.FindByEmailAsync(lockOutDetailsInfoRequestDTO.Email);
+                    if (user != null) {
+
+                        //Unlock the User
+                        if (lockOutDetailsInfoRequestDTO.LockUser == false) { 
+                            user.LockoutEnd = null; 
+                            var isUnlocked =await _userManager.UpdateAsync(user);
+                            if (isUnlocked.Succeeded) { 
+                                return Ok($"user {lockOutDetailsInfoRequestDTO.Email} is Unlocked");
+                            }
+                            return BadRequest(isUnlocked.Errors);
+                        
+                        }
+
+
+                        // Lockout Enable
+                        var lockOutEnableResult =await _userManager.SetLockoutEnabledAsync(user,lockOutDetailsInfoRequestDTO.LockoutEnable);
+                        if (!lockOutEnableResult.Succeeded) { 
+
+                            return BadRequest(lockOutEnableResult.Errors);
+                        }
+
+                        // Lock User
+                        user.LockoutEnd =lockOutDetailsInfoRequestDTO.LockoutEndDate;
+                        var lockUserResult = await _userManager.UpdateAsync(user);
+
+                        if (lockUserResult.Succeeded) { 
+                            return Ok("Save changes Successful");
+                        }
+                        
+                    }
+
+                    return BadRequest("Invalid User");
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.ToString());
+                }
+            }
+            return BadRequest("Model is Not Valid");
+        }
     }
 
+    
 
 }

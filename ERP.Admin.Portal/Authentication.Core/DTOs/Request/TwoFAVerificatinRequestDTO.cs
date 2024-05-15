@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Authentication.Core.DTOs
+namespace Authentication.Core.DTOs.Request
 {
     public class TwoFAVerificatinRequestDTO
     {
-        public string Email {  get; set; }
+        public string Email { get; set; }
 
         public string Code { get; set; }
     }

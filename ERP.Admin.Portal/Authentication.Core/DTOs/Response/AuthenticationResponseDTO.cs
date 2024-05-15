@@ -1,7 +1,7 @@
 ﻿
 using System.ComponentModel.DataAnnotations;
 
-namespace Authentication.Core.DTOs
+namespace Authentication.Core.DTOs.Response
 {
     public class AuthenticationResponseDTO
     {

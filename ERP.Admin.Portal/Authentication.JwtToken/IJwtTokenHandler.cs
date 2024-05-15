@@ -1,4 +1,6 @@
-﻿using Authentication.Core.DTOs;
+﻿using Authentication.Core.DTOs.Common;
+using Authentication.Core.DTOs.Request;
+using Authentication.Core.DTOs.Response;
 using System;
 using System.Collections.Generic;
 using System.Linq;

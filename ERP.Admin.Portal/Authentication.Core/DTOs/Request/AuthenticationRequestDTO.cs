@@ -2,7 +2,7 @@
 
 using System.ComponentModel.DataAnnotations;
 
-namespace ERP.Authentication.Core.DTOs
+namespace Authentication.Core.DTOs.Request
 {
     public class AuthenticationRequestDTO
     {
