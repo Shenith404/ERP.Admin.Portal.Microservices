@@ -15,6 +15,7 @@ namespace Authentication.Api.Controllers
     {
 
         private readonly UserManager<UserModel> _userManager;
+      
 
 
 

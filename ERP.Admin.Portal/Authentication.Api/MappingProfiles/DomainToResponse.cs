@@ -1,4 +1,4 @@
-﻿using Authentication.Core.DTOs;
+﻿using Authentication.Core.DTOs.Response;
 using AutoMapper;
 using ERP.Authentication.Core.Entity;
 

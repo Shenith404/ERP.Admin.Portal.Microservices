@@ -1,11 +1,12 @@
 using System;
 using System.Threading.Tasks;
 using Authentication.Api.Controllers;
-using Authentication.Core.DTOs;
+using Authentication.Core.DTOs.Common;
+using Authentication.Core.DTOs.Request;
+using Authentication.Core.DTOs.Response;
 using Authentication.jwt;
 using AutoFixture;
 using EmailSender.SendEmail;
-using ERP.Authentication.Core.DTOs;
 using ERP.Authentication.Core.Entity;
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
@@ -198,7 +199,6 @@ namespace Authentication.Api.Tests
             response.EmailConfirmed.Should().Be(true);
         }
 
-        //Not working
         [Fact]
         public async Task Login_WithTwoFactorAuthenticationEnabled_ShouldReturnUnauthorized()
         {
@@ -341,6 +341,7 @@ namespace Authentication.Api.Tests
         /// CREATE USER
         /// </summary>
         /// <returns></returns>
+        
         [Fact]
         public async Task Register_With_Exist_Email_ShouldReturnBadRequest()
         {
