@@ -12,7 +12,7 @@ namespace ERP.Authentication.Jwt
         public static void AddCustomJwtAuthenticaion(this IServiceCollection services)
         {
 
-            string key = "yyAhYj6LYNzoL8bRVKbuF2EfKMKN05WComWtIVa5AUSScmiNWBFam8jFcwvZ54lR";
+            string key = Environment.GetEnvironmentVariable("JWT_SECRET_KEY");
 
             var tokenValidationParameters = new TokenValidationParameters
             {

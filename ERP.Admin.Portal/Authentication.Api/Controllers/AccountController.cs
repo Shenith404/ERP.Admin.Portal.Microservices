@@ -145,6 +145,9 @@ namespace Authentication.Api.Controllers
                    
                 }
 
+                // Add faild attempt
+                await DetectInvalidLoginAttempts(false,existing_user);
+
                 return Unauthorized(
                      new AuthenticationResponseDTO()
                      {
@@ -680,6 +683,9 @@ namespace Authentication.Api.Controllers
 
            await DetectNewDeviceLogin(existing_user);
 
+
+            await DetectInvalidLoginAttempts(true, existing_user);
+
             return
                 new AuthenticationResponseDTO
                 {
@@ -821,9 +827,35 @@ namespace Authentication.Api.Controllers
             }catch (Exception ex) { }
 
         }
-        
+
+
+        private async Task DetectInvalidLoginAttempts(bool isSuccess,UserModel user)
+        {
+
+            try {
+                if (isSuccess)
+                {
+
+                    await _userManager.ResetAccessFailedCountAsync(user);
+
+                }
+                else { 
+                    await _userManager.AccessFailedAsync(user);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.ToString());
+            }
+
+        }
+
         [HttpGet]
         [Route("test")]
+
+        [Authorize]
         public async Task<IActionResult> Test()
         {
             return Ok ("Hello world, this is test authentication");
