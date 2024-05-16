@@ -8,8 +8,12 @@ namespace EmailSender.SendEmail
 {
     public class SendEmail : ISendEmail
     {
+        string userName = Environment.GetEnvironmentVariable("EMAIL_USER_NAME")!;
+        string password = Environment.GetEnvironmentVariable("EMAIL_PASSWORD")!;
         public async Task<bool> SendVerificationEmailAsync(string email, string body)
         {
+
+           
             MimeMessage message = new MimeMessage();
             message.From.Add(new MailboxAddress("ERP System Faculty of Engineering UoR", "comecprogramming@gmail.com"));
             message.To.Add(MailboxAddress.Parse(email));
@@ -45,7 +49,7 @@ namespace EmailSender.SendEmail
                     smtpClient.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
                     Console.WriteLine($"Connected to ");
 
-                    smtpClient.Authenticate("comecprogramming@gmail.com", "rixphfjzsglsjudk");
+                    smtpClient.Authenticate(userName,password);
                     Console.WriteLine("Authenticated");
 
                     await smtpClient.SendAsync(message);
@@ -88,7 +92,7 @@ namespace EmailSender.SendEmail
                     smtpClient.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
                     Console.WriteLine($"Connected to ");
 
-                    smtpClient.Authenticate("comecprogramming@gmail.com", "rixphfjzsglsjudk");
+                    smtpClient.Authenticate(userName, password);
                     Console.WriteLine("Authenticated");
 
                     await smtpClient.SendAsync(message);
@@ -146,7 +150,7 @@ namespace EmailSender.SendEmail
                     smtpClient.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
                     Console.WriteLine($"Connected to ");
 
-                    smtpClient.Authenticate("comecprogramming@gmail.com", "rixphfjzsglsjudk");
+                    smtpClient.Authenticate(userName, password);
                     Console.WriteLine("Authenticated");
 
                     await smtpClient.SendAsync(message);
