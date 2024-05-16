@@ -20,14 +20,7 @@ namespace Authentication.jwt
 {
     public class JwtTokenHandler : IJwtTokenHandler
     {
-        string key = Environment.GetEnvironmentVariable("JWT_SECRET_KEY");
-
-
-
-
-
-
-        //string secretKey = Environment.GetEnvironmentVariable("JWT_SECRET_KEY");
+        string key = Environment.GetEnvironmentVariable("JWT_SECRET_KEY")!;
 
         private const int JWT_VALIDITY_MINS = 10;
         private readonly IUnitOfWorks _unitOfWorks;
