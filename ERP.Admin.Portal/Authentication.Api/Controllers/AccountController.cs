@@ -854,6 +854,8 @@ namespace Authentication.Api.Controllers
 
         [HttpGet]
         [Route("test")]
+
+        [Authorize]
         public async Task<IActionResult> Test()
         {
             return Ok ("Hello world, this is test authentication");
