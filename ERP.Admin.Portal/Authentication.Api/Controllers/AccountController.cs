@@ -346,19 +346,26 @@ namespace Authentication.Api.Controllers
                 //check is token is valid
                 var result = await _jwtTokenHandler.VerifyToken(tokenInfoDTO);
 
-                if(result != null)
+                if (result != null)
                 {
                     return Ok(
                         result);
                 }
-                return Unauthorized(
-                    new AuthenticationResponseDTO
-                    {
-                        Message="Token Request is failed"
-                    });
+                else
+                {
+               
+
+                    return BadRequest(
+                      new AuthenticationResponseDTO
+                      {
+                          Message = "Token Request is failed"
+                      });
+
+                }
+              
             }
 
-            return Unauthorized();
+            return Unauthorized(new AuthenticationResponseDTO());
         }
 
         

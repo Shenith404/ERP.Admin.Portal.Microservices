@@ -21,7 +21,8 @@ namespace ERP.Authentication.Jwt
                 ValidateAudience = false,
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key)),
                 ValidateLifetime = true,
-                RequireExpirationTime = false,
+                RequireExpirationTime = true,
+                ClockSkew = TimeSpan.Zero
 
             };
 
