@@ -3,25 +3,20 @@
   "WorkspaceRootPath": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E3A4C8F0-29CF-4C81-94BA-7F2880475E4A}|..\\EmailSender\\EmailSender.csproj|e:\\erp_admin_portal\\erp.admin.portal\\emailsender\\sendemail\\sendemail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{EC077595-EF69-4C68-A189-57AA8FB9ED8A}|Authentication.JwtToken\\Authentication.JwtToken.csproj|e:\\erp_admin_portal\\erp.admin.portal\\erp.admin.portal\\authentication.jwttoken\\jwttokenhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EC077595-EF69-4C68-A189-57AA8FB9ED8A}|Authentication.JwtToken\\Authentication.JwtToken.csproj|solutionrelative:authentication.jwttoken\\jwttokenhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E3A4C8F0-29CF-4C81-94BA-7F2880475E4A}|..\\EmailSender\\EmailSender.csproj|e:\\erp_admin_portal\\erp.admin.portal\\emailsender\\emailsender.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{45572EE8-BFC1-4BE3-B186-D064475AB3EB}|..\\EmailSender.Api\\EmailSender.Api.csproj|e:\\erp_admin_portal\\erp.admin.portal\\emailsender.api\\emailsender.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EC077595-EF69-4C68-A189-57AA8FB9ED8A}|Authentication.JwtToken\\Authentication.JwtToken.csproj|e:\\erp_admin_portal\\erp.admin.portal\\erp.admin.portal\\authentication.jwttoken\\config.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{EC077595-EF69-4C68-A189-57AA8FB9ED8A}|Authentication.JwtToken\\Authentication.JwtToken.csproj|solutionrelative:authentication.jwttoken\\config.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{25C4B700-5374-4B72-ADFF-3B8442A7378D}|Authentication.Api\\Authentication.Api.csproj|e:\\erp_admin_portal\\erp.admin.portal\\erp.admin.portal\\authentication.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{25C4B700-5374-4B72-ADFF-3B8442A7378D}|Authentication.Api\\Authentication.Api.csproj|solutionrelative:authentication.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{593365C0-56CE-484C-88BC-E9D326423822}|ApiGateWay\\ApiGateWay.csproj|e:\\erp_admin_portal\\erp.admin.portal\\erp.admin.portal\\apigateway\\apigateway.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{593365C0-56CE-484C-88BC-E9D326423822}|ApiGateWay\\ApiGateWay.csproj|solutionrelative:apigateway\\apigateway.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{25C4B700-5374-4B72-ADFF-3B8442A7378D}|Authentication.Api\\Authentication.Api.csproj|e:\\erp_admin_portal\\erp.admin.portal\\erp.admin.portal\\authentication.api\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{25C4B700-5374-4B72-ADFF-3B8442A7378D}|Authentication.Api\\Authentication.Api.csproj|solutionrelative:authentication.api\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EC077595-EF69-4C68-A189-57AA8FB9ED8A}|Authentication.JwtToken\\Authentication.JwtToken.csproj|e:\\erp_admin_portal\\erp.admin.portal\\erp.admin.portal\\authentication.jwttoken\\customjwtauthextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -56,87 +51,67 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "SendEmail.cs",
-              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\EmailSender\\SendEmail\\SendEmail.cs",
-              "RelativeDocumentMoniker": "..\\EmailSender\\SendEmail\\SendEmail.cs",
-              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\EmailSender\\SendEmail\\SendEmail.cs",
-              "RelativeToolTip": "..\\EmailSender\\SendEmail\\SendEmail.cs",
-              "ViewState": "AQIAAFUAAAAAAAAAAAAUwKcAAAARAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T10:36:21.509Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "EmailSender.Api.csproj",
-              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\EmailSender.Api\\EmailSender.Api.csproj",
-              "RelativeDocumentMoniker": "..\\EmailSender.Api\\EmailSender.Api.csproj",
-              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\EmailSender.Api\\EmailSender.Api.csproj",
-              "RelativeToolTip": "..\\EmailSender.Api\\EmailSender.Api.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-05-16T10:36:17.561Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "EmailSender.csproj",
-              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\EmailSender\\EmailSender.csproj",
-              "RelativeDocumentMoniker": "..\\EmailSender\\EmailSender.csproj",
-              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\EmailSender\\EmailSender.csproj",
-              "RelativeToolTip": "..\\EmailSender\\EmailSender.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-05-16T10:36:15.81Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AccountController.cs",
-              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.Api\\Controllers\\AccountController.cs",
-              "RelativeDocumentMoniker": "Authentication.Api\\Controllers\\AccountController.cs",
-              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.Api\\Controllers\\AccountController.cs",
-              "RelativeToolTip": "Authentication.Api\\Controllers\\AccountController.cs",
-              "ViewState": "AQIAADYBAAAAAAAAAAAAAFkDAAATAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T10:19:06.979Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "CustomJwtAuthExtension.cs",
-              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.JwtToken\\CustomJwtAuthExtension.cs",
-              "RelativeDocumentMoniker": "Authentication.JwtToken\\CustomJwtAuthExtension.cs",
-              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.JwtToken\\CustomJwtAuthExtension.cs",
-              "RelativeToolTip": "Authentication.JwtToken\\CustomJwtAuthExtension.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAuwBMAAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T10:18:49.56Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "config.json",
-              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.JwtToken\\config.json",
-              "RelativeDocumentMoniker": "Authentication.JwtToken\\config.json",
-              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.JwtToken\\config.json",
-              "RelativeToolTip": "Authentication.JwtToken\\config.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAADAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-05-16T10:17:27.151Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "JwtTokenHandler.cs",
               "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.JwtToken\\JwtTokenHandler.cs",
               "RelativeDocumentMoniker": "Authentication.JwtToken\\JwtTokenHandler.cs",
               "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.JwtToken\\JwtTokenHandler.cs",
               "RelativeToolTip": "Authentication.JwtToken\\JwtTokenHandler.cs",
-              "ViewState": "AQIAABQAAAAAAAAAAAA5wBgAAAAxAAAA",
+              "ViewState": "AQIAABAAAAAAAAAAAAAawBkAAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T09:41:18.23Z"
+              "WhenOpened": "2024-05-18T08:34:18.657Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.Api\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Authentication.Api\\Controllers\\AccountController.cs",
+              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.Api\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Authentication.Api\\Controllers\\AccountController.cs",
+              "ViewState": "AQIAAFEBAAAAAAAAAAA4wGQBAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-17T18:10:41.254Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CustomJwtAuthExtension.cs",
+              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.JwtToken\\CustomJwtAuthExtension.cs",
+              "RelativeDocumentMoniker": "Authentication.JwtToken\\CustomJwtAuthExtension.cs",
+              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.JwtToken\\CustomJwtAuthExtension.cs",
+              "RelativeToolTip": "Authentication.JwtToken\\CustomJwtAuthExtension.cs",
+              "ViewState": "AQIAAB8AAAAAAAAAAAA0wBkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-17T18:59:54.633Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.Api\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "Authentication.Api\\Controllers\\AdminController.cs",
+              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.Api\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "Authentication.Api\\Controllers\\AdminController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-17T18:10:48.59Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ApiGateWay.csproj",
+              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\ApiGateWay\\ApiGateWay.csproj",
+              "RelativeDocumentMoniker": "ApiGateWay\\ApiGateWay.csproj",
+              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\ApiGateWay\\ApiGateWay.csproj",
+              "RelativeToolTip": "ApiGateWay\\ApiGateWay.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-05-17T18:10:02.546Z",
+              "EditorCaption": ""
             }
           ]
         },
