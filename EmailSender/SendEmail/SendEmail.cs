@@ -2,6 +2,7 @@
 using MailKit.Security;
 using MimeKit;
 using MimeKit.Text;
+using System.Net.Mail;
 using System.Net.Security;
 
 namespace EmailSender.SendEmail
@@ -21,7 +22,7 @@ namespace EmailSender.SendEmail
 
             // Use TextPart.Text to set the body content
 
-            message.Body = new TextPart(TextFormat.Text)
+            message.Body = new TextPart(TextFormat.Html)
             {
                 Text = body
             };
@@ -31,7 +32,7 @@ namespace EmailSender.SendEmail
                 Text = $"Click the following link to verify your email <a href='{verificationLink}'>clicking here</a>."
             };*/
 
-            using (var smtpClient = new SmtpClient())
+            using (var smtpClient = new MailKit.Net.Smtp.SmtpClient())
             {
                 try
                 {
@@ -74,7 +75,7 @@ namespace EmailSender.SendEmail
         {
             
 
-            using (var smtpClient = new SmtpClient())
+            using (var smtpClient = new MailKit.Net.Smtp.SmtpClient())
             {
                 try
                 {
@@ -116,6 +117,14 @@ namespace EmailSender.SendEmail
 
          public async Task<bool> SendAlertEmailAsync(string email, string body)
         {
+            string MailBody = "<!DOCTYPE html>" +
+                                "<html> " +
+                                    "<body style=\"background -color:#ff7f26;text-align:center;\"> " +
+                                    "<h1 style=\"color:#051a80;\">Welcome to Nehanth World</h1> " +
+                                    "<h2 style=\"color:#fff;\">Please find the attached files.</h2> " +
+                                    "<label style=\"color:orange;font-size:100px;border:5px dotted;border-radius:50px\">N</label> " +
+                                    "</body> " +
+                                "</html>";
             MimeMessage message = new MimeMessage();
             message.From.Add(new MailboxAddress("ERP System Faculty of Engineering UoR", "comecprogramming@gmail.com"));
             message.To.Add(MailboxAddress.Parse(email));
@@ -124,15 +133,11 @@ namespace EmailSender.SendEmail
             // Use TextPart.Text to set the body content
             message.Body = new TextPart(TextFormat.Text)
             {
-                Text = body
+                Text = MailBody
             };
-            /*message.Body = new TextPart(TextFormat.Html)
-            {
+            
 
-                Text = $"Click the following link to verify your email <a href='{verificationLink}'>clicking here</a>."
-            };*/
-
-            using (var smtpClient = new SmtpClient())
+            using (var smtpClient = new MailKit.Net.Smtp.SmtpClient())
             {
                 try
                 {
@@ -172,6 +177,46 @@ namespace EmailSender.SendEmail
             }
         }
 
+           public async Task<bool> test(string email)
+        {
+            string MailBody = "<!DOCTYPE html>" +
+                                "<html> " +
+                                    "<body style=\"background -color:#ff7f26;text-align:center;\"> " +
+                                    "<h1 style=\"color:#051a80;\">Welcome to Nehanth World</h1> " +
+                                    "<h2 style=\"color:#fff;\">Please find the attached files.</h2> " +
+                                    "<label style=\"color:orange;font-size:100px;border:5px dotted;border-radius:50px\">N</label> " +
+                                    "</body> " +
+                                "</html>";
+            MailMessage message = new MailMessage(new MailAddress(userName, password), new MailAddress(email));
+            message.Subject = "sub";
+            message.Body = MailBody;
+            message.IsBodyHtml = true;
+
+
+            //Server Details
+            System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient();
+            
+            smtp.Host = "smtp.office365.com";
+            smtp.Port = 587;
+            smtp.EnableSsl = true;
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+            //Credentials
+            System.Net.NetworkCredential credentials = new System.Net.NetworkCredential();
+            credentials.UserName = userName;
+            credentials.Password = password;
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = credentials;
+
+            smtp.Send(message);
+
+            Console.WriteLine("sent");
+
+            return true;
+        }
+            
+
+        
 
     }
 }

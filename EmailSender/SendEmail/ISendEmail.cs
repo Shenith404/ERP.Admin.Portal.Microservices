@@ -12,5 +12,7 @@ namespace EmailSender.SendEmail
         Task<bool> SendVerificationEmailAsync(string email, string body);
         public  Task<bool> SendAlertEmailAsync(string email, string body);
         public  Task<bool> SendEmailAsync(string email, MimeMessage message);
+
+        public  Task<bool> test(string email);
     }
 }
