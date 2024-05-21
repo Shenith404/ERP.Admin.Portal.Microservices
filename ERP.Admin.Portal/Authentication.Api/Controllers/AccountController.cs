@@ -48,7 +48,7 @@ namespace Authentication.Api.Controllers
                 var existing_user = await _userManager.FindByEmailAsync(authenticationRequest.UserName);
                 if (existing_user == null)
                 {
-                    return Unauthorized(
+                    return BadRequest(
                           new AuthenticationResponseDTO()
                           {
                               Message = "Username is not Exist"
@@ -60,7 +60,7 @@ namespace Authentication.Api.Controllers
                 //check is user deleted
                 if (existing_user.Status != 1)
                 {
-                    return Unauthorized(
+                    return BadRequest(
                          new AuthenticationResponseDTO()
                          {
                              Message = "This user is Deleted"
@@ -71,7 +71,7 @@ namespace Authentication.Api.Controllers
                 var isLocked = await _userManager.IsLockedOutAsync(existing_user);
                 if (isLocked==true)
                 {
-                    return Unauthorized(
+                    return BadRequest(
                          new AuthenticationResponseDTO()
                          {
                              IsLocked=true,
@@ -82,7 +82,7 @@ namespace Authentication.Api.Controllers
                 //check is user Email is conformed
                 if (existing_user.EmailConfirmed ==false)
                 {
-                    return Unauthorized(
+                    return BadRequest(
                          new AuthenticationResponseDTO()
                          {
                              EmailConfirmed = await _userManager.IsEmailConfirmedAsync(existing_user),
@@ -108,7 +108,7 @@ namespace Authentication.Api.Controllers
                         {
                             if (sendResult)
                             {
-                                return Unauthorized(
+                                return BadRequest(
                                  new AuthenticationResponseDTO()
                                  {
                                      Is2FAConfirmed = true,
@@ -117,10 +117,11 @@ namespace Authentication.Api.Controllers
                             }
                             else
                             {
-                                return Unauthorized(
+                                return BadRequest(
                                  new AuthenticationResponseDTO()
                                  {
                                     
+                                     Is2FAConfirmed=true,
                                      Message = $"Please try again.Email Sendig is Fail"
                                  });
                             }
@@ -128,7 +129,7 @@ namespace Authentication.Api.Controllers
                         }
                         catch (Exception ex)
                         {
-                            return Unauthorized(
+                            return BadRequest(
                                  new AuthenticationResponseDTO()
                                  {
                                      Message = $"Please try again {ex}"
@@ -148,7 +149,7 @@ namespace Authentication.Api.Controllers
                 // Add faild attempt
                 await DetectInvalidLoginAttempts(false,existing_user);
 
-                return Unauthorized(
+                return BadRequest(
                      new AuthenticationResponseDTO()
                      {
                          Message = "Password is Incorrect"
@@ -160,7 +161,7 @@ namespace Authentication.Api.Controllers
 
             }
 
-            return Unauthorized(
+            return BadRequest(
               new AuthenticationResponseDTO()
               {
                   Message = "Invalid User Credentials"
@@ -237,7 +238,11 @@ namespace Authentication.Api.Controllers
 
                     if (result)
                     {
-                        return Ok("User Created Successful ,Check the email for comfirmation");
+                        return Ok(new AuthenticationResponseDTO()
+                        {
+                            Message = "User Created Successful ,Check the email for comfirmation"
+                        });
+                       
                     }
                     return Ok("User Created Successful ,Fail to send Email");
 
@@ -365,7 +370,7 @@ namespace Authentication.Api.Controllers
               
             }
 
-            return Unauthorized(new AuthenticationResponseDTO());
+            return BadRequest(new AuthenticationResponseDTO());
         }
 
         
@@ -382,7 +387,7 @@ namespace Authentication.Api.Controllers
                 var mappedUser =_mapper.Map<UserModelResponseDTO>(currentUser);
                 return Ok(mappedUser);
             }
-            return Unauthorized("Fetch user details is faild");
+            return BadRequest("Fetch user details is faild");
         }
 
 
@@ -397,15 +402,28 @@ namespace Authentication.Api.Controllers
                 var user = await _userManager.FindByEmailAsync(twoFAVerificatinRequestDTO.Email);
                 if (user == null)
                 {
-                    return BadRequest("User is Not exist");
+                    return BadRequest(new AuthenticationResponseDTO()
+                    {
+                        Message = "User is Not exist"
+                    });
+                    
                 }
                 if (user.TwoFactorAuthenticationCode != twoFAVerificatinRequestDTO.Code)
                 {
-                    return BadRequest("Invalid Code or This code has been used");
+                    return BadRequest(new AuthenticationResponseDTO()
+                    {
+                        Message = "Invalid Code or This code has been used"
+                    });
+
+    
                 }
                 if (user.TwoFactorAuthenticationCodeExpTime < DateTime.UtcNow)
                 {
-                    return BadRequest("This code is Expired");
+                    return BadRequest(new AuthenticationResponseDTO()
+                    {
+                        Message = "This code is Expired"
+                    });
+                  
                 }
                 var result = await _userManager.VerifyTwoFactorTokenAsync(user,"Email",twoFAVerificatinRequestDTO.Code);
                 if (result == true)
@@ -416,7 +434,11 @@ namespace Authentication.Api.Controllers
                     return Ok( await GenenarateAuthenticatinResponse(user));
                 }
             }
-            return BadRequest("Faild");
+            return BadRequest(new AuthenticationResponseDTO()
+            {
+                Message = "fail"
+            });
+           
         }
 
        
@@ -448,7 +470,7 @@ namespace Authentication.Api.Controllers
 
                 if (sendResult)
                 {
-                    return Unauthorized(
+                    return BadRequest(
                      new AuthenticationResponseDTO()
                      {
                          Is2FAConfirmed = true,
