@@ -117,14 +117,7 @@ namespace EmailSender.SendEmail
 
          public async Task<bool> SendAlertEmailAsync(string email, string body)
         {
-            string MailBody = "<!DOCTYPE html>" +
-                                "<html> " +
-                                    "<body style=\"background -color:#ff7f26;text-align:center;\"> " +
-                                    "<h1 style=\"color:#051a80;\">Welcome to Nehanth World</h1> " +
-                                    "<h2 style=\"color:#fff;\">Please find the attached files.</h2> " +
-                                    "<label style=\"color:orange;font-size:100px;border:5px dotted;border-radius:50px\">N</label> " +
-                                    "</body> " +
-                                "</html>";
+           
             MimeMessage message = new MimeMessage();
             message.From.Add(new MailboxAddress("ERP System Faculty of Engineering UoR", "comecprogramming@gmail.com"));
             message.To.Add(MailboxAddress.Parse(email));
@@ -133,7 +126,7 @@ namespace EmailSender.SendEmail
             // Use TextPart.Text to set the body content
             message.Body = new TextPart(TextFormat.Text)
             {
-                Text = MailBody
+                Text = body
             };
             
 

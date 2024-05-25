@@ -50,7 +50,7 @@ builder.Services.AddIdentityCore<UserModel>(options =>
 
 builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
 {
-    options.TokenLifespan = TimeSpan.FromMinutes(5); 
+    options.TokenLifespan = TimeSpan.FromDays(1); 
 });
 
 builder.Services.AddDbContext<AppDbContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));

@@ -13,14 +13,9 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.IdentityModel.Tokens;
-using MimeKit;
-using Notification.Core.DTOs;
-using Notification.Core.Entity;
-using Notification.DataService.IRepository;
-using Notification.DataService.Repository;
-using System.Drawing.Printing;
 using System.Text;
-using System.Text.Encodings.Web;
+using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
+
 
 namespace Authentication.Api.Controllers
 {
@@ -638,43 +633,52 @@ namespace Authentication.Api.Controllers
         public async Task<IActionResult> ForgotPassword([FromBody] string email)
         {
             if (!ModelState.IsValid)
-                return BadRequest("Fail");
+                return BadRequest("Invalid request");
 
             var user = await _userManager.FindByEmailAsync(email);
             if (user == null)
-                return BadRequest("Email Does not exist");
+                return BadRequest("Email does not exist");
 
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-            var callback = Url.Action(nameof(ResetPassword), "Account", new { token, email = user.Email }, Request.Scheme);
-            var emailBody = $"Dear User" +
-                $"Your Frogot Password verification Code is {callback}";
-           var result = await _sendEmail.SendVerificationEmailAsync(email, emailBody);
+            token = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
+            Console.WriteLine(token);
+            //NEED TO CHANGE
+            var callback = $"https://localhost:7072/resetpassword?token={token}&email={Uri.EscapeDataString(user.Email)}";
+            var emailBody = $"Dear User,\nYour Forgot Password verification link is: {callback}";
 
-            return result ? Ok("Check Your email.We have sent Verification code to Your Email")
-                : BadRequest("Fail to send Email ,Try again");
+            var result = await _sendEmail.SendVerificationEmailAsync(email, emailBody);
+
+            return result ? Ok("Check your email. We have sent a verification code to your email.")
+                          : BadRequest("Failed to send email, try again.");
         }
+
 
         [HttpPost]
         [Route("ForgotPassword-ChangePassword")]
-
         public async Task<IActionResult> ResetPassword(ResetPasswordRequestDTO resetPasswordRequestDTO)
         {
             if (!ModelState.IsValid)
-                return BadRequest("Model is Not valid");
+                return BadRequest("Invalid model");
+            Console.WriteLine("token is "+resetPasswordRequestDTO.Token);
             var user = await _userManager.FindByEmailAsync(resetPasswordRequestDTO.Email);
             if (user == null)
-                return BadRequest("Email is Does not Exist");
-            var resetPassResult = await _userManager.ResetPasswordAsync(user, resetPasswordRequestDTO.Token, resetPasswordRequestDTO.Password);
+                return BadRequest("Email does not exist");
+
+            var decodeToken = Encoding.UTF8.GetString(Convert.FromBase64String(resetPasswordRequestDTO.Token));
+
+            var resetPassResult = await _userManager.ResetPasswordAsync(user, decodeToken, resetPasswordRequestDTO.Password);
             if (!resetPassResult.Succeeded)
             {
                 foreach (var error in resetPassResult.Errors)
                 {
                     ModelState.TryAddModelError(error.Code, error.Description);
                 }
-                return Ok("Password Reset is Success");
+                return BadRequest("Faild to reset Password");
             }
-            return BadRequest("Faild to Reset Password");
+
+            return Ok("Password reset is successful");
         }
+
 
 
 
@@ -745,11 +749,11 @@ namespace Authentication.Api.Controllers
         }
 
 
-        
-        
+
+
         // send confirmatin email
 
-        private async Task<bool> SendConfirmationEmailAsync(UserModel get_created_user)
+        /*private async Task<bool> SendConfirmationEmailAsync(UserModel get_created_user)
         {
             // Create Confirmation Email token for created user
             var emailConfirmedToken = await _userManager.GenerateEmailConfirmationTokenAsync(get_created_user);
@@ -757,9 +761,6 @@ namespace Authentication.Api.Controllers
             var encodedToken = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(emailConfirmedToken));
 
 
-            string htmlFilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "templates", "ConfirmationEmail.html");
-
-            Console.WriteLine(htmlFilePath);
             // Store the encoded token in the database
             get_created_user.ConfirmationEmailLink = encodedToken;
             get_created_user.ConfirmationEmailLinkExpTime = DateTime.UtcNow.AddMinutes(2);
@@ -772,7 +773,29 @@ namespace Authentication.Api.Controllers
             var emailBody = ReturnConfirmationEmailbody(callbackUrl);
 
             return await _sendEmail.SendVerificationEmailAsync(get_created_user.Email!, emailBody);
+        }*/
+
+        private async Task<bool> SendConfirmationEmailAsync(UserModel get_created_user)
+        {
+            // Create Confirmation Email token for created user
+            var emailConfirmedToken = await _userManager.GenerateEmailConfirmationTokenAsync(get_created_user);
+
+            var encodedToken = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(emailConfirmedToken));
+
+            // Store the encoded token in the database
+            get_created_user.ConfirmationEmailLink = encodedToken;
+            get_created_user.ConfirmationEmailLinkExpTime = DateTime.UtcNow.AddMinutes(2);
+            await _userManager.UpdateAsync(get_created_user);
+
+            // Create callback URL for the frontend
+            var frontendUrl = "https://localhost:7072/confirm-Email-Successful"; // Update this to your frontend URL
+            var callbackUrl = $"{frontendUrl}?userId={get_created_user.Id}&code={encodedToken}";
+
+            var emailBody = ReturnConfirmationEmailbody(callbackUrl);
+
+            return await _sendEmail.SendVerificationEmailAsync(get_created_user.Email!, emailBody);
         }
+
 
 
 
