@@ -465,7 +465,7 @@ namespace Authentication.Api.Controllers
 
                 if (sendResult)
                 {
-                    return BadRequest(
+                    return Ok(
                      new AuthenticationResponseDTO()
                      {
                          Is2FAConfirmed = true,
