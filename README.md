@@ -34,12 +34,12 @@ The backend and frontend are maintained in separate repositories to ensure modul
 
 ### Frontend Repository
 
-- **Location:** [Frontend Repository URL](https://github.com/Shenith404/ERP.Admin.Portal.Microservices)
+- **Location:** [Frontend Repository URL](https://github.com/DilshanMadhusanka/BlazorUI-With-MudBlazor-.NET)
 - **Technologies:** Blazor, HTML, CSS, JavaScript
 
 ### Backend Repository
 
-- **Location:** [Backend Repository URL](#)
+- **Location:** [Backend Repository URL](https://github.com/Shenith404/ERP.Admin.Portal.Microservices)
 - **Technologies:** ASP.NET Core, Ocelot, RabbitMQ, PostgreSQL
 
 ## Getting Started
