@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Notification.Api.Mapping_Profiles;
 using Notification.DataService;
 using Notification.DataService.Repository;
 
@@ -10,7 +11,8 @@ builder.Services.AddControllers();
 builder.Services.AddScoped<IUnitOfWorksNotification, UnitOfWorksNotification>();
 
 //configure Automapper
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddAutoMapper(typeof(DomainToResponse));
+
 builder.Services.AddDbContextFactory<PgsqlDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("PgSqlConnection")));
  

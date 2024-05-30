@@ -21,7 +21,7 @@ namespace Notification.DataService.Repository
             try
             {
                 var query = dbSet
-                    .Where(x => x.Status == 1 && x.ReceiverId == receiver)
+                    .Where(x => x.Status == 1 && x.ReceiverId == receiver).OrderByDescending(x => x.AddedDate)
                     .AsNoTracking();
 
                 if (!string.IsNullOrWhiteSpace(searchString))

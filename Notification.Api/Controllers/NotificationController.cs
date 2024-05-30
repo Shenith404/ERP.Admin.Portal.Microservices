@@ -20,10 +20,10 @@ namespace Notification.Api.Controllers
         {
             if (ModelState.IsValid)
             {
-
+                
                 var result = await _unitOfWorks.Notifications.GetAll(requestDTO.SearchString, requestDTO.ReceiverId);
-
-                return Ok(result);
+                var mapResutls = _mapper.Map<List<NotificationResponseDTO>>(result);
+                return Ok(mapResutls);
             }
             return BadRequest("Model is not valid");
 
