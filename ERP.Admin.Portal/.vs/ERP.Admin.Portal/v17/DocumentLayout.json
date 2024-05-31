@@ -3,24 +3,8 @@
   "WorkspaceRootPath": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DF3909B0-7B54-4EEF-831E-2AAC3A466CEC}|..\\Notification.DataService\\Notification.DataService.csproj|e:\\erp_admin_portal\\erp.admin.portal\\notification.dataservice\\repository\\notificationrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B0EFAFAC-BEF3-409E-ABFE-8ADB7559887A}|..\\Notification.Api\\Notification.Api.csproj|e:\\erp_admin_portal\\erp.admin.portal\\notification.api\\controllers\\notificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CBADB288-47F5-40C9-8642-4E4F36926353}|..\\Notification.Core\\Notification.Core.csproj|e:\\erp_admin_portal\\erp.admin.portal\\notification.core\\dtos\\notificationrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{25C4B700-5374-4B72-ADFF-3B8442A7378D}|Authentication.Api\\Authentication.Api.csproj|e:\\erp_admin_portal\\erp.admin.portal\\erp.admin.portal\\authentication.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{25C4B700-5374-4B72-ADFF-3B8442A7378D}|Authentication.Api\\Authentication.Api.csproj|solutionrelative:authentication.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CBADB288-47F5-40C9-8642-4E4F36926353}|..\\Notification.Core\\Notification.Core.csproj|e:\\erp_admin_portal\\erp.admin.portal\\notification.core\\dtos\\notificationresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{593365C0-56CE-484C-88BC-E9D326423822}|ApiGateWay\\ApiGateWay.csproj|e:\\erp_admin_portal\\erp.admin.portal\\erp.admin.portal\\apigateway\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{593365C0-56CE-484C-88BC-E9D326423822}|ApiGateWay\\ApiGateWay.csproj|solutionrelative:apigateway\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{593365C0-56CE-484C-88BC-E9D326423822}|ApiGateWay\\ApiGateWay.csproj|e:\\erp_admin_portal\\erp.admin.portal\\erp.admin.portal\\apigateway\\ocelot.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{593365C0-56CE-484C-88BC-E9D326423822}|ApiGateWay\\ApiGateWay.csproj|solutionrelative:apigateway\\ocelot.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,21 +14,8 @@
       "DocumentGroups": [
         {
           "DockedHeight": 340,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "NotificationResponseDTO.cs",
-              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\Notification.Core\\DTOs\\NotificationResponseDTO.cs",
-              "RelativeDocumentMoniker": "..\\Notification.Core\\DTOs\\NotificationResponseDTO.cs",
-              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\Notification.Core\\DTOs\\NotificationResponseDTO.cs",
-              "RelativeToolTip": "..\\Notification.Core\\DTOs\\NotificationResponseDTO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAsAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T20:26:54.988Z",
-              "IsPinned": true
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{e506b91c-c606-466a-90a9-123d1d1e12b3}"
@@ -64,63 +35,15 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "NotificationRepository.cs",
-              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\Notification.DataService\\Repository\\NotificationRepository.cs",
-              "RelativeDocumentMoniker": "..\\Notification.DataService\\Repository\\NotificationRepository.cs",
-              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\Notification.DataService\\Repository\\NotificationRepository.cs",
-              "RelativeToolTip": "..\\Notification.DataService\\Repository\\NotificationRepository.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAD4vxUAAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-30T00:01:22.123Z",
+              "Title": "ocelot.json",
+              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\ApiGateWay\\ocelot.json",
+              "RelativeDocumentMoniker": "ApiGateWay\\ocelot.json",
+              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\ApiGateWay\\ocelot.json",
+              "RelativeToolTip": "ApiGateWay\\ocelot.json",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-05-31T11:15:11.083Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AccountController.cs",
-              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.Api\\Controllers\\AccountController.cs",
-              "RelativeDocumentMoniker": "Authentication.Api\\Controllers\\AccountController.cs",
-              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.Api\\Controllers\\AccountController.cs",
-              "RelativeToolTip": "Authentication.Api\\Controllers\\AccountController.cs",
-              "ViewState": "AQIAAHEBAAAAAAAAAAA0wHoBAABOAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T23:32:47.953Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "NotificationRequestDTO.cs",
-              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\Notification.Core\\DTOs\\NotificationRequestDTO.cs",
-              "RelativeDocumentMoniker": "..\\Notification.Core\\DTOs\\NotificationRequestDTO.cs",
-              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\Notification.Core\\DTOs\\NotificationRequestDTO.cs",
-              "RelativeToolTip": "..\\Notification.Core\\DTOs\\NotificationRequestDTO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T21:41:34.782Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Program.cs",
-              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\ApiGateWay\\Program.cs",
-              "RelativeDocumentMoniker": "ApiGateWay\\Program.cs",
-              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\ApiGateWay\\Program.cs",
-              "RelativeToolTip": "ApiGateWay\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAhAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T20:47:11.708Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "NotificationController.cs",
-              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\Notification.Api\\Controllers\\NotificationController.cs",
-              "RelativeDocumentMoniker": "..\\Notification.Api\\Controllers\\NotificationController.cs",
-              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\Notification.Api\\Controllers\\NotificationController.cs",
-              "RelativeToolTip": "..\\Notification.Api\\Controllers\\NotificationController.cs",
-              "ViewState": "AQIAABEAAAAAAAAAAAAAwBcAAABEAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T20:24:48.934Z"
             }
           ]
         },
