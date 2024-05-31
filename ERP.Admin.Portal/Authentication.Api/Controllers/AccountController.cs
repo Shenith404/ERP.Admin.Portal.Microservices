@@ -373,7 +373,7 @@ namespace Authentication.Api.Controllers
         
         [HttpGet]
         [Route("Get-User-Details")]
-        //[Authorize]
+        [Authorize]
         public async Task<IActionResult> GetUserDetails()
         {
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
@@ -538,15 +538,29 @@ namespace Authentication.Api.Controllers
         [HttpPost]
         [Route("Update")]
         //[Authorize] should change
-        public async Task<IActionResult> UpdateUser(UserModel user) {
+        public async Task<IActionResult> UpdateUser(UpdateUserRequest user) {
+            Console.WriteLine("Model is not valid");
             if (ModelState.IsValid)
             {
-                var result =await _userManager.UpdateAsync(user);
+
+
+                var exist_user= await _userManager.FindByIdAsync(user.Id);
+                if (exist_user == null)
+                {
+                    return BadRequest("User is Not exist");
+                }
+                exist_user.EmailConfirmed = user.EmailConfirmed;
+                exist_user.TwoFactorEnabled = user.TwoFactorEnabled;
+                exist_user.LockoutEnd = user.LockoutEnd;
+                exist_user.LockoutEnabled= user.LockoutEnabled;
+                exist_user.AccessFailedCount = user.AccessFailedCount;
+                var result =await _userManager.UpdateAsync(exist_user);
                 if (result.Succeeded)
                 {
+                    Console.WriteLine("Update Success");
                     return Ok("Sucessfully Updated");
                 }
-                return BadRequest();
+                return BadRequest(result.Errors);
             }
             return BadRequest();
 

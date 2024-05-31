@@ -22,10 +22,6 @@ namespace Authentication.Api.MappingProfiles
            .ForMember(dest => dest.LockoutEnabled, opt => opt.MapFrom(src => src.LockoutEnabled))
            .ForMember(dest => dest.AccessFailedCount, opt => opt.MapFrom(src => src.AccessFailedCount));
 
-
-
-
-
         }
     }
 }
