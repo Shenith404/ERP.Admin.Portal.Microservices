@@ -1,0 +1,12 @@
+E:\ERP_Admin_portal\ERP.Admin.Portal\Announcement .core\bin\Debug\net8.0\Announcement.core.deps.json
+E:\ERP_Admin_portal\ERP.Admin.Portal\Announcement .core\bin\Debug\net8.0\Announcement.core.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\Announcement .core\bin\Debug\net8.0\Announcement.core.pdb
+E:\ERP_Admin_portal\ERP.Admin.Portal\Announcement .core\obj\Debug\net8.0\Announcement.core.GeneratedMSBuildEditorConfig.editorconfig
+E:\ERP_Admin_portal\ERP.Admin.Portal\Announcement .core\obj\Debug\net8.0\Announcement.core.AssemblyInfoInputs.cache
+E:\ERP_Admin_portal\ERP.Admin.Portal\Announcement .core\obj\Debug\net8.0\Announcement.core.AssemblyInfo.cs
+E:\ERP_Admin_portal\ERP.Admin.Portal\Announcement .core\obj\Debug\net8.0\Announcement.core.csproj.CoreCompileInputs.cache
+E:\ERP_Admin_portal\ERP.Admin.Portal\Announcement .core\obj\Debug\net8.0\Announcement.core.sourcelink.json
+E:\ERP_Admin_portal\ERP.Admin.Portal\Announcement .core\obj\Debug\net8.0\Announcement.core.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\Announcement .core\obj\Debug\net8.0\refint\Announcement.core.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\Announcement .core\obj\Debug\net8.0\Announcement.core.pdb
+E:\ERP_Admin_portal\ERP.Admin.Portal\Announcement .core\obj\Debug\net8.0\ref\Announcement.core.dll

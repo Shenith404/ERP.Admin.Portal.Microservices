@@ -1,0 +1,12 @@
+E:\ERP_Admin_portal\ERP.Admin.Portal\Announcement.Dataservice\bin\Debug\net8.0\Announcement.Dataservice.deps.json
+E:\ERP_Admin_portal\ERP.Admin.Portal\Announcement.Dataservice\bin\Debug\net8.0\Announcement.Dataservice.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\Announcement.Dataservice\bin\Debug\net8.0\Announcement.Dataservice.pdb
+E:\ERP_Admin_portal\ERP.Admin.Portal\Announcement.Dataservice\obj\Debug\net8.0\Announcement.Dataservice.GeneratedMSBuildEditorConfig.editorconfig
+E:\ERP_Admin_portal\ERP.Admin.Portal\Announcement.Dataservice\obj\Debug\net8.0\Announcement.Dataservice.AssemblyInfoInputs.cache
+E:\ERP_Admin_portal\ERP.Admin.Portal\Announcement.Dataservice\obj\Debug\net8.0\Announcement.Dataservice.AssemblyInfo.cs
+E:\ERP_Admin_portal\ERP.Admin.Portal\Announcement.Dataservice\obj\Debug\net8.0\Announcement.Dataservice.csproj.CoreCompileInputs.cache
+E:\ERP_Admin_portal\ERP.Admin.Portal\Announcement.Dataservice\obj\Debug\net8.0\Announcement.Dataservice.sourcelink.json
+E:\ERP_Admin_portal\ERP.Admin.Portal\Announcement.Dataservice\obj\Debug\net8.0\Announcement.Dataservice.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\Announcement.Dataservice\obj\Debug\net8.0\refint\Announcement.Dataservice.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\Announcement.Dataservice\obj\Debug\net8.0\Announcement.Dataservice.pdb
+E:\ERP_Admin_portal\ERP.Admin.Portal\Announcement.Dataservice\obj\Debug\net8.0\ref\Announcement.Dataservice.dll

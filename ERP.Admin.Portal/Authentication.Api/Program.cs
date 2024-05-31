@@ -28,6 +28,7 @@ builder.Services.AddScoped<ISendEmail, SendEmail>();
 
 //configure Automapper
 builder.Services.AddAutoMapper(typeof(DomainToResponse));
+builder.Services.AddAutoMapper(typeof(ResponseToDomain));
 
 builder.Services.AddIdentityCore<UserModel>(options => 
 { options.SignIn.RequireConfirmedAccount = true;
