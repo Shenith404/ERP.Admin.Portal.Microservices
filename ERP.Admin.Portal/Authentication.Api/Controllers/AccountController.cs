@@ -35,6 +35,7 @@ namespace Authentication.Api.Controllers
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] AuthenticationRequestDTO authenticationRequest)
         {
+
             if(ModelState.IsValid)
             {
                 
@@ -598,8 +599,7 @@ namespace Authentication.Api.Controllers
             return BadRequest();
         }
 
-        
-        
+
         
         [HttpPost]
         [Route("ChangePassword")]
@@ -692,8 +692,6 @@ namespace Authentication.Api.Controllers
 
             return Ok("Password reset is successful");
         }
-
-
 
 
 
@@ -849,12 +847,12 @@ namespace Authentication.Api.Controllers
             Console.WriteLine("Browser Version: " + details.BrowserVersion);
             Console.WriteLine("Operating System: " + details.OperatingSystem);
             //Console.WriteLine("Device Type: " + details.DeviceType);
-
+            var ip = HttpContext.Connection.RemoteIpAddress.ToString();
             UserDeviceInformation usrDeviceInformation = new UserDeviceInformation
             {
                 UserAgentDetails = userAgent,
                 Status = 1,
-                IP = "fsdfds",
+                IP = ip,
                 UserId = new Guid(existing_user.Id),
 
 
@@ -871,6 +869,7 @@ namespace Authentication.Api.Controllers
             {
 
                 string? userAgent = Request.Headers["User-Agent"];
+                
 
                 //Check whether device info in database
                 var deviceInfo = await _unitOfWorks.UserDeviceInformations.Checkinfo(new Guid(existing_user.Id), userAgent);

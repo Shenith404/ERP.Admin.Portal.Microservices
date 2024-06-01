@@ -15,11 +15,11 @@ namespace Authentication.Api.Controllers
     public class AdminController : BaseController
     {
 
-        public AdminController(IJwtTokenHandler jwtTokenHandler, UserManager<UserModel> userManager, IMapper mapper,IUnitOfWorks unitOfWorks)
+        public AdminController(IJwtTokenHandler jwtTokenHandler, UserManager<UserModel> userManager, IMapper mapper, IUnitOfWorks unitOfWorks)
             : base(jwtTokenHandler, userManager, mapper, unitOfWorks)
         {
 
-          
+
         }
 
         [HttpPost]
@@ -45,8 +45,8 @@ namespace Authentication.Api.Controllers
                   ).ToList();
 
             //map the result
-            var mapResutls =_mapper.Map<List<UserModelResponseDTO>>(searchResult);
-          
+            var mapResutls = _mapper.Map<List<UserModelResponseDTO>>(searchResult);
+
             return Ok(mapResutls);
         }
 
@@ -87,7 +87,7 @@ namespace Authentication.Api.Controllers
             return BadRequest("Invalid email");
         }
 
-        
+
 
 
 
@@ -105,8 +105,8 @@ namespace Authentication.Api.Controllers
                         //therefore  we remove all roles before assign a role
                         var roles = await _userManager.GetRolesAsync(user);
                         await _userManager.RemoveFromRolesAsync(user, roles);
-                        
-                        var result = await _userManager.AddToRoleAsync(user,assignRoleRequestDTO.Role);
+
+                        var result = await _userManager.AddToRoleAsync(user, assignRoleRequestDTO.Role);
 
                         if (result.Succeeded) {
 
@@ -118,7 +118,7 @@ namespace Authentication.Api.Controllers
                 }
                 catch (Exception ex)
                 {
-                    return BadRequest("Error :" +ex.ToString());
+                    return BadRequest("Error :" + ex.ToString());
                 }
             }
 
@@ -137,32 +137,32 @@ namespace Authentication.Api.Controllers
                     if (user != null) {
 
                         //Unlock the User
-                        if (lockOutDetailsInfoRequestDTO.LockUser == false) { 
-                            user.LockoutEnd = null; 
-                            var isUnlocked =await _userManager.UpdateAsync(user);
-                            if (isUnlocked.Succeeded) { 
+                        if (lockOutDetailsInfoRequestDTO.LockUser == false) {
+                            user.LockoutEnd = null;
+                            var isUnlocked = await _userManager.UpdateAsync(user);
+                            if (isUnlocked.Succeeded) {
                                 return Ok($"user {lockOutDetailsInfoRequestDTO.Email} is Unlocked");
                             }
                             return BadRequest(isUnlocked.Errors);
-                        
+
                         }
 
 
                         // Lockout Enable
-                        var lockOutEnableResult =await _userManager.SetLockoutEnabledAsync(user,lockOutDetailsInfoRequestDTO.LockoutEnable);
-                        if (!lockOutEnableResult.Succeeded) { 
+                        var lockOutEnableResult = await _userManager.SetLockoutEnabledAsync(user, lockOutDetailsInfoRequestDTO.LockoutEnable);
+                        if (!lockOutEnableResult.Succeeded) {
 
                             return BadRequest(lockOutEnableResult.Errors);
                         }
 
                         // Lock User
-                        user.LockoutEnd =lockOutDetailsInfoRequestDTO.LockoutEndDate;
+                        user.LockoutEnd = lockOutDetailsInfoRequestDTO.LockoutEndDate;
                         var lockUserResult = await _userManager.UpdateAsync(user);
 
-                        if (lockUserResult.Succeeded) { 
+                        if (lockUserResult.Succeeded) {
                             return Ok("Save changes Successful");
                         }
-                        
+
                     }
 
                     return BadRequest("Invalid User");
@@ -174,6 +174,62 @@ namespace Authentication.Api.Controllers
             }
             return BadRequest("Model is Not Valid");
         }
+
+        [HttpPost]
+        [Route("locked-status")]
+        public async Task<IActionResult> UserLockedStatus([FromBody] string id)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await  _userManager.FindByIdAsync(id);
+                if (user != null) {
+                    var status = await _userManager.IsLockedOutAsync(user);
+
+                    return Ok(status);
+                }
+            }
+            return BadRequest();
+        }
+
+        [HttpPost]
+        [Route("login-details")]
+        public async Task<IActionResult> GetUserLoginDetails([FromBody] string searchString)
+        {
+
+            if (ModelState.IsValid)
+            {
+                var details = await _unitOfWorks.UserDeviceInformations.GetAll();
+
+
+                if (details == null || !details.Any())
+                {
+                    return BadRequest("User List is Empty");
+                }
+
+                if (string.IsNullOrEmpty(searchString))
+                {
+                    return Ok(_mapper.Map<IEnumerable<UserLoginDeviceInfoResponse>>(details));
+                }
+
+                var searchResult = details.Where(u =>
+                    u.IP!.Contains(searchString, StringComparison.OrdinalIgnoreCase) || // Search by username
+                    u.UserAgentDetails!.Contains(searchString, StringComparison.OrdinalIgnoreCase)   // Search by email
+                      ).ToList();
+
+   
+
+                var mapped= _mapper.Map<IEnumerable<UserLoginDeviceInfoResponse>>(searchResult);
+                    
+                return Ok(mapped);
+            }
+
+            return BadRequest("Model is not Valid");
+        }
+
+        
+        
+    
+    
     }
 
     

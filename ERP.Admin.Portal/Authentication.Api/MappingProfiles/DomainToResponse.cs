@@ -1,4 +1,5 @@
 ﻿using Authentication.Core.DTOs.Response;
+using Authentication.Core.Entity;
 using AutoMapper;
 using ERP.Authentication.Core.Entity;
 
@@ -21,6 +22,9 @@ namespace Authentication.Api.MappingProfiles
            .ForMember(dest => dest.LockoutEnd, opt => opt.MapFrom(src => src.LockoutEnd))
            .ForMember(dest => dest.LockoutEnabled, opt => opt.MapFrom(src => src.LockoutEnabled))
            .ForMember(dest => dest.AccessFailedCount, opt => opt.MapFrom(src => src.AccessFailedCount));
+
+
+            CreateMap<UserDeviceInformation, UserLoginDeviceInfoResponse>();
 
         }
     }
