@@ -22,7 +22,7 @@ namespace Authentication.jwt
     {
         string key = Environment.GetEnvironmentVariable("JWT_SECRET_KEY")!;
 
-        private const int JWT_VALIDITY_MINS = 10;
+        private const int JWT_VALIDITY_MINS = 1;
         private readonly IUnitOfWorks _unitOfWorks;
         private readonly TokenValidationParameters _tokenValidationParameters;
         private readonly UserManager<UserModel> _userManager;

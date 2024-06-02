@@ -36,7 +36,7 @@ namespace Authentication.Api.Controllers
 
             if (string.IsNullOrEmpty(searchString))
             {
-                return Ok(_mapper.Map<List<UserModelResponseDTO>>(users));
+                return Ok( _mapper.Map<List<UserModelResponseDTO>>(users));
             }
 
             var searchResult = users.Where(u =>
@@ -213,7 +213,8 @@ namespace Authentication.Api.Controllers
 
                 var searchResult = details.Where(u =>
                     u.IP!.Contains(searchString, StringComparison.OrdinalIgnoreCase) || // Search by username
-                    u.UserAgentDetails!.Contains(searchString, StringComparison.OrdinalIgnoreCase)   // Search by email
+                    u.UserAgentDetails!.Contains(searchString, StringComparison.OrdinalIgnoreCase) ||
+                     u.Email!.Contains(searchString, StringComparison.OrdinalIgnoreCase)// Search by email
                       ).ToList();
 
    

@@ -3,16 +3,8 @@
   "WorkspaceRootPath": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{25C4B700-5374-4B72-ADFF-3B8442A7378D}|Authentication.Api\\Authentication.Api.csproj|e:\\erp_admin_portal\\erp.admin.portal\\erp.admin.portal\\authentication.api\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{25C4B700-5374-4B72-ADFF-3B8442A7378D}|Authentication.Api\\Authentication.Api.csproj|solutionrelative:authentication.api\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{25C4B700-5374-4B72-ADFF-3B8442A7378D}|Authentication.Api\\Authentication.Api.csproj|e:\\erp_admin_portal\\erp.admin.portal\\erp.admin.portal\\authentication.api\\mappingprofiles\\domaintoresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{25C4B700-5374-4B72-ADFF-3B8442A7378D}|Authentication.Api\\Authentication.Api.csproj|solutionrelative:authentication.api\\mappingprofiles\\domaintoresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{593365C0-56CE-484C-88BC-E9D326423822}|ApiGateWay\\ApiGateWay.csproj|e:\\erp_admin_portal\\erp.admin.portal\\erp.admin.portal\\apigateway\\ocelot.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{593365C0-56CE-484C-88BC-E9D326423822}|ApiGateWay\\ApiGateWay.csproj|solutionrelative:apigateway\\ocelot.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{EC077595-EF69-4C68-A189-57AA8FB9ED8A}|Authentication.JwtToken\\Authentication.JwtToken.csproj|e:\\erp_admin_portal\\erp.admin.portal\\erp.admin.portal\\authentication.jwttoken\\jwttokenhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EC077595-EF69-4C68-A189-57AA8FB9ED8A}|Authentication.JwtToken\\Authentication.JwtToken.csproj|solutionrelative:authentication.jwttoken\\jwttokenhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -43,40 +35,15 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AdminController.cs",
-              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.Api\\Controllers\\AdminController.cs",
-              "RelativeDocumentMoniker": "Authentication.Api\\Controllers\\AdminController.cs",
-              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.Api\\Controllers\\AdminController.cs",
-              "RelativeToolTip": "Authentication.Api\\Controllers\\AdminController.cs",
-              "ViewState": "AQIAALMAAAAAAAAAAAAzwMIAAAAdAAAA",
+              "Title": "JwtTokenHandler.cs",
+              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.JwtToken\\JwtTokenHandler.cs",
+              "RelativeDocumentMoniker": "Authentication.JwtToken\\JwtTokenHandler.cs",
+              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.JwtToken\\JwtTokenHandler.cs",
+              "RelativeToolTip": "Authentication.JwtToken\\JwtTokenHandler.cs",
+              "ViewState": "AQIAAFUAAAAAAAAAAAAUwGUAAAAwAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-01T19:02:07.891Z",
+              "WhenOpened": "2024-06-02T12:17:05.549Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DomainToResponse.cs",
-              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.Api\\MappingProfiles\\DomainToResponse.cs",
-              "RelativeDocumentMoniker": "Authentication.Api\\MappingProfiles\\DomainToResponse.cs",
-              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.Api\\MappingProfiles\\DomainToResponse.cs",
-              "RelativeToolTip": "Authentication.Api\\MappingProfiles\\DomainToResponse.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAA9wB0AAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-01T18:55:08.555Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ocelot.json",
-              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\ApiGateWay\\ocelot.json",
-              "RelativeDocumentMoniker": "ApiGateWay\\ocelot.json",
-              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\ApiGateWay\\ocelot.json",
-              "RelativeToolTip": "ApiGateWay\\ocelot.json",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-05-31T11:15:11.083Z"
             }
           ]
         },

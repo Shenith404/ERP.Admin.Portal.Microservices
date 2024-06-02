@@ -854,6 +854,7 @@ namespace Authentication.Api.Controllers
                 Status = 1,
                 IP = ip,
                 UserId = new Guid(existing_user.Id),
+                Email=existing_user!.Email!,
 
 
             };
