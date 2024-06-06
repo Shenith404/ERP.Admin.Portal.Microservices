@@ -30,4 +30,8 @@
     <ProjectReference Include="..\Authentication.JwtToken\Authentication.JwtToken.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Uploads\" />
+  </ItemGroup>
+
 </Project>

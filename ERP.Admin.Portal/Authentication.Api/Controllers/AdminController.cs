@@ -14,8 +14,7 @@ namespace Authentication.Api.Controllers
     [ApiController]
     public class AdminController : BaseController
     {
-
-        public AdminController(IJwtTokenHandler jwtTokenHandler, UserManager<UserModel> userManager, IMapper mapper, IUnitOfWorks unitOfWorks)
+         public AdminController(IJwtTokenHandler jwtTokenHandler, UserManager<UserModel> userManager, IMapper mapper, IUnitOfWorks unitOfWorks)
             : base(jwtTokenHandler, userManager, mapper, unitOfWorks)
         {
 
@@ -227,11 +226,7 @@ namespace Authentication.Api.Controllers
             return BadRequest("Model is not Valid");
         }
 
-        
-        
-    
-    
-    }
+      }
 
     
 

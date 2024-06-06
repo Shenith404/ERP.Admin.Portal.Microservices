@@ -19,7 +19,9 @@ public class UserModel :IdentityUser
     public string? TwoFactorAuthenticationCode { get; set; }
     public DateTime ? TwoFactorAuthenticationCodeExpTime { get; set; }
 
+    public string ? ImageName { get; set; }
 
+        
 
 
 }
