@@ -24,21 +24,23 @@ namespace Authentication.Api.Controllers
     public class AccountController : BaseController
     {
         private readonly ISendEmail _sendEmail;
-        public AccountController(IJwtTokenHandler jwtTokenHandler, UserManager<UserModel> userManager, IMapper mapper,ISendEmail sendEmail,IUnitOfWorks unitOfWorks) 
+        private readonly ILogger<AccountController> _logger;
+        public AccountController(IJwtTokenHandler jwtTokenHandler, UserManager<UserModel> userManager, IMapper mapper,ISendEmail sendEmail,IUnitOfWorks unitOfWorks,ILogger<AccountController> logger) 
             : base(jwtTokenHandler, userManager, mapper, unitOfWorks)
         {
             _sendEmail = sendEmail;
+            _logger = logger;
         }
 
 
         //Login User
         [HttpPost("Login")]
-        public async Task<IActionResult> Login([FromBody] AuthenticationRequestDTO authenticationRequest)
+        public async Task<IActionResult> Login([FromBody] AuthenticationRequestDTO authenticationRequest )
         {
 
             if(ModelState.IsValid)
             {
-                
+                _logger.LogInformation($"attempt to login : {authenticationRequest.UserName}",authenticationRequest.UserName,authenticationRequest.Password); ;
 
                 //check user is exist
                 var existing_user = await _userManager.FindByEmailAsync(authenticationRequest.UserName);
@@ -555,6 +557,7 @@ namespace Authentication.Api.Controllers
                 exist_user.LockoutEnd = user.LockoutEnd;
                 exist_user.LockoutEnabled= user.LockoutEnabled;
                 exist_user.AccessFailedCount = user.AccessFailedCount;
+                exist_user.UpdateDate = DateTime.Now;
                 var result =await _userManager.UpdateAsync(exist_user);
                 if (result.Succeeded)
                 {
@@ -570,7 +573,7 @@ namespace Authentication.Api.Controllers
 
         [HttpPost]
         [Route("Enable-2FA")]
-        //[Authorize]
+        [Authorize]
 
         public async Task<IActionResult> EnableTFA([FromBody] TFAEnableRequestDTO tFAEnableRequestDTO)
         {
@@ -587,9 +590,12 @@ namespace Authentication.Api.Controllers
                 }
 
                 var result = await _userManager.SetTwoFactorEnabledAsync(user, tFAEnableRequestDTO.IsEnable);
+                
 
                 if (result.Succeeded)
                 {
+                    user.UpdateDate = DateTime.Now;
+                    await _userManager.UpdateAsync(user);
                   return  tFAEnableRequestDTO.IsEnable ?  Ok("2FA is Enabled")
                         :Ok("2FA is Disabled");
                 }
