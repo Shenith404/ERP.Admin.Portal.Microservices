@@ -48,6 +48,7 @@ namespace Notification.DataService.Repository
 
         public async Task<bool> MarkAllNotificationAsReadAsync(Guid userId)
         {
+
             var unReadedNotifications = await dbSet.Where(x => x.ReadStatus == false && x.Status==1 && x.ReceiverId==userId)
                     .ToListAsync();
             foreach (var notification in unReadedNotifications)

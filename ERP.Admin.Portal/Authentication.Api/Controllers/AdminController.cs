@@ -4,6 +4,7 @@ using Authentication.DataService.IConfiguration;
 using Authentication.jwt;
 using AutoMapper;
 using ERP.Authentication.Core.Entity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Notification.DataService.Repository;
@@ -12,10 +13,10 @@ namespace Authentication.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+   // [Authorize(Roles ="Admin")]
     public class AdminController : BaseController
     {
-
-        public AdminController(IJwtTokenHandler jwtTokenHandler, UserManager<UserModel> userManager, IMapper mapper, IUnitOfWorks unitOfWorks)
+         public AdminController(IJwtTokenHandler jwtTokenHandler, UserManager<UserModel> userManager, IMapper mapper, IUnitOfWorks unitOfWorks)
             : base(jwtTokenHandler, userManager, mapper, unitOfWorks)
         {
 
@@ -50,13 +51,6 @@ namespace Authentication.Api.Controllers
             return Ok(mapResutls);
         }
 
-        [HttpGet]
-        [Route("test")]
-        public async Task<IActionResult> test()
-        {
-            return Ok("ok");
-
-        }
 
         [HttpGet]
         [Route("Delete-User")]
@@ -104,17 +98,49 @@ namespace Authentication.Api.Controllers
                         //we only allow to have one role
                         //therefore  we remove all roles before assign a role
                         var roles = await _userManager.GetRolesAsync(user);
-                        await _userManager.RemoveFromRolesAsync(user, roles);
+                        
 
                         var result = await _userManager.AddToRoleAsync(user, assignRoleRequestDTO.Role);
 
                         if (result.Succeeded) {
-
+                            await _userManager.RemoveFromRoleAsync(user, roles[0]);
                             return Ok($"{assignRoleRequestDTO.Role} is assigned to {assignRoleRequestDTO.UserEmail}");
                         }
                         return BadRequest(result.Errors);
                     }
                     return BadRequest("Email is Does not exist");
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest("Error :" + ex.ToString());
+                }
+            }
+
+            return BadRequest("Model is Not valid");
+        }
+
+         [HttpPost]
+        [Route("get-Roles")]
+        public async Task<IActionResult> GetUserRoles([FromBody] string userId) {
+            if (ModelState.IsValid) {
+                try
+                {
+
+                    UserModel? user = await _userManager.FindByIdAsync(userId);
+                    if (user != null) {
+
+                        //we only allow to have one role
+                        //therefore  we remove all roles before assign a role
+                        var roles = await _userManager.GetRolesAsync(user);
+                       
+
+
+
+                            return Ok(roles[0]);
+                        
+                       
+                    }
+                    return BadRequest("User is Does not exist");
                 }
                 catch (Exception ex)
                 {
@@ -227,11 +253,7 @@ namespace Authentication.Api.Controllers
             return BadRequest("Model is not Valid");
         }
 
-        
-        
-    
-    
-    }
+      }
 
     
 

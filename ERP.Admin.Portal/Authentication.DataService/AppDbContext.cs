@@ -16,6 +16,13 @@ namespace Authentication.DataService
 
         public virtual DbSet<RefreshToken> RefreshTokens { get; set; }
         public virtual DbSet<UserDeviceInformation> UserDeviceInformations { get; set; }
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { 
+
+          
+        
+        }
+
+     
+
     }
 }
