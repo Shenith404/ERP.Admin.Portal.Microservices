@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace Authentication.Api.Controllers
 {
@@ -26,25 +28,38 @@ namespace Authentication.Api.Controllers
 
         [HttpPost]
         [Route("upload-image")]
-        public async Task<IActionResult> Upload(ImageUploadRequestDTO imageUploadRequest)
+        public async Task<IActionResult> Upload([FromForm] ImageUploadRequestDTO imageUploadRequest)
         {
             var user = await _userManager.FindByIdAsync(imageUploadRequest.UserId);
             if (user == null)
             {
-                return BadRequest("User Id is not valid");
+                Console.WriteLine("Error occurred: User ID is not valid.");
+                return BadRequest("User ID is not valid.");
             }
 
             var (status, message) = await ImageUploader(imageUploadRequest);
-
             if (status)
             {
-                // Need to delete current saved image
+                Console.WriteLine($"Image uploaded successfully: {message}");
+
                 if (!string.IsNullOrEmpty(user.ImageName))
                 {
-                    var currentImagePath = Path.Combine(Directory.GetCurrentDirectory(), user.ImageName.TrimStart('/'));
+                    var currentImagePath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads", user.ImageName);
                     if (System.IO.File.Exists(currentImagePath))
                     {
-                        System.IO.File.Delete(currentImagePath);
+                        try
+                        {
+                            System.IO.File.Delete(currentImagePath);
+                            Console.WriteLine($"Deleted old image: {currentImagePath}");
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Error deleting old image: {ex.Message}");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Old image not found: {currentImagePath}");
                     }
                 }
 
@@ -56,18 +71,27 @@ namespace Authentication.Api.Controllers
                 }
                 else
                 {
-                    // Need to delete uploaded image
-                    var uploadedImagePath = Path.Combine(Directory.GetCurrentDirectory(), message.TrimStart('/'));
+                    var uploadedImagePath = Path.Combine(Directory.GetCurrentDirectory(), "Uploads", message);
                     if (System.IO.File.Exists(uploadedImagePath))
                     {
-                        System.IO.File.Delete(uploadedImagePath);
+                        try
+                        {
+                            System.IO.File.Delete(uploadedImagePath);
+                            Console.WriteLine($"Deleted newly uploaded image due to update failure: {uploadedImagePath}");
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Error deleting newly uploaded image: {ex.Message}");
+                        }
                     }
+                    Console.WriteLine("Failed to update user with new image.");
                     return BadRequest("Failed to update user with new image.");
                 }
             }
             else
             {
-                return BadRequest(message);
+                Console.WriteLine($"Error occurred: {message}");
+                return BadRequest($"Error occurred: {message}");
             }
         }
 
@@ -104,7 +128,7 @@ namespace Authentication.Api.Controllers
                 return (false, "Invalid file type.");
 
             if (file.Length > fileSizeLimit)
-                return (false, "File size exceeds limit. Only 1Mb Allowed");
+                return (false, "File size exceeds limit. Only 1Mb allowed.");
 
             // Additional security checks can be added here, e.g., scanning the file for malicious content
 
