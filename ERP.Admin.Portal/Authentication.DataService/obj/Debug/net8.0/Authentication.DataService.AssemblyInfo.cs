@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Authentication.DataService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b7d25461425499fc44b57133d52e1fe2795139b9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ca909304029afec353e3b95417cc14a3214a34bf")]
 [assembly: System.Reflection.AssemblyProductAttribute("Authentication.DataService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Authentication.DataService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

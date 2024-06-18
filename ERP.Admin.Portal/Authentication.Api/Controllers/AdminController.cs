@@ -7,6 +7,8 @@ using ERP.Authentication.Core.Entity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using Notification.DataService.Repository;
 
 namespace Authentication.Api.Controllers
@@ -16,11 +18,13 @@ namespace Authentication.Api.Controllers
    // [Authorize(Roles ="Admin")]
     public class AdminController : BaseController
     {
-         public AdminController(IJwtTokenHandler jwtTokenHandler, UserManager<UserModel> userManager, IMapper mapper, IUnitOfWorks unitOfWorks)
+
+        private readonly IConfiguration _configuration;
+
+        public AdminController(IJwtTokenHandler jwtTokenHandler, UserManager<UserModel> userManager, IMapper mapper, IUnitOfWorks unitOfWorks, IConfiguration configuration)
             : base(jwtTokenHandler, userManager, mapper, unitOfWorks)
         {
-
-
+            _configuration = configuration;
         }
 
         [HttpPost]
@@ -253,7 +257,10 @@ namespace Authentication.Api.Controllers
             return BadRequest("Model is not Valid");
         }
 
-      }
+
+
+        
+    }
 
     
 

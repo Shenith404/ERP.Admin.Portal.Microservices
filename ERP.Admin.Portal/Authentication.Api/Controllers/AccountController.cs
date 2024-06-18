@@ -249,7 +249,7 @@ namespace Authentication.Api.Controllers
                 return BadRequest(
                     new AuthenticationResponseDTO()
                     {
-                        Message = "Server Error"
+                        Message = $"Can't Create: {is_created.Errors}"
                     });
             }
 
