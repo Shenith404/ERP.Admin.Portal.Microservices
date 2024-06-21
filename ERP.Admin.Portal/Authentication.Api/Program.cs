@@ -8,10 +8,7 @@ using ERP.Authentication.Jwt;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
-using Notification.DataService;
-using Notification.DataService.IRepository;
-using Notification.DataService.Repository;
-using Microsoft.Extensions.Logging;
+
 
 var builder = WebApplication.CreateBuilder(args);
 

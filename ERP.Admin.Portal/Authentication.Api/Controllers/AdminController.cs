@@ -15,16 +15,18 @@ namespace Authentication.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-   // [Authorize(Roles ="Admin")]
+    // [Authorize(Roles ="Admin")]
     public class AdminController : BaseController
     {
 
         private readonly IConfiguration _configuration;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public AdminController(IJwtTokenHandler jwtTokenHandler, UserManager<UserModel> userManager, IMapper mapper, IUnitOfWorks unitOfWorks, IConfiguration configuration)
+        public AdminController(IJwtTokenHandler jwtTokenHandler, UserManager<UserModel> userManager, IMapper mapper, IUnitOfWorks unitOfWorks, IConfiguration configuration, RoleManager<IdentityRole> roleManager)
             : base(jwtTokenHandler, userManager, mapper, unitOfWorks)
         {
             _configuration = configuration;
+            _roleManager = roleManager;
         }
 
         [HttpPost]
@@ -41,7 +43,7 @@ namespace Authentication.Api.Controllers
 
             if (string.IsNullOrEmpty(searchString))
             {
-                return Ok( _mapper.Map<List<UserModelResponseDTO>>(users));
+                return Ok(_mapper.Map<List<UserModelResponseDTO>>(users));
             }
 
             var searchResult = users.Where(u =>
@@ -91,22 +93,26 @@ namespace Authentication.Api.Controllers
 
         [HttpPost]
         [Route("Assign-Role")]
-        public async Task<IActionResult> AssignRoles([FromBody] AssignRoleRequestDTO assignRoleRequestDTO) {
-            if (ModelState.IsValid) {
+        public async Task<IActionResult> AssignRoles([FromBody] AssignRoleRequestDTO assignRoleRequestDTO)
+        {
+            if (ModelState.IsValid)
+            {
                 try
                 {
 
                     UserModel? user = await _userManager.FindByEmailAsync(assignRoleRequestDTO.UserEmail);
-                    if (user != null) {
+                    if (user != null)
+                    {
 
                         //we only allow to have one role
                         //therefore  we remove all roles before assign a role
                         var roles = await _userManager.GetRolesAsync(user);
-                        
+
 
                         var result = await _userManager.AddToRoleAsync(user, assignRoleRequestDTO.Role);
 
-                        if (result.Succeeded) {
+                        if (result.Succeeded)
+                        {
                             await _userManager.RemoveFromRoleAsync(user, roles[0]);
                             return Ok($"{assignRoleRequestDTO.Role} is assigned to {assignRoleRequestDTO.UserEmail}");
                         }
@@ -123,26 +129,29 @@ namespace Authentication.Api.Controllers
             return BadRequest("Model is Not valid");
         }
 
-         [HttpPost]
+        [HttpPost]
         [Route("get-Roles")]
-        public async Task<IActionResult> GetUserRoles([FromBody] string userId) {
-            if (ModelState.IsValid) {
+        public async Task<IActionResult> GetUserRoles([FromBody] string userId)
+        {
+            if (ModelState.IsValid)
+            {
                 try
                 {
 
                     UserModel? user = await _userManager.FindByIdAsync(userId);
-                    if (user != null) {
+                    if (user != null)
+                    {
 
                         //we only allow to have one role
                         //therefore  we remove all roles before assign a role
                         var roles = await _userManager.GetRolesAsync(user);
-                       
 
 
 
-                            return Ok(roles[0]);
-                        
-                       
+
+                        return Ok(roles[0]);
+
+
                     }
                     return BadRequest("User is Does not exist");
                 }
@@ -159,18 +168,22 @@ namespace Authentication.Api.Controllers
         [Route("Lock-User")]
         public async Task<IActionResult> LockUser([FromBody] LockOutDetailsInfoRequestDTO lockOutDetailsInfoRequestDTO)
         {
-            if (ModelState.IsValid) {
+            if (ModelState.IsValid)
+            {
 
                 try
                 {
                     UserModel? user = await _userManager.FindByEmailAsync(lockOutDetailsInfoRequestDTO.Email);
-                    if (user != null) {
+                    if (user != null)
+                    {
 
                         //Unlock the User
-                        if (lockOutDetailsInfoRequestDTO.LockUser == false) {
+                        if (lockOutDetailsInfoRequestDTO.LockUser == false)
+                        {
                             user.LockoutEnd = null;
                             var isUnlocked = await _userManager.UpdateAsync(user);
-                            if (isUnlocked.Succeeded) {
+                            if (isUnlocked.Succeeded)
+                            {
                                 return Ok($"user {lockOutDetailsInfoRequestDTO.Email} is Unlocked");
                             }
                             return BadRequest(isUnlocked.Errors);
@@ -180,7 +193,8 @@ namespace Authentication.Api.Controllers
 
                         // Lockout Enable
                         var lockOutEnableResult = await _userManager.SetLockoutEnabledAsync(user, lockOutDetailsInfoRequestDTO.LockoutEnable);
-                        if (!lockOutEnableResult.Succeeded) {
+                        if (!lockOutEnableResult.Succeeded)
+                        {
 
                             return BadRequest(lockOutEnableResult.Errors);
                         }
@@ -189,7 +203,8 @@ namespace Authentication.Api.Controllers
                         user.LockoutEnd = lockOutDetailsInfoRequestDTO.LockoutEndDate;
                         var lockUserResult = await _userManager.UpdateAsync(user);
 
-                        if (lockUserResult.Succeeded) {
+                        if (lockUserResult.Succeeded)
+                        {
                             return Ok("Save changes Successful");
                         }
 
@@ -211,8 +226,9 @@ namespace Authentication.Api.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await  _userManager.FindByIdAsync(id);
-                if (user != null) {
+                var user = await _userManager.FindByIdAsync(id);
+                if (user != null)
+                {
                     var status = await _userManager.IsLockedOutAsync(user);
 
                     return Ok(status);
@@ -247,10 +263,10 @@ namespace Authentication.Api.Controllers
                      u.Email!.Contains(searchString, StringComparison.OrdinalIgnoreCase)// Search by email
                       ).ToList();
 
-   
 
-                var mapped= _mapper.Map<IEnumerable<UserLoginDeviceInfoResponse>>(searchResult);
-                    
+
+                var mapped = _mapper.Map<IEnumerable<UserLoginDeviceInfoResponse>>(searchResult);
+
                 return Ok(mapped);
             }
 
@@ -258,10 +274,30 @@ namespace Authentication.Api.Controllers
         }
 
 
+        [HttpPost]
+        [Route("Create-role")]
 
-        
+        public async Task<IActionResult> CreateRole()
+        {
+
+            if (ModelState.IsValid)
+            {
+
+                var result = await _roleManager.CreateAsync(new IdentityRole("Reguler"));
+                if (result.Succeeded)
+                {
+                    return Ok(result);
+                }
+                else
+                {
+                    return BadRequest(result.Errors);
+                }
+            }
+            return BadRequest("Invalid Model");
+
+
+        }
+
+
     }
-
-    
-
 }

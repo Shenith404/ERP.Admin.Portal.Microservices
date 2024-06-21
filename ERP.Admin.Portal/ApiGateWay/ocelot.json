@@ -14,6 +14,8 @@
           "Port": 7048
         }
       ],
+      
+     
       "UpstreamPathTemplate": "/ApiGateWay/Auth-api/{controller}/{action}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     },

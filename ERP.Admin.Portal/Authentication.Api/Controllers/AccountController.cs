@@ -24,12 +24,10 @@ namespace Authentication.Api.Controllers
     public class AccountController : BaseController
     {
         private readonly ISendEmail _sendEmail;
-        private readonly ILogger<AccountController> _logger;
-        public AccountController(IJwtTokenHandler jwtTokenHandler, UserManager<UserModel> userManager, IMapper mapper,ISendEmail sendEmail,IUnitOfWorks unitOfWorks,ILogger<AccountController> logger) 
+        public AccountController(IJwtTokenHandler jwtTokenHandler, UserManager<UserModel> userManager, IMapper mapper,ISendEmail sendEmail,IUnitOfWorks unitOfWorks) 
             : base(jwtTokenHandler, userManager, mapper, unitOfWorks)
         {
             _sendEmail = sendEmail;
-            _logger = logger;
         }
 
 
@@ -40,7 +38,6 @@ namespace Authentication.Api.Controllers
 
             if(ModelState.IsValid)
             {
-                _logger.LogInformation($"attempt to login : {authenticationRequest.UserName}",authenticationRequest.UserName,authenticationRequest.Password); ;
 
                 //check user is exist
                 var existing_user = await _userManager.FindByEmailAsync(authenticationRequest.UserName);
