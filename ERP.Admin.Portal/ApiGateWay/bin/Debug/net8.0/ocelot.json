@@ -63,6 +63,44 @@
       ],
       "UpstreamPathTemplate": "/ApiGateWay/Graduate-api/{controller}/{action}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+    }, //Lab Equipment
+    {
+      "DownstreamPathTemplate": "/api/{controller}/{action}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7011
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/LabEquipment-api/{controller}/{action}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+    },
+    //Workload
+    {
+      "DownstreamPathTemplate": "/api/{controller}/{action}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7012
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/WorkLoad-api/{controller}/{action}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+    },
+    //Lab Schedule
+    {
+      "DownstreamPathTemplate": "/api/{controller}/{action}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7012
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/LabSchedule-api/{controller}/{action}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     }
   ]
 }
