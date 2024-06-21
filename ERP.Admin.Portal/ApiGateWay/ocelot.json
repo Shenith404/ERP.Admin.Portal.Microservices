@@ -3,6 +3,7 @@
     "BaseUrl": "https://localhost:7111"
   },
   "Routes": [
+    //ADMIN PORTAL
 
     //Authentication
     {
@@ -14,8 +15,8 @@
           "Port": 7048
         }
       ],
-      
-     
+
+
       "UpstreamPathTemplate": "/ApiGateWay/Auth-api/{controller}/{action}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     },
@@ -45,6 +46,22 @@
         }
       ],
       "UpstreamPathTemplate": "/ApiGateWay/Notification-Api/{controller}/{action}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+    },
+
+
+    //DEPARMENT
+    //Graduate
+    {
+      "DownstreamPathTemplate": "/api/{controller}/{action}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7010
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Graduate-api/{controller}/{action}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     }
   ]

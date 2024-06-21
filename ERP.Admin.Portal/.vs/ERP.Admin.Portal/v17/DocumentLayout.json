@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{25C4B700-5374-4B72-ADFF-3B8442A7378D}|Authentication.Api\\Authentication.Api.csproj|e:\\erp_admin_portal\\erp.admin.portal\\erp.admin.portal\\authentication.api\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{25C4B700-5374-4B72-ADFF-3B8442A7378D}|Authentication.Api\\Authentication.Api.csproj|solutionrelative:authentication.api\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{593365C0-56CE-484C-88BC-E9D326423822}|ApiGateWay\\ApiGateWay.csproj|e:\\erp_admin_portal\\erp.admin.portal\\erp.admin.portal\\apigateway\\ocelot.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{593365C0-56CE-484C-88BC-E9D326423822}|ApiGateWay\\ApiGateWay.csproj|solutionrelative:apigateway\\ocelot.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{25C4B700-5374-4B72-ADFF-3B8442A7378D}|Authentication.Api\\Authentication.Api.csproj|e:\\erp_admin_portal\\erp.admin.portal\\erp.admin.portal\\authentication.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{25C4B700-5374-4B72-ADFF-3B8442A7378D}|Authentication.Api\\Authentication.Api.csproj|solutionrelative:authentication.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{25C4B700-5374-4B72-ADFF-3B8442A7378D}|Authentication.Api\\Authentication.Api.csproj|e:\\erp_admin_portal\\erp.admin.portal\\erp.admin.portal\\authentication.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{25C4B700-5374-4B72-ADFF-3B8442A7378D}|Authentication.Api\\Authentication.Api.csproj|solutionrelative:authentication.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{25C4B700-5374-4B72-ADFF-3B8442A7378D}|Authentication.Api\\Authentication.Api.csproj|e:\\erp_admin_portal\\erp.admin.portal\\erp.admin.portal\\authentication.api\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{25C4B700-5374-4B72-ADFF-3B8442A7378D}|Authentication.Api\\Authentication.Api.csproj|solutionrelative:authentication.api\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -43,6 +43,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ocelot.json",
+              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\ApiGateWay\\ocelot.json",
+              "RelativeDocumentMoniker": "ApiGateWay\\ocelot.json",
+              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\ApiGateWay\\ocelot.json",
+              "RelativeToolTip": "ApiGateWay\\ocelot.json",
+              "ViewState": "AQIAAC8AAAAAAAAAAAAAAD8AAAA4AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-06-21T10:00:47.495Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "AdminController.cs",
               "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.Api\\Controllers\\AdminController.cs",
               "RelativeDocumentMoniker": "Authentication.Api\\Controllers\\AdminController.cs",
@@ -50,20 +63,7 @@
               "RelativeToolTip": "Authentication.Api\\Controllers\\AdminController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAC0BAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-20T15:04:58.259Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.Api\\Program.cs",
-              "RelativeDocumentMoniker": "Authentication.Api\\Program.cs",
-              "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.Api\\Program.cs",
-              "RelativeToolTip": "Authentication.Api\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAkAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-19T15:48:41.013Z"
+              "WhenOpened": "2024-06-20T15:04:58.259Z"
             },
             {
               "$type": "Document",
@@ -73,9 +73,10 @@
               "RelativeDocumentMoniker": "Authentication.Api\\Controllers\\AccountController.cs",
               "ToolTip": "E:\\ERP_Admin_portal\\ERP.Admin.Portal\\ERP.Admin.Portal\\Authentication.Api\\Controllers\\AccountController.cs",
               "RelativeToolTip": "Authentication.Api\\Controllers\\AccountController.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAzwCgAAAAAAAAA",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAABcAAAAiAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T12:44:55.096Z"
+              "WhenOpened": "2024-06-18T12:44:55.096Z",
+              "EditorCaption": ""
             }
           ]
         },
