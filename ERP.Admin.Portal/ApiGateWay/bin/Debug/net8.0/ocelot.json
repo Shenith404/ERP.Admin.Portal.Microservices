@@ -3,7 +3,10 @@
     "BaseUrl": "https://localhost:7111"
   },
   "Routes": [
-    //ADMIN PORTAL
+
+
+
+    ////////////////////////   ADMIN PORTAL
 
     //Authentication
     {
@@ -15,6 +18,8 @@
           "Port": 7048
         }
       ],
+
+     
 
 
       "UpstreamPathTemplate": "/ApiGateWay/Auth-api/{controller}/{action}",
@@ -45,6 +50,7 @@
           "Port": 7295
         }
       ],
+      
       "UpstreamPathTemplate": "/ApiGateWay/Notification-Api/{controller}/{action}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     },
@@ -61,6 +67,10 @@
           "Port": 7010
         }
       ],
+
+      "RouteClaimsRequirement": {
+        "role": "Admin|Staff|Lecture"
+      },
       "UpstreamPathTemplate": "/ApiGateWay/Graduate-api/{controller}/{action}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     }, //Lab Equipment
@@ -96,11 +106,682 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 7012
+          "Port": 7013
         }
       ],
       "UpstreamPathTemplate": "/ApiGateWay/LabSchedule-api/{controller}/{action}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+    },
+
+    //ACADEMIC
+    //Module Offereing
+    {
+      "DownstreamPathTemplate": "/api/ModuleOffering/{teacherId}/modules",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7020
+        }
+      ],
+     
+      
+
+      "UpstreamPathTemplate": "/ApiGateWay/Evaluation-api/ModuleOffering/{teacherId}/modules",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/ModuleOffering",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7020
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Evaluation-api/ModuleOffering",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/ModuleOffering/Add",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7020
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Evaluation-api/ModuleOffering/Add",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/ModuleOffering/{moduleOfferingId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7020
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Evaluation-api/ModuleOffering/{moduleOfferingId}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/ModuleOffering/{moduleOfferingId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7020
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Evaluation-api/ModuleOffering/{moduleOfferingId}",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/ModuleOffering/{moduleOfferingId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7020
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Evaluation-api/ModuleOffering/{moduleOfferingId}",
+      "UpstreamHttpMethod": [ "DELETE" ]
+    },
+
+    //Evaluation 
+    {
+      "DownstreamPathTemplate": "/api/Evaluation",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7020
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Evaluation-api/Evaluation",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Evaluation/{moduleOfferingId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7020
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Evaluation-api/Evaluation/{moduleOfferingId}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Evaluation/{evaluationId}/evaluation",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7020
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Evaluation-api/Evaluation/{evaluationId}/evaluation",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Evaluation/{moduleOfferingId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7020
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Evaluation-api/Evaluation/{moduleOfferingId}",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Evaluation/{evaluationId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7020
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Evaluation-api/Evaluation/{evaluationId}",
+      "UpstreamHttpMethod": [ "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Evaluation",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7020
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Evaluation-api/Evaluation",
+      "UpstreamHttpMethod": [ "PUT" ]
+    },
+
+    //STUDENTRESULT
+    {
+      "DownstreamPathTemplate": "/api/StudentResult",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7020
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Evaluation-api/StudentResult",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/StudentResult/{moduleOfferingId}/{evaluationId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7020
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Evaluation-api/StudentResult/{moduleOfferingId}/{evaluationId}",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/StudentResult/{moduleOfferingId}/{evaluationId}/importexcel",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7020
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Evaluation-api/StudentResult/{moduleOfferingId}/{evaluationId}/importexcel",
+      "UpstreamHttpMethod": [ "PUT" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/StudentResult/{studentResultId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7020
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Evaluation-api/StudentResult/{studentResultId}",
+      "UpstreamHttpMethod": [ "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/StudentResult/{evaluationId}/results",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7020
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Evaluation-api/StudentResult/{evaluationId}/results",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/StudentResult/{moduleOfferingId}/allresults",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7020
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Evaluation-api/StudentResult/{moduleOfferingId}/allresults",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/StudentResult/{moduleOfferingId}/{evaluationId}/exports/results",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7020
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Evaluation-api/StudentResult/{moduleOfferingId}/{evaluationId}/exports/results",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+
+    //FIRSTEXAMINERMODULEOFFERING
+    {
+      "DownstreamPathTemplate": "/api/FirstExaminerModuleOffering",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7020
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Evaluation-api/FirstExaminerModuleOffering",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/FirstExaminerModuleOffering",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7020
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Evaluation-api/FirstExaminerModuleOffering",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/FirstExaminerModuleOffering/{firstExaminerId}/modules",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7020
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Evaluation-api/FirstExaminerModuleOffering/{firstExaminerId}/modules",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+
+    //SECONDEXAMINER
+    {
+      "DownstreamPathTemplate": "/api/SecondExaminerModuleOffering",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7020
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Evaluation-api/SecondExaminerModuleOffering",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/SecondExaminerModuleOffering",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7020
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Evaluation-api/SecondExaminerModuleOffering",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/SecondExaminerModuleOffering/{secondExaminerId}/modules",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7020
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Evaluation-api/SecondExaminerModuleOffering/{secondExaminerId}/modules",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+
+
+    //MODULEREGISTRATION
+    {
+      "DownstreamPathTemplate": "/api/ModuleRegistration",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7020
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Evaluation-api/ModuleRegistration",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/ModuleRegistration",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7020
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Evaluation-api/ModuleRegistration",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/ModuleRegistration/{moduleRegId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7020
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Evaluation-api/ModuleRegistration/{moduleRegId}",
+      "UpstreamHttpMethod": [ "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/ModuleRegistration/{moduleOfferingId}/registrations",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7020
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Evaluation-api/ModuleRegistration/{moduleOfferingId}/registrations",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+
+    //REQUEST Management
+    //Batch
+
+    {
+      "DownstreamPathTemplate": "/api/Batch",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7021
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Request-api/Batch",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Batch",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7021
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Request-api/Batch",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Batch/{batchId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7021
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Request-api/Batch/{batchId}",
+      "UpstreamHttpMethod": [ "DELETE" ]
+    },
+
+    // student
+
+    {
+      "DownstreamPathTemplate": "/api/Student",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7021
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Request-api/Student",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Student",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7021
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Request-api/Student",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Student/{studentId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7021
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Request-api/Student/{studentId}",
+      "UpstreamHttpMethod": [ "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Student/{batchId}/{advisorId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7021
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Request-api/Student/{batchId}/{advisorId}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Student/{batchId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7021
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Request-api/Student/Get/{batchId}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+
+    //staff request
+
+    {
+      "DownstreamPathTemplate": "/api/StaffRequest",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7021
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Request-api/StaffRequest",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/StaffRequest",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7021
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Request-api/StaffRequest",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/StaffRequests/Outgoing/{teacherId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7021
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Request-api/StaffRequest/Outgoing/{teacherId}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/StaffRequests/Incoming/{teacherId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7021
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Request-api/StaffRequests/Incoming/{teacherId}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/StaffRequest/{requestId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7021
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Request-api/StaffRequest/{requestId}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+
+    //Teacher Request
+
+    {
+      "DownstreamPathTemplate": "/api/TeacherRequest",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7021
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Request-api/TeacherRequest",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/TeacherRequest/{senderId}/{recieverId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7021
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Request-api/TeacherRequest/{senderId}/{recieverId}",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/TeacherRequests/{teacherId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7021
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Request-api/TeacherRequests/{teacherId}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/TeacherRequest/{requestId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7021
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Request-api/TeacherRequest/{requestId}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+
+    //student Request
+    {
+      "DownstreamPathTemplate": "/api/StudentRequest",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7021
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Request-api/StudentRequest",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/StudentRequest/{senderId}/{recieverId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7021
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Request-api/StudentRequest/{senderId}/{recieverId}",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/StudentRequests/{teacherId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7021
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Request-api/StudentRequests/{teacherId}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/StudentRequest/{requestId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7021
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Request-api/StudentRequest/{requestId}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+
+    //Teacher registration
+    {
+      "DownstreamPathTemplate": "/api/TeacherRegistration",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7021
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Request-api/TeacherRegistration",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/TeacherRegistration",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7021
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Request-api/TeacherRegistration",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/TeacherRegistration/{teacherId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7021
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Request-api/TeacherRegistration/{teacherId}",
+      "UpstreamHttpMethod": [ "DELETE" ]
     }
+
   ]
 }

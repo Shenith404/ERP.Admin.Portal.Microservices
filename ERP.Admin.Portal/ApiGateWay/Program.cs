@@ -4,6 +4,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Net.Http.Headers;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using ApiGateWay;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,22 +13,28 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("ocelot.json", optional: false, reloadOnChange: true);
 
 // Register CORS services
-builder.Services.AddCors();
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins("https://localhost:7072")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
+builder.Services.AddCustomJwtAuthenticaion();
 
 // Register Ocelot services
 builder.Services.AddOcelot(builder.Configuration);
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseCors(policy =>
-    {
-        policy.WithOrigins("https://localhost:7072")
-              .AllowAnyHeader()
-              .AllowAnyMethod();
-    });
-}
+// Use CORS middleware
+app.UseCors();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 // Use Ocelot middleware
 await app.UseOcelot();

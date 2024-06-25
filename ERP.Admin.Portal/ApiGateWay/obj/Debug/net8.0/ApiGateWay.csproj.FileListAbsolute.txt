@@ -37,3 +37,11 @@ E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\ApiGateWay\bin\Debug\net8.
 E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\ApiGateWay\obj\Debug\net8.0\ApiGateWay.csproj.AssemblyReference.cache
 E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\ApiGateWay\obj\Debug\net8.0\ApiGateWay.MvcApplicationPartsAssemblyInfo.cs
 E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\ApiGateWay\obj\Debug\net8.0\ApiGateWay.csproj.Up2Date
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\ApiGateWay\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\ApiGateWay\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\ApiGateWay\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\ApiGateWay\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\ApiGateWay\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\ApiGateWay\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\ApiGateWay\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+E:\ERP_Admin_portal\ERP.Admin.Portal\ERP.Admin.Portal\ApiGateWay\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
