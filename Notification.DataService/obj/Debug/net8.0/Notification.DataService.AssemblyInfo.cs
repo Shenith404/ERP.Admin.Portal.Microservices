@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Notification.DataService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eabba6df4093f4fa70ec60a9df7a7e6f4d8999d3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cc287fde189df9f53e0dbeb8ef54ad3ba7441ecd")]
 [assembly: System.Reflection.AssemblyProductAttribute("Notification.DataService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Notification.DataService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

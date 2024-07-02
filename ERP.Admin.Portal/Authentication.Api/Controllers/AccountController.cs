@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.IdentityModel.Tokens;
+using Notification.Core.Entity;
+using System.Net.Http;
 using System.Text;
 using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 
@@ -24,10 +26,13 @@ namespace Authentication.Api.Controllers
     public class AccountController : BaseController
     {
         private readonly ISendEmail _sendEmail;
-        public AccountController(IJwtTokenHandler jwtTokenHandler, UserManager<UserModel> userManager, IMapper mapper,ISendEmail sendEmail,IUnitOfWorks unitOfWorks) 
+        private readonly HttpClient _httpClient;
+
+        public AccountController(IJwtTokenHandler jwtTokenHandler, UserManager<UserModel> userManager, IMapper mapper,ISendEmail sendEmail,IUnitOfWorks unitOfWorks,HttpClient httpClient) 
             : base(jwtTokenHandler, userManager, mapper, unitOfWorks)
         {
             _sendEmail = sendEmail;
+            _httpClient = httpClient;
         }
 
 
@@ -233,6 +238,21 @@ namespace Authentication.Api.Controllers
 
                     if (result)
                     {
+
+                        NotificationModel notification = new NotificationModel
+                        {
+
+                            Title = "Welcome",
+                            Content = "Welcome to ERP system Faculty of Engineering University of Ruhuna",
+                            ReadStatus = false,
+                            Type = NotificationType.Success,
+                            AddedDate = DateTime.Now,
+                            ReceiverId = new Guid(get_created_user.Id),
+                            Priority = 0,
+                            Link = null
+                        };
+
+                        var nResult = await _httpClient.PostAsJsonAsync("https://localhost:7295/api/Notification/Create", notification);
                         return Ok(new AuthenticationResponseDTO()
                         {
                             Message = "User Created Successful ,Check the email for comfirmation"
@@ -299,7 +319,7 @@ namespace Authentication.Api.Controllers
                 user.ConfirmationEmailLink = null;
                 await _userManager.UpdateAsync(user);
                 Console.WriteLine("Email Confrim is Successfull");
-                return Ok("Email Confrim is Successfull");
+                return Ok("Email Confirm is Successfull");
             }
             else
             {
@@ -881,6 +901,21 @@ namespace Authentication.Api.Controllers
                 if (deviceInfo == false)
                 {
                     //save new info to data base
+
+                    NotificationModel notification = new NotificationModel
+                    {
+
+                        Title = "Alert",
+                        Content = "New Device Login Detected. Check your email to More details",
+                        ReadStatus = false,
+                        Type = NotificationType.Success,
+                        AddedDate = DateTime.Now,
+                        ReceiverId = new Guid(existing_user.Id),
+                        Priority = 0,
+                        Link = null
+                    };
+
+                    var nResult = await _httpClient.PostAsJsonAsync("https://localhost:7295/api/Notification/Create", notification);
 
                     var info = await StoreTheUserDataInformation(existing_user);
                     var details = UserAgentDetailsDTO.GetBrowser(info.UserAgentDetails!);
