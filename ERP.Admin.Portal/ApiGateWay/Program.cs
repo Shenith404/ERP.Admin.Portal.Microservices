@@ -25,6 +25,20 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddCustomJwtAuthenticaion();
 
+
+
+// Add authorization with policies
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
+    options.AddPolicy("LecturePolicy", policy => policy.RequireRole("Lecture"));
+    options.AddPolicy("StaffPolicy", policy => policy.RequireRole("Staff"));
+    options.AddPolicy("RegularPolicy", policy => policy.RequireRole("Reguler")); 
+    options.AddPolicy("DepartmentAcademicPolicy", policy => policy.RequireRole("Admin", "Lecture", "Staff"));
+});
+
+
+
 // Register Ocelot services
 builder.Services.AddOcelot(builder.Configuration);
 

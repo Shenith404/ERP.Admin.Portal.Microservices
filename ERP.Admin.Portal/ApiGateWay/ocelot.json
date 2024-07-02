@@ -6,7 +6,7 @@
 
 
 
-    ////////////////////////   ADMIN PORTAL
+    //#######ADMIN PORTAL.
 
     //Authentication
     {
@@ -19,7 +19,7 @@
         }
       ],
 
-     
+
 
 
       "UpstreamPathTemplate": "/ApiGateWay/Auth-api/{controller}/{action}",
@@ -50,9 +50,13 @@
           "Port": 7295
         }
       ],
-      
+
+
       "UpstreamPathTemplate": "/ApiGateWay/Notification-Api/{controller}/{action}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+
+
+
     },
 
 
@@ -68,9 +72,7 @@
         }
       ],
 
-      "RouteClaimsRequirement": {
-        "role": "Admin|Staff|Lecture"
-      },
+      
       "UpstreamPathTemplate": "/ApiGateWay/Graduate-api/{controller}/{action}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     }, //Lab Equipment
@@ -124,8 +126,8 @@
           "Port": 7020
         }
       ],
-     
-      
+
+
 
       "UpstreamPathTemplate": "/ApiGateWay/Evaluation-api/ModuleOffering/{teacherId}/modules",
       "UpstreamHttpMethod": [ "GET" ]
@@ -643,6 +645,18 @@
       "UpstreamPathTemplate": "/ApiGateWay/Request-api/StaffRequest/{requestId}",
       "UpstreamHttpMethod": [ "GET" ]
     },
+    {
+      "DownstreamPathTemplate": "/api/StaffRequest/{requestId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7021
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Request-api/StaffRequest/{requestId}",
+      "UpstreamHttpMethod": [ "DELETE" ]
+    },
 
     //Teacher Request
 
@@ -694,6 +708,18 @@
       "UpstreamPathTemplate": "/ApiGateWay/Request-api/TeacherRequest/{requestId}",
       "UpstreamHttpMethod": [ "GET" ]
     },
+    {
+      "DownstreamPathTemplate": "/api/TeacherRequest/{requestId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7021
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Request-api/TeacherRequest/{requestId}",
+      "UpstreamHttpMethod": [ "DELETE" ]
+    },
 
     //student Request
     {
@@ -743,6 +769,18 @@
       ],
       "UpstreamPathTemplate": "/ApiGateWay/Request-api/StudentRequest/{requestId}",
       "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/StudentRequest/{requestId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7021
+        }
+      ],
+      "UpstreamPathTemplate": "/ApiGateWay/Request-api/StudentRequest/{requestId}",
+      "UpstreamHttpMethod": [ "DELETE" ]
     },
 
     //Teacher registration

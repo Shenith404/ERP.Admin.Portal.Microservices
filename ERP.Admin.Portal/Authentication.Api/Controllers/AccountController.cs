@@ -319,7 +319,7 @@ namespace Authentication.Api.Controllers
                 user.ConfirmationEmailLink = null;
                 await _userManager.UpdateAsync(user);
                 Console.WriteLine("Email Confrim is Successfull");
-                return Ok("Email Confrim is Successfull");
+                return Ok("Email Confirm is Successfull");
             }
             else
             {
